@@ -31,7 +31,7 @@ public class SpotController {
 	
 	// 여기부터 RequestMapping 처리
 	
-	// 캠핑장 찾기 페이지로 이동 - 희원,20210225
+	// 캠핑장 키워드검색 페이지로 이동 - 희원,20210225
 	@RequestMapping("/findCampSpotView.do")
     public String findCampSpotView(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -109,6 +109,7 @@ public class SpotController {
 				// 페이징 정보
 				PaggingVO page = new PaggingVO(count, Integer.parseInt(pageNo));
 				
+				request.setAttribute("search", "");
 				request.setAttribute("list", list);
 				request.setAttribute("pageNo", pageNo);
 				request.setAttribute("page", page);
@@ -134,8 +135,10 @@ public class SpotController {
 	@RequestMapping("/spotSearch.do")
 	public String spotSearch(HttpServletRequest request, HttpServletResponse response) {
 		// 검색어
-		String search = request.getParameter("search");
-		
+		String search = "";
+		if(request.getParameter("search") != null)
+			search = request.getParameter("search");
+				
 		// 페이징
 		String pageNo = "1";
 		if(request.getParameter("pageNo") != null)
@@ -244,6 +247,7 @@ public class SpotController {
 				// 페이징 정보
 				PaggingVO page = new PaggingVO(count, Integer.parseInt(pageNo));
 
+				request.setAttribute("search", search);
 				request.setAttribute("list", list);
 				request.setAttribute("pageNo", pageNo);
 				request.setAttribute("page", page);
@@ -442,11 +446,12 @@ public class SpotController {
 				// 페이징 정보
 				PaggingVO page = new PaggingVO(count, Integer.parseInt(pageNo));
 				
+				request.setAttribute("searchDTO", searchDTO);
 				request.setAttribute("list", list);
 				request.setAttribute("pageNo", pageNo);
 				request.setAttribute("page", page);
 				
-				return "spot/spot_search";
+				return "spot/spot_search_category";
 				
 			} else {
 				response.setContentType("text/html;charset=utf-8");
