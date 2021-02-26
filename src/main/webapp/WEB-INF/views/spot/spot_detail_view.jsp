@@ -508,157 +508,423 @@
 </style>
 </head>
 <body>
+<!-- 메인화면 제일 위 캠핑장 이름 주소부분 start-->
     <div id="maintitle_img_headline">
-        <c:forEach var="dto" items="${requestScope.list}">
             <div id="maintitle_name_div">
-                <span id="camping_sname_ptag">한티별빛아래관광농원 야영장</span><br>
-                <span id="camping_address_ptag">경상북도 칠곡군 가산면 응추리</span>
+                <span id="camping_sname_ptag">${requestScope.spotDTO.facltNm}</span><br>
+                <span id="camping_address_ptag">${requestScope.spotDTO.addr1}</span>
                 <hr>
             </div>
-        </c:forEach>
     </div>
+<!-- 메인화면 제일 위 캠핑장 이름 주소부분 end-->
     <div id="headLine_row"></div>
     <section>
-        <div id="main_content_container"><!--머릿글부분 시작-->
-            <div id="main_content_img"><!--캠핑장 이미지-->
-                <img src="img/searchpage/캠핑장사진.jpg" alt="">
-            </div><!--캠핑장 이미지-->
-            <div id="maint_content_info"><!--캠핑장 내용 시작-->
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first" id="detail_content_div_first">주소</span>
-                    <span class="detail_content_div_second" id="detail_content_div_second">경상북도 칠곡군 가산면 응추리</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">연락처</span>
-                    <span class="detail_content_div_second">054-972-8032</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">캠핑장 환경</span>
-                    <span class="detail_content_div_second">산</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">캠핑장 유형</span>
-                    <span class="detail_content_div_second">일반야영장</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">계절오픈</span>
-                    <span class="detail_content_div_second">봄여름가을겨울</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">운영요일</span>
-                    <span class="detail_content_div_second">매일</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">홈페이지</span>
-                    <span class="detail_content_div_second"><a id="homepage_move_btn" href="http://cafe.daum.net/hantistar-camp">http://cafe.daum.net/hantistar-camp</a></span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">애완동물</span>
-                    <span class="detail_content_div_second">가능/불가능</span>
-                </div>
-                <div class="detail_content_div">
-                    <span class="detail_content_div_first">캠핑장 특징</span>
-                    <span class="detail_content_div_second">카페</span>
-                </div>
-                <div class="detail_content_div">
-                    <span id="resevation_btn"><a href="">예약하기</a></span>
-                    <span id="keep_btn"><a href="">찜하기</a></span>
-                </div>
-            </div><!--캠핑장 내용 마지막-->
-        </div><!--머릿글부분 마지막-->
+<!-- 캠핑장 기본 이미지, 기본 정보 부분 start -->
+	        <div id="main_content_container">
+	            <div id="main_content_img">
+	                <img src="${requestScope.spotDTO.firstImageUrl}" alt="">
+	            </div>
+	            <div id="maint_content_info">
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first" id="detail_content_div_first">주소</span>
+	                    <span class="detail_content_div_second" id="detail_content_div_second">${requestScope.spotDTO.addr1} ${requestScope.spotDTO.addr2}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">연락처</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.tel}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">캠핑장 환경</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.lctCl}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">캠핑장 유형</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.induty}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">계절오픈</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.operPdCl}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">운영요일</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.operDeCl}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">홈페이지</span>
+	                    <span class="detail_content_div_second"><a id="homepage_move_btn" href="${requestScope.spotDTO.homepage}">${requestScope.spotDTO.homepage}</a></span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">애완동물출입 여부</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.animalCmgCl }</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span class="detail_content_div_first">캠핑장 특징</span>
+	                    <span class="detail_content_div_second">${requestScope.spotDTO.featureNm}</span>
+	                </div>
+	                <div class="detail_content_div">
+	                    <span id="resevation_btn"><a href="">예약하기</a></span>
+	                    <span id="keep_btn"><a href="">찜하기</a></span>
+	                </div>
+	            </div>
+	        </div>
+<!-- 캠핑장 기본 이미지, 기본 정보 부분 end -->
 
-        <div id="detail_information_maincontent"><!--본문 상세내용 시작-->
+
+<!-- 캠핑장 상세내역 start -->		
+        <div id="detail_information_maincontent">
 
             <div id="location1"></div>
 
-            <div class="detail_information_menubar1"><!--소제목 메뉴바1-->
+
+			<!--중간안내바 start -->
+            <div class="detail_information_menubar1">
                 <table>
                     <tr>
                         <td><a href="#location1" class="menubar1-1">위치안내</a></td><td><a href="#location2" class="menubar1-2">캠핑장소개</a></td><td><a href="#location3" class="menubar1-3">캠핑장상세내역</a></td>
                     </tr>
                 </table>
-            </div><!--소제목 메뉴바1-->
+            </div>
+            <!--중간안내바 end -->
 
-            <div id="detail_information_image"><!--위치정보 들어갈 지도 시작-->
+
+
+			<!--캠핑장 지도 start -->
+            <div id="detail_information_image">
                 <img src="map" alt="">지도 들어가는곳
-            </div><!--위치정보 들어갈 지도 마지막-->
+            </div>
+			<!--캠핑장 지도 end -->
+
+
 
             <div id="location2"></div>
 
-            <div class="detail_information_menubar2" id="detail_information_menubar1"><!--소제목 메뉴바2-->
+
+
+			<!--중간안내바 start -->
+            <div class="detail_information_menubar2" id="detail_information_menubar1">
                 <table>
                     <tr>
                         <td><a href="#location1" class="menubar2-1">위치안내</a></td><td><a href="#location2" class="menubar2-2">캠핑장소개</a></td><td><a href="#location3" class="menubar2-3">캠핑장상세내역</a></td>
                     </tr>
                 </table>
-            </div><!--소제목 메뉴바2-->
+            </div>
+            <!--중간안내바 end -->
             
-            <div id="detail_information_longinfo"><!--캠핑장 긴소개 시작-->
-                <p>한티 별빛아래 오토캠핑장은 경북 칠곡군 가산면에 자리 잡았다. 칠곡군청을 기점으로 33㎞가량 떨어졌으며, 자동차에 몸을 싣고 호국로, 남원로, 79번 지방도를 차례로 달리면 닿는다. 도착까지 걸리는 시간은 50분 안팎이다. 이곳은 ‘높은 고개’란 의미를 지닌 한티재 인근에 위치했다. 고지대인 덕택에 한여름 낮 시간에는 다른 지역에 비해 무덥지 않다. 해가 진 저녁에는 닭살이 살짝 돋는 선선함을 느낄 정도다. 게다가 캠핑장에서 발 아래로 내려다보는 풍경은 감탄사를 자아낼 정도로 멋지다. 캠핑장에는 48면의 자동차 야영장을 마련했다. 바닥 형태는 파쇄석이며, 사이트 크기는 가로 6m 세로 9m다. 개인 트레일러는 물론 카라반 동반 입장이 가능하다. 주말 운영을 원칙으로 사계절 내내 문을 연다. 캠핑장 인근에 치산관광지, 팔공산도립공원, 블루데이식물원 등이 있어 연계관광이 용이하다. 팔공산 주변에 여러 음식점도 성업 중이라 먹을거리를 찾아 나서기에 부담이 없다</p>
-            </div><!--캠핑장 긴소개 마지막-->
+            
+            
+            <!-- 캠핑장 긴소개글 start -->
+            <div id="detail_information_longinfo">
+            	<c:choose>
+            		
+            		<c:when test="${requestScope.spotDTO.intro ne '-'}">
+            			<p>${requestScope.spotDTO.intro}</p>
+            		</c:when>
+            		
+            		
+            		<c:otherwise>
+            			<p>캠핑장 소개글을 등록하지 않았습니다.</p>
+            		</c:otherwise>
+            		
+            	</c:choose>
+            </div>
+            <!-- 캠핑장 긴소개글 end -->
+            
+            
 
             <div id="location3"></div>
 
-            <div class="detail_information_menubar3" id="detail_information_menubar1"><!--소제목 메뉴바3-->
+
+
+			<!--중간안내바 start -->
+            <div class="detail_information_menubar3" id="detail_information_menubar1">
                 <table>
                     <tr>
                         <td><a href="#location1" class="menubar3-1">위치안내</a></td><td><a href="#location2" class="menubar3-2">캠핑장소개</a></td><td><a href="#location3" class="menubar3-3">캠핑장상세내역</a></td>
                     </tr>
                 </table>
-            </div><!--소제목 메뉴바3-->
+            </div>
+            <!--중간안내바 end -->
 
-            <div id="detail_information_detailinfo"><!--캠핑장 상세내역 시작-->
+
+<!-- 캠핑장 자세한 정보 모음 창 start -->
+            <div id="detail_information_detailinfo">
+			<!-- 캠핑장 아이콘 표시부분 start -->
                 <span class="camp_facility_info">[캠핑장시설정보]</span>
-                <div id="container_icon"><!--캠핑장 시설정보 시작-->
-                    <span class="icon_container">
-                        <span id="img_span"><img src="img/FacilitiesIcon/electro.png" alt=""></span>
-                        <p id="icon_index">전기</p>
-                    </span>
-                </div><!--캠핑장 시설정보 마지막--><!-- 오류체크용 -->
+                <div id="container_icon">
+                    	<c:forEach var="iconlist" items="${sbrsClList}">
+                    		<c:choose>
+                    			
+                    			<c:when test="${iconlist eq '전기'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/electro.png" alt=""></span>
+			                        	<p id="icon_index">전기</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '무선인터넷'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/wifi.png" alt=""></span>
+			                        	<p id="icon_index">무선인터넷</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '장작'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/firewood.png" alt=""></span>
+			                        	<p id="icon_index">장작</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '온수'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/hotwater.png" alt=""></span>
+			                        	<p id="icon_index">온수</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '트렘폴린'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/Trempoline.png" alt=""></span>
+			                        	<p id="icon_index">트렘폴린</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '수영장'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/pool.png" alt=""></span>
+			                        	<p id="icon_index">수영장</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '놀이터'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/playground.png" alt=""></span>
+			                        	<p id="icon_index">놀이터</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '산책로'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/walking.png" alt=""></span>
+			                        	<p id="icon_index">산책로</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '운동장'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/ground.png" alt=""></span>
+			                        	<p id="icon_index">운동장</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '운동시설'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/gym.png" alt=""></span>
+			                        	<p id="icon_index">운동시설</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    			
+                    			<c:when test="${iconlist eq '마트'}">
+		                    		<span class="icon_container">	
+			                        	<span id="img_span"><img src="../../../img/FacilitiesIcon/mart.png" alt=""></span>
+			                        	<p id="icon_index">마트</p>
+			                    	</span>
+                    			</c:when>
+                    			
+                    		</c:choose>
+	                    	
+	                    </c:forEach>
+                </div>
+              	<!-- 캠핑장 아이콘 표시부분 end -->
                 
+                
+                
+              	<!-- 캠핑장 상세정보 표시부분 start -->
                 <span class="camp_facility_info">[캠핑장상세정보]</span>
-                <div id="container_info"><!--캠핑장 상세정보 시작-->
-                    <div class="container_info_category">
-                        <span class="container_info_first" id="top_category1">주요시설</span>
-                        <span class="container_info_second" id="top_category2">주요시설 일반야영장</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">사이트간격</span>
-                        <span class="container_info_second">3M</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">바닥형태</span>
-                        <span class="container_info_second">자갈</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">사이트크기</span>
-                        <span class="container_info_second">4X7(35개)</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">캠핑장비대여</span>
-                        <span class="container_info_second">릴선,화로대</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">애완동물출입</span>
-                        <span class="container_info_second">불가능</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">화장실개수</span>
-                        <span class="container_info_second">11개</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first">샤워실개수</span>
-                        <span class="container_info_second">10개</span>
-                    </div>
-                    <div class="container_info_category">
-                        <span class="container_info_first" id="last_category1">개수대개수</span>
-                        <span class="container_info_second" id="last_category2">13개</span>
-                    </div>
-                </div><!--캠핑장 상세정보 마지막-->
-
-            </div><!--캠핑장 상세내역 마지막-->
-
-        </div><!--본문 상세내용 마지막-->
+                <div id="container_info">
+	                
+	                    <div class="container_info_category">
+	                        <span class="container_info_first" id="top_category1">주요시설</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.gnrlSiteCo ne '-'}">
+	                        		<span class="container_info_second">일반야영장</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.autoSiteCo ne '-'}">
+	                        		<span class="container_info_second">자동차야영장</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.glampSiteCo ne '-'}">
+	                        		<span class="container_info_second">글램핑</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.caravSiteCo ne '-'}">
+	                        		<span class="container_info_second">카라반</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.indvdlCaravSiteCo ne '-'}">
+	                        		<span class="container_info_second">개인카라반</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+	                        		<span class="container_info_second">주요시설 구분 없음</span>
+	                        	</c:otherwise>
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">사이트간격</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.sitedStnc ne '-'}">
+	                        		<span class="container_info_second">${requestScope.spotDTO.sitedStnc}m</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:otherwise>
+	                        		<span class="container_info_second">없음</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">바닥형태</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.siteBottomCl1 ne '-'}">
+			                        <span class="container_info_second">잔디</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.siteBottomCl2 ne '-'}">
+			                        <span class="container_info_second">파쇄석</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.siteBottomCl3 ne '-'}">
+			                        <span class="container_info_second">테크</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.siteBottomCl4 ne '-'}">
+			                        <span class="container_info_second">자갈</span>
+	                        	</c:when>
+	                        	
+	                        
+	                        	<c:when test="${requestScope.spotDTO.siteBottomCl5 ne '-'}">
+			                        <span class="container_info_second">맨흙</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+			                        <span class="container_info_second">정보없음</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">사이트크기</span>
+	                        <span class="container_info_second">${requestScope.spotDTO.siteMg1Width} X ${requestScope.spotDTO.siteMg1Vrticl} (${requestScope.spotDTO.siteMg1Co}개)</span>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">캠핑장비대여</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.eqpmnLendCl ne '-'}">
+			                        <span class="container_info_second">${requestScope.spotDTO.eqpmnLendCl}</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+			                        <span class="container_info_second">장비대여 없음</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">애완동물출입</span>
+	                         <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.animalCmgCl ne '-'}">
+			                        <span class="container_info_second">${requestScope.spotDTO.animalCmgCl}</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+			                        <span class="container_info_second">불가능</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">화장실개수</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.toiletCo ne '-'}">
+			                        <span class="container_info_second">${requestScope.spotDTO.toiletCo}개</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+			                        <span class="container_info_second">없음</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first">샤워실개수</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.swrmCo ne '-'}">
+			                        <span class="container_info_second">${requestScope.spotDTO.swrmCo}</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+			                        <span class="container_info_second">없음</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+	                    <div class="container_info_category">
+	                        <span class="container_info_first" id="last_category1">개수대개수</span>
+	                        <c:choose>
+	                        
+	                        	<c:when test="${requestScope.spotDTO.wtrplCo ne '-'}">
+			                        <span class="container_info_second">${requestScope.spotDTO.wtrplCo}</span>
+	                        	</c:when>
+	                        	
+	                        	<c:otherwise>
+			                        <span class="container_info_second">없음</span>
+	                        	</c:otherwise>
+	                        	
+	                        </c:choose>
+	                    </div>
+	                    
+                </div>
+                <!-- 캠핑장 상세정보 표시부분 end -->
+                
+            </div>
+<!-- 캠핑장 자세한 정보 모음 창 start -->
+        </div>
+<!-- 캠핑장 상세내역 end -->
     </section>
 </body>
 </html>
