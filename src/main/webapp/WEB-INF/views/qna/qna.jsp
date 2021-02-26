@@ -92,32 +92,35 @@
     }
     .part_No{
         width: 30px;
-        padding: 5px;
+        padding: 5px 0px;
         border-top: 2px solid #e8e8e8;
         border-bottom: 2px solid #e8e8e8;
     }
      .part_title{
         width: 200px;
-        padding: 5px;
+        padding: 5px 0px;
         border-top: 2px solid #e8e8e8;
         border-bottom: 2px solid #e8e8e8;
+        cursor: pointer;
     }  
     #part_select{
         width: 150px;
-        padding: 5px;
+        padding: 5px 0px;
         border-top: 2px solid #e8e8e8;
         border-bottom: 2px solid #e8e8e8;
     }
     .part_content{
         width: 300px; 
-        padding: 5px;
+        padding: 5px 0px;
         border-top: 2px solid #e8e8e8;
         border-bottom: 2px solid #e8e8e8;
+        cursor: pointer;
     }
     #btn_page {
         text-decoration: none;
         color: rgb(46, 46, 46);
         margin-right: 5px;
+        cursor: pointer;
     }
     .page_bar{
         margin: 5px;
@@ -232,11 +235,9 @@
 		<div id="container">
             <p id="headline">QnA</p>
 	
-
 			<c:choose>
 				
-				<c:when test="${sessionScope.user_type == '0'}">
-
+				<c:when test="${sessionScope.user_type == 0}">
 					
 					<div class="part">
 						<table id="part_topic">
@@ -249,8 +250,8 @@
 								<th id="part_select">[조회]</th>
 								<th id="part_select">[답변]</th>
 							</tr>
-
-							<c:forEach var="qna" items="${requestScope.list }">
+	
+                            <c:forEach var="qna" items="${requestScope.list }">
 								<tr class="part_topic">
 									<td class="part_No"><p>${qna.qno }</p></td>
 									<td class="part_title"><a id="qna_link"
@@ -259,7 +260,7 @@
 										href="qnaView.do?qno=${dto.qno }">${qna.content }</a></td>
 									<td id="part_select"><p>${qna.writer}</p></td>
 									<td id="part_select"><p>${qna.qdate }</p></td>
-									<td id="part_select"><c:choose>
+							        <td id="part_select"><c:choose>
 											<c:when test="${requestScope.dto.status==0}">0</c:when>
 											<c:otherwise>1</c:otherwise>
 										</c:choose></td>
@@ -267,17 +268,16 @@
 											<c:when test="${requestScope.dto.status==0}">0</c:when>
 											<c:otherwise>1</c:otherwise>
 										</c:choose></td>
-								</tr>
-							</c:forEach>
+                                    </tr>
+                                </c:forEach>
 						</table>
 					</div>
 				</c:when>
 
-
 				<c:when test="${sessionScope.user_type == 1}">
 					
 					<div class="guestQnA">
-						<form action="guestQnAAction.do" method="get">
+						<form action="sendQnA.do" method="get">
 							<div class="part_select">
 								<p>
 									<label for="#">[아이디]</label>
@@ -350,13 +350,13 @@
 				
 				<c:when test="${sessionScope.user_type == 2}">
 					<div class="businessQnA">
-						<form action="businessQnAAction.do" method="get">
+						<form action="sendQnA.do" method="get">
 							<div class="part_select">
 								<p>
 									<label for="#">[아이디]</label>
 								</p>
 								<span class="input_span"><input id="first_input"
-									type="text" name="id" id="id" value="${member.writer}" readonly></span>
+									type="text" name="id" id="id" value="${sessionScope.id}" readonly></span>
 							</div>
 							
 
@@ -419,6 +419,7 @@
 					</div>
 				</c:when>
 			</c:choose>
+			
 			<div class="page_bar">
 				<c:if test="${pagging.previousPageGroup }">
 					<a href=" qnaList.do?pageNo=${pagging.startPageOfPageGroup - 1 }"
