@@ -1,17 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>문의내역 상세페이지</title>
-<script>
-    var pageNo = 1;//전역변수
-    $(function(){
-        
-    });
-</script>
+<title>문의사항 상세페이지</title>
+</head>
 <style>
     @font-face {
         font-family: '보통노토';
@@ -34,118 +29,206 @@
         src: url(../../../Font/Roboto/Roboto-Bold.ttf);
     }
     *{
-        padding: 0;
         margin: 0;
+        padding: 0;
     }
     #container{
+        width: 704px;
+        border: 1px solid rgb(46, 46, 46);
+        border-radius: 8px;
         padding: 20px;
-        border: 1px solid black;
         margin: 20px auto;
-        width: 1200px; 
-        text-align: center;
+        font-family: '굵은노토';
     }
     #headline{
-        width: 1200px;
-        border-top: 2px solid rgb(46, 46, 46);
-        font-family: '굵은노토';
-        font-size: 30px;
         text-align: center;
+        font-family: '굵은노토';
+        font-size: 26px;
+        font-weight: bold;
         color: rgb(46, 46, 46);
-        margin-bottom: 15px;
-    }
-    #part_topic{
+        margin-bottom: 20px;
         border-bottom: 2px solid rgb(46, 46, 46);
         border-top: 2px solid rgb(46, 46, 46);
-        border-collapse: collapse;
+        padding: 10px;
+    }
+    label{
         font-family: '굵은노토';
-        padding: 5px;
+        font-size: 16px;
+        color: rgb(46, 46, 46);
     }
-    .part_No{
-        width: 30px;
-        padding: 5px;
-        border-bottom: 2px solid rgb(46, 46, 46);
+    span{
+        display: inline-block;
+        border-bottom: 2px solid rgb(231, 231, 231);
+        margin-bottom: 5px;
+        padding: 3px;
     }
-    .part_title{
-        width: 200px;
-        padding: 5px;
-        border-bottom: 2px solid rgb(46, 46, 46);
-    }  
-    #part_select{
-        width: 150px;
-        padding: 5px;
-        border-bottom: 2px solid rgb(46, 46, 46);
+    #qna_content_title{
+        font-weight: bold;
+        color: rgb(46, 46, 46);
     }
-    .part_content{
-        width: 300px; 
-        padding: 5px;
-        border-bottom: 2px solid rgb(46, 46, 46);
+    #qna_content{
+        width: 690px;
+        height: 300px;
+        border: 2px solid rgb(231, 231, 231);
+        border-radius: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
     }
-    #btn{
-        text-decoration: none;
-        color: black;
+    #qna_response{
+        width: 690px;
+        height: 100px;
+        border: 2px solid rgb(231, 231, 231);
+        border-radius: 10px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    textarea{
+        width: 700px;
+        height: 100px;
+        resize: none;
+        border: 2px solid rgb(231, 231, 231);
+        border-radius: 10px;
+        font-family: '굵은노토';
+        font-size:16px;
+        margin-top: 10px;
+        padding: 8px;
+    }
+   
+    #btn_modify{
+        width: 100px;
         margin-right: 5px;
+        margin-bottom: 10px;
+        border: 2px solid rgb(46, 46, 46);
+        background-color: rgb(231, 231, 231);
+        border-radius: 5px;
+        font-family: '보통노토';
+        font-size:16px;
+        color: rgb(46, 46, 46);
+        cursor: pointer;
+        float: right;
     }
-    .page_bar{
-        margin: 5px;
+    
+    #btn_delete{
+        width: 100px;
+        margin-right: 5px;
+        margin-bottom: 10px;
+        border: 2px solid rgb(46, 46, 46);
+        background-color: rgb(231, 231, 231);
+        border-radius: 5px;
+        font-family: '보통노토';
+        font-size:16px;
+        color: rgb(46, 46, 46);
+        cursor: pointer;
+        float: right;
+    }
+    #btn_modify:hover{
+        background-color: rgb(46, 46, 46);
+        color: rgb(231, 231, 231);
+    }
+    #btn_delete:hover{
+        background-color: rgb(46, 46, 46);
+        color: rgb(231, 231, 231);
+    }
+
+    #btn_enter:hover{
+        background-color: rgb(46, 46, 46);
+    }
+    hr{
+        margin: 10px 0px;
+        clear: both;
     }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+        function update_qna(obj) {
+            var data = "";
+            $.each($(obj).parent().parent().find("input"), function(i,o) {
+                console.log(i,$(o).val());
+                data += $(o).attr("name") + "=" + $(o).val()  + "&"; 
+            });
+            console.log(data);
+            $.ajax({
+                url : "qnaAjaxUpdate.do",
+                data : data,
+                method:"get",
+                success:function(d){
+                    d = d === "true"; 
+                    if(d){
+                        alert("수정 성공");
+                    }else{
+                        alert("수정 실패");						
+                    }
+                    location.href = "qnaViewMain.do";
+                }
+            });
+        }
+        function delete_member(obj) {
+            var data = "";
+            data = "id=" + $(obj).parent().parent().find("input").first().val();
+            console.log(data);
+            $.ajax({
+                url : "qnaAjaxDelete.do",
+                data : data,
+                method:"get",
+                success:function(d){
+                    d = Number(d);
+                    if(d==1){
+                        alert("삭제 성공");
+                    }else{
+                        alert("삭제 실패");						
+                    }
+                    location.href = "qnaDelete.do";	
+                }
+            });
+            e.preventDefault();	
+		$(".update").click(function() {
+			update_member($(this));
+		});
+		$(".delete").click(function() {
+			delete_member($(this));
+		});
+</script>
 </head>
 <body>
-    <jsp:include page="../template/header2.jsp" flush="false"></jsp:include>
-            <c:if test="${requestScope.list ==null}">
-                <script>
-                    location.href=".do?pageNo=1";
-                    
-                </script>
-            </c:if>
+	<jsp:include page="../template/header.jsp"></jsp:include>
+    <c:if test="${sessionScope.login != '0'}">
+				<script>
+					alert("권한이 없습니다. 로그인 후 이용해 주세요");
+					location.href="loginView.do";
+				</script>
+	</c:if>
 	<div id="container">
-        <p id="headline">문의사항 상세페이지</p>
-        <div class="part">
-            <table id="part_topic">
-                <tr >
-                    <th class="part_No">[No]</th>
-                    <th class="part_title">[제목]</th>
-                    <th id="part_select">[작성자]</th>
-                    <th class="part_content">[내용]</th>
-                    <th id="part_select">[작성일]</th>
-                    <th id="part_select">[조회]</th>
-                    <th id="part_select">[답변]</th>
-                </tr>
+        <p id="headline">QnA</p><!--헤드라인-->
+		<div class="qna_title">
+                 <div class="part_select">
+                     <p id="qna_content_title"><label for="#">[아이디]</label></p>
+                     <span>${requestScope.dto.writer }</span>
+                 </div><!--아이디-->
 
-                <c:forEach var="qna" items="${requestScope.list }">
-                    <tr class="part_topic">
-                        <td class="part_No"><p>${qna.qno }</p></td>
-                        <td class="part_title"><p>${qna.title }</p></td>
-                        <td id="part_select"><p>${qna.writer}</p></td>
-                        <td class="part_content"><p>${qna.content }</p></td>
-                        <td id="part_select"><p>${qna.qdate }</p></td>
-                        <td id="part_select"><p>${qna.status }</p></td>
-                        <td id="part_select"><p>${qna.response }</p></td>
-                    </tr>
-                </c:forEach>
+                 <div class="part_select">
+                     <p id="qna_content_title"><label for="title">[제목]</label></p>
+                     <span>${requestScope.dto.title }</span>
+                 </div><!--제목-->
 
-                <tr>
-                    <td colspan="7">
-                        <div class="page_bar">
-                            <c:if test="${pagging.previousPageGroup }">
-                                <a href=" .do?pageNo=${pagging.startPageOfPageGroup - 1 }" id="btn">◀</a>
-                            </c:if>
-                            <c:forEach var="i" begin="${pagging.startPageOfPageGroup}"
-                                end="${pagging.endPageOfPageGroup}">
-                                <a href=".do?pageNo=${i }" id="btn">${ i}</a>
-                            </c:forEach>
-
-                            <c:if test="${pagging.nextPageGroup }">
-                                <a href=" .do?pageNo=${pagging.endPageOfPageGroup + 1 }" id="btn">▶</a>
-                            </c:if>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-	</div>
-	<jsp:include page="../template/footer.jsp" flush="false"></jsp:include>
-</body>
-</html>
+                 <div class="part_select">
+                     <p id="qna_content_title"><label for="title">[문의내용]</label></p>
+                     <span id="qna_content">${requestScope.dto.content }</span>
+                     </div>
+                 </div><!--내용-->	
+                
+                <div id="btn_update">
+                    <button id="btn_delete">삭제</button>
+                    <c:if test="${sessionScope.response == '0' }">
+                        <button id="btn_modify">수정</button>
+                    </c:if>
+                </div>
+			<hr>
+            <div class="response">
+                <input type="hidden" name="qno" value="${requestScope.dto.response }">
+                <p id="qna_content_title"><label for="title">[답변내용]</label></p>
+                <span id="qna_response">${requestScope.dto.response}</span>
+            </div> <!--답변-->
+		</div><!--container-->
+	<jsp:include page="../template/footer.jsp"></jsp:include>
 </body>
 </html>
