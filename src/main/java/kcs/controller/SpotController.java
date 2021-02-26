@@ -378,7 +378,7 @@ public class SpotController {
 	// 캠핑장 상세 검색 - 희원,20210225
 	@RequestMapping("/spotCategorySearch.do")
 	public String spotCategorySearch(HttpServletRequest request) {
-		
+		 
 		// 사용자가 선택한 상세 정보를 가진 가상의 SpotDTO 객체 생성 파라미터가 있으면 0 없으면 - or 1
 		int contentId = request.getParameter("contentId") != null ? Integer.parseInt(request.getParameter("contentId")) : 1;
 		String facltNm = request.getParameter("facltNm") != null ? request.getParameter("facltNm") : "-";
