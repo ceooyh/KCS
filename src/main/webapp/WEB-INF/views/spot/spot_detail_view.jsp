@@ -614,7 +614,7 @@
                         <span id="img_span"><img src="img/FacilitiesIcon/electro.png" alt=""></span>
                         <p id="icon_index">전기</p>
                     </span>
-                </div><!--캠핑장 시설정보 마지막-->
+                </div><!--캠핑장 시설정보 마지막--><!-- 오류체크용 -->
                 
                 <span class="camp_facility_info">[캠핑장상세정보]</span>
                 <div id="container_info"><!--캠핑장 상세정보 시작-->
