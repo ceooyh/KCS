@@ -387,7 +387,7 @@ public class SpotDTO {
 	}
 	public void setTourEraCl(String tourEraCl) {
 		this.tourEraCl = tourEraCl;
-	}
+	} 
 	public String getFirstImageUrl() {
 		return firstImageUrl;
 	}
