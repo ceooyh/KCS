@@ -61,9 +61,10 @@
     }
     #detail_condition{
         background-image: url(../../../img/searchpage/searchimg.png);
-        height: 875px;
+        background-repeat: no-repeat;
+        height: 950px;
         box-sizing: border-box;
-        padding-top: 3px;
+        padding-top: 30px;
     }
     #detail_condition_headline{
         display: inline-block;
@@ -78,7 +79,7 @@
         margin: 30px auto;
         background-color: white;
         border: 1px solid rgb(44, 42, 41);
-        padding: 30px;
+        padding: 10px 30px;
         box-sizing: border-box;
     }
     #collector_keyword_head{
@@ -105,7 +106,7 @@
         padding: 4px;
     }
     #keyword_search_head{
-        margin-top: 50px;
+        margin-top: 10px;
     }
     #keword_search_span{
         display: inline-block;
@@ -181,6 +182,7 @@
     }
     #detail_camping_category_btn{
         text-align: center;
+        padding: 10px 20px 10px 20px;
     }
     .price_input{
         width: 100px;
@@ -426,47 +428,67 @@
                     </div><!--카테고리 지역입력 마지막-->
     
                     <div id="detail_camping_category_campingtype" class="detail_camping_category"><!--카테고리 캠핑유형 시작-->
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="autocamping" id="autocamping"><label for="autocamping"><span>오토캠핑</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="glamping" id="glamping"><label for="glamping"><span>글램핑</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="caravan" id="caravan"><label for="caravan"><span>카라반</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="gnrlSiteCo" id="gnrlSiteCo"><label for="gnrlSiteCo"><span>일반 야영장</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="autoSiteCo" id="autoSiteCo"><label for="autoSiteCo"><span>오토캠핑</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="glampSiteCo" id="glampSiteCo"><label for="glampSiteCo"><span>글램핑</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="caravSiteCo" id="caravSiteCo"><label for="caravSiteCo"><span>카라반</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="indvdlCaravSiteCo" id="indvdlCaravSiteCo"><label for="indvdlCaravSiteCo"><span>개인카라반</span></label></span>
                     </div><!--카테고리 캠핑유형 마지막-->
                     
                     <div id="detail_camping_category_landscape" class="detail_camping_category"><!--카테고리 입지구분 시작-->
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="beach" id="beach"><label for="beach"><span>해변</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="island" id="island"><label for="island"><span>섬</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="mountain" id="mountain"><label for="mountain"><span>산</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="forest" id="forest"><label for="forest"><span>숲</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="valley" id="valley"><label for="valley"><span>계곡</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="river" id="river"><label for="river"><span>강</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="lake" id="lake"><label for="lake"><span>호수</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="city" id="city"><label for="city"><span>도심</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="해변" name="lctCl" id="beach"><label for="beach"><span>해변</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="섬" name="lctCl" id="island"><label for="island"><span>섬</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="산" name="lctCl" id="mountain"><label for="mountain"><span>산</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="숲" name="lctCl" id="forest"><label for="forest"><span>숲</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="계곡" name="lctCl" id="valley"><label for="valley"><span>계곡</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="강" name="lctCl" id="river"><label for="river"><span>강</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="호수" name="lctCl" id="lake"><label for="lake"><span>호수</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="도심" name="lctCl" id="city"><label for="city"><span>도심</span></label></span>
                     </div><!--카테고리 입지구분 마지막-->
                     
+                    <div id="detail_camping_category_facilities" class="detail_camping_category"><!--카테고리 바닥형태 시작-->
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="siteBottomCl1" id="siteBottomCl1"><label for="siteBottomCl1"><span>잔디</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="siteBottomCl2" id="siteBottomCl2"><label for="siteBottomCl2"><span>파쇄석</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="siteBottomCl3" id="siteBottomCl3"><label for="siteBottomCl3"><span>테크</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="siteBottomCl4" id="siteBottomCl4"><label for="siteBottomCl4"><span>자갈</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="siteBottomCl5" id="siteBottomCl5"><label for="siteBottomCl5"><span>맨흙</span></label></span>
+                        
+                    </div><!--카테고리 바닥형태 마지막-->
+                    
                     <div id="detail_camping_category_facilities" class="detail_camping_category"><!--카테고리 부가시설 시작-->
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="wifi" id="wifi"><label for="wifi"><span>와이파이</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="hot_water" id="hot_water"><label for="hot_water"><span>온수</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="shower" id="shower"><label for="shower"><span>샤워시설</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="mart" id="mart"><label for="mart"><span>마트편의점</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="toilet" id="toilet"><label for="toilet"><span>화장실</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="electric" id="electric"><label for="electric"><span>전기</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="pet_open" id="pet_open"><label for="pet_open"><span>반려동물가능</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="전기" name="sbrsCl" id="electric"><label for="electric"><span>전기</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="무선인터넷" name="sbrsCl" id="wifi"><label for="wifi"><span>무선 인터넷</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="장작판매" name="sbrsCl" id="pet_open"><label for="pet_open"><span>장작판매</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="온수" name="sbrsCl" id="hot_water"><label for="hot_water"><span>온수</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="트렘폴린" name="sbrsCl" id="trampoline"><label for="trampoline"><span>트렘폴린</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="물놀이장" name="sbrsCl" id="pool"><label for="pool"><span>물놀이장</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="놀이터" name="sbrsCl" id="playground"><label for="playground"><span>놀이터</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="산책로" name="sbrsCl" id="trail"><label for="trail"><span>산책로</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="운동장" name="sbrsCl" id="field"><label for="field"><span>운동장</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="운동시설" name="sbrsCl" id="exercise"><label for="exercise"><span>운동시설</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="마트.편의점" name="sbrsCl" id="mart"><label for="mart"><span>마트.편의점</span></label></span>
                         
                     </div><!--카테고리 부가시설 마지막-->
                     
+                    <div id="detail_camping_category_campingtheme" class="detail_camping_category"><!--카테고리 명소 시작-->
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="일출명소" name="themaEnvrnCl" id="themaEnvrnCl1"><label for="themaEnvrnCl1"><span>일출명소</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="일몰명소" name="themaEnvrnCl" id="themaEnvrnCl2"><label for="themaEnvrnCl2"><span>일몰명소</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="수상레저" name="themaEnvrnCl" id="themaEnvrnCl3"><label for="themaEnvrnCl3"><span>수상레저</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="항공레저" name="themaEnvrnCl" id="themaEnvrnCl4"><label for="themaEnvrnCl4"><span>항공레저</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="스키낚시" name="themaEnvrnCl" id="themaEnvrnCl5"><label for="themaEnvrnCl5"><span>스키낚시</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="액티비티" name="themaEnvrnCl" id="themaEnvrnCl6"><label for="themaEnvrnCl6"><span>액티비티</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="봄꽃여행" name="themaEnvrnCl" id="themaEnvrnCl7"><label for="themaEnvrnCl7"><span>봄꽃여행</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="여름물놀이" name="themaEnvrnCl" id="themaEnvrnCl8"><label for="themaEnvrnCl8"><span>여름물놀이</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="가을단풍명소" name="themaEnvrnCl" id="themaEnvrnCl9"><label for="themaEnvrnCl9"><span>가을단풍명소</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="겨울눈꽃명소" name="themaEnvrnCl" id="themaEnvrnCl10"><label for="themaEnvrnCl10"><span>겨울눈꽃명소</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="걷기길" name="themaEnvrnCl" id="themaEnvrnCl11"><label for="themaEnvrnCl11"><span>걷기길</span></label></span>
+                    </div><!--카테고리 명소 마지막-->
+                    
                     <div id="detail_camping_category_campingtheme" class="detail_camping_category"><!--카테고리 캠핑테마 시작-->
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="rent_tent" id="rent_tent"><label for="rent_tent"><span>텐트대여</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="rent_equipment" id="rent_equipment"><label for="rent_equipment"><span>장비대여</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="pool" id="pool"><label for="pool"><span>수영장</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="pet" id="pet"><label for="pet"><span>반려동물</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="fishing" id="fishing"><label for="fishing"><span>낚시캠핑</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="experience" id="experience"><label for="experience"><span>체험캠핑</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="caravan_open" id="caravan_open"><label for="caravan_open"><span>카라반가능</span></label></span>
-                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="trailer_open" id="trailer_open"><label for="trailer_open"><span>트레일러가능</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="animalCmgCl" id="animalCmgCl"><label for="animalCmgCl"><span>반려동물</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="trlerAcmpnyAt" id="trlerAcmpnyAt"><label for="trlerAcmpnyAt"><span>개인트레일러 동반</span></label></span>
+                        <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="0" name="caravAcmpnyAt" id="caravAcmpnyAt"><label for="caravAcmpnyAt"><span>개인카라반 동반</span></label></span>
                     </div><!--카테고리 캠핑테마 마지막-->
-
-                    <div id="detail_camping_category_price" class="detail_camping_category"><!--가격대 검색창 시작-->
-                        <span>가격대</span> <input class="price_input" type="number" name="price_min" id="price_min" placeholder="최소">~<input class="price_input" type="number" name="price_max" id="price_max" placeholder="최대">        
-                    </div><!--가격대 검색창 마지막-->
 
                     <div id="detail_camping_category_btn" class="detail_camping_category"><!--검색버튼 배치 시작-->
                         <button type="submit" class="camping_category_btn">검색</button>
@@ -497,7 +519,7 @@
                     	</c:choose>
                     </div>
                     <div id="spot_main_content">
-                        <span id="spot_name_title"><a href="spotDetailView.do?sno=${dto.contentId}">${dto.facltNm}</a></span><br>
+                        <span id="spot_name_title"><a href="spotDetailView.do?facltNm=${dto.facltNm}">${dto.facltNm}</a></span><br>
                         <span id="online_intro">${dto.lineIntro}</span><br>
                         <span id="spot_address_title" class="spot_title">${dto.addr1} ${dto.addr2} </span><br>
                         <span id="spot_tel_title" class="spot_title">${dto.tel}</span><br>
