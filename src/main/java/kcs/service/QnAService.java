@@ -46,20 +46,19 @@ public class QnAService {
 	public int sendQnA(QnADTO dto) {
 		return mapper.sendQnA(dto);
 	}
+
+	public int insertAdminAnswer(QnADTO dto) {
+		return mapper.insertAdminAnswer(dto);
+	}
+
+	public int updateQnA(QnADTO dto) {
+		return mapper.updateQnA(dto);
+	}
+
+	public int deleteQnA(String qno) {
+		return mapper.deleteQnA(qno);
+	}
 	
-	// 관리자일 경우 문의 목록 - 가현,20210224
-	public List<QnADTO> getAdminQnAList(String title, String writer, int pageNo, String user_type) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("title", title);
-		map.put("writer", writer);
-		map.put("pageNo", pageNo);
-		map.put("user_type", user_type);
-		return mapper.getAdminQnAList(map);
-	}
-	// 관리자일 경우 문의 개수 - 가현,20210224
-	public int getAdminCount() {
-		return mapper.getAdminCount();
-	}
 
 	
 }

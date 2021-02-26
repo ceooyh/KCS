@@ -85,24 +85,92 @@ public class QnAController {
 		return null;
 	}
 	
-	//문의 상세페이지 - 가현,20210224
-	@RequestMapping("/qnaAdminView.do")
-	public String qnaManageList(HttpServletRequest request) {
-		String title = request.getParameter("title");
-		String writer = request.getParameter("id");
-		String user_type = request.getParameter("user_type");
-		// 페이징
-		int pageNo = 1;
-		if(request.getParameter("pageNo") != null)
-			pageNo = Integer.parseInt(request.getParameter("pageNo"));
-		// 관리자 문의 목록
-		List<QnADTO> list = service.getAdminQnAList(title,writer,pageNo,user_type);
-		int count = service.getAdminCount();
-		PaggingVO vo = new PaggingVO(count, pageNo);
-		request.setAttribute("page", vo);
-		request.setAttribute("list", list);
+	
+	// 문의 답변 페이지 - 가현,20210224
+	@RequestMapping("/qnaAdminAnswer.do")
+	public String qnaAdminAnswer(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		try {
+			if((int)session.getAttribute("user_type") != 0) {	// 세션 종료된 경우
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('관리자만 이용할 수 있는 메뉴입니다.<br> 로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+			}else {
+				String qno = (String) session.getAttribute("qno");
+				String writer = (String) session.getAttribute("id");
+				String title = request.getParameter("title");
+				String content = request.getParameter("content");
+				QnADTO dto = new QnADTO(qno, writer, content);
+				
+				// 답변 등록
+				int count = service.insertAdminAnswer(dto);
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
+				}else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('답변 등록 완료!');location.href='qnaView.do';</script>");
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	// 문의 수정 페이지 - 가현,20210226
+	@RequestMapping("/qnaAjaxUpdate.do")
+	public String qnaAjaxUpdate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		try {
+			if(session.getAttribute("id") == null) {	// 세션 종료된 경우
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+			}else {
+				String qno = (String) session.getAttribute("qno");
+				String writer = (String) session.getAttribute("id");
+				String title = request.getParameter("title");
+				String content = request.getParameter("content");
+				QnADTO dto = new QnADTO(title, writer, content); 
+				
+				// 문의 수정
+				int count = service.updateQnA(dto);
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
+				}else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('문의 수정 완료!');location.href='qnaView.do';</script>");
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	// 문의 삭제 페이지 - 가현,2021026
+	@RequestMapping("/qnaAjaxDelete.do")
+	public String qnaAjaxDelete(HttpServletRequest request,HttpServletResponse response, HttpSession session) {
+		try {
+			if(session.getAttribute("id") == null) {	// 세션 종료된 경우
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+			}else {
+				String qno = (String) session.getAttribute("qno");
+				String writer = (String) session.getAttribute("id");
 		
-		return "qna/qna_response_view";
+				// 문의 삭제
+				int count = service.deleteQnA(qno);
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
+				}else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('문의 삭제 완료!');location.href='qnaView.do';</script>");
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }
