@@ -399,11 +399,7 @@
 	            <div id="detail_condition_input"><!-- 상세검색창 시작 -->
 	                <span id="detail_condition_headline">키워드검색창</span>
 	                <div id="keyword_search_head"><!-- 키워드 선택창 시작 -->
-
-	                    <input id="keyword_search_input" name="search" type="text" placeholder="검색어를 입력하세요">
-
 	                    <input id="keyword_search_input" type="text" name="search" placeholder="검색어를 입력하세요">
-
 	                    <button class="search_btn" id="search_btn2" type="submit">검색</button>
 	                </div><!-- 키워드 선택창 마지막 -->
 	            </div><!-- 상세검색창 마지막 -->
@@ -412,23 +408,23 @@
             <form action="spotCategorySearch.do">
                 <div id="detail_camping_seach_div"><!--캠핑 상세검색창 시작-->
                     <div id="detail_camping_category_location" class="detail_camping_category"><!--카테고리 지역입력 시작-->
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="서울시" name="addr1" id="seoul"><label for="seoul">서울시</label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="부산시" name="addr1" id="busan"><label for="busan"><span>부산시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="대구시" name="addr1" id="daegu"><label for="daegu"><span>대구시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="인천시" name="addr1" id="incheon"><label for="incheon"><span>인천시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="광주시" name="addr1" id="gwangju"><label for="gwangju"><span>광주시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="대전시" name="addr1" id="daejeon"><label for="daejeon"><span>대전시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="울산시" name="addr1" id="ulsan"><label for="ulsan"><span>울산시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="세종시" name="addr1" id="saejong"><label for="saejong"><span>세종시</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="경기도" name="addr1" id="kyungki"><label for="kyungki"><span>경기도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="강원도" name="addr1" id="kangwon"><label for="kangwon"><span>강원도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="충청북도" name="addr1" id="chungcheongnamdo"><label for="chungcheongnamdo"><span>충청북도</span></label></span><br><br>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="충청남도" name="addr1" id="chungcheongbukdo"><label for="chungcheongbukdo"><span>충청남도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="전라남도" name="addr1" id="jeonlanamdo"><label for="jeonlanamdo"><span>전라남도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="전라북도" name="addr1" id="jeonlanamdobukdo"><label for="jeonlanamdobukdo"><span>전라북도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="경상남도" name="addr1" id="kyungsangnamdo"><label for="kyungsangnamdo"><span>경상남도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="경상북도" name="addr1" id="kyungsangbukdo"><label for="kyungsangbukdo"><span>경상북도</span></label></span>
-                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="제주도" name="addr1" id="jaeju"><label for="jaeju"><span>제주도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="서울시" name="doNm" id="seoul"><label for="seoul">서울시</label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="부산시" name="doNm" id="busan"><label for="busan"><span>부산시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="대구시" name="doNm" id="daegu"><label for="daegu"><span>대구시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="인천시" name="doNm" id="incheon"><label for="incheon"><span>인천시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="광주시" name="doNm" id="gwangju"><label for="gwangju"><span>광주시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="대전시" name="doNm" id="daejeon"><label for="daejeon"><span>대전시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="울산시" name="doNm" id="ulsan"><label for="ulsan"><span>울산시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="세종시" name="doNm" id="saejong"><label for="saejong"><span>세종시</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="경기도" name="doNm" id="kyungki"><label for="kyungki"><span>경기도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="강원도" name="doNm" id="kangwon"><label for="kangwon"><span>강원도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="충청북도" name="doNm" id="chungcheongnamdo"><label for="chungcheongnamdo"><span>충청북도</span></label></span><br><br>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="충청남도" name="doNm" id="chungcheongbukdo"><label for="chungcheongbukdo"><span>충청남도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="전라남도" name="doNm" id="jeonlanamdo"><label for="jeonlanamdo"><span>전라남도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="전라북도" name="doNm" id="jeonlanamdobukdo"><label for="jeonlanamdobukdo"><span>전라북도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="경상남도" name="doNm" id="kyungsangnamdo"><label for="kyungsangnamdo"><span>경상남도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="경상북도" name="doNm" id="kyungsangbukdo"><label for="kyungsangbukdo"><span>경상북도</span></label></span>
+                            <span class="category_campingtype_span"><input class="category_campingtype_input" type="checkbox" value="제주도" name="doNm" id="jaeju"><label for="jaeju"><span>제주도</span></label></span>
                     </div><!--카테고리 지역입력 마지막-->
     
                     <div id="detail_camping_category_campingtype" class="detail_camping_category"><!--카테고리 캠핑유형 시작-->
