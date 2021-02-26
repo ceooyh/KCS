@@ -273,11 +273,13 @@ public class SpotController {
 		
 		// 파라미터
 		// 지역
-		String[] arr_addr1 = null;
-		String addr1 = "";
-		if(request.getParameterValues("addr1") != null) {
-			arr_addr1 = request.getParameterValues("addr1");
-			for(int i=0; i<arr_addr1.length; i++) addr1 += arr_addr1[i].trim();
+		String[] arr_doNm = null;
+		String doNm = "";
+		if(request.getParameterValues("doNm") != null) {
+			arr_doNm = request.getParameterValues("doNm");
+			for(int i=0; i<arr_doNm.length; i++) doNm += arr_doNm[i].trim();
+		}else {
+			doNm = "-";
 		}
 		
 		// 캠핑유형
@@ -293,6 +295,8 @@ public class SpotController {
 		if(request.getParameterValues("lctCl") != null) {
 			arr_lctCl = request.getParameterValues("lctCl");
 			for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i].trim();
+		}else {
+			lctCl = "-";
 		}
 		
 		// 바닥 형태
@@ -308,6 +312,8 @@ public class SpotController {
 		if(request.getParameterValues("sbrsCl") != null) {
 			arr_sbrsCl = request.getParameterValues("sbrsCl");
 			for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i].trim();
+		}else {
+			sbrsCl = "-";
 		}
 		
 		// 명소
@@ -316,6 +322,8 @@ public class SpotController {
 		if(request.getParameterValues("themaEnvrnCl") != null) {
 			arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
 			for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i].trim();
+		}else {
+			themaEnvrnCl = "-";
 		}
 		
 		// 캠핑테마
@@ -329,7 +337,7 @@ public class SpotController {
 			pageNo = request.getParameter("pageNo");
 		
 		// 상세 조건으로 만든 spotDTO
-		SpotDTO searchDTO = new SpotDTO(lctCl, addr1, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, siteBottomCl1, siteBottomCl2, siteBottomCl3, siteBottomCl4, siteBottomCl5, trlerAcmpnyAt, caravAcmpnyAt, sbrsCl, themaEnvrnCl, animalCmgCl);
+		SpotDTO searchDTO = new SpotDTO(0, "-", "-", "-", "-", "-", "-", "-", lctCl, doNm, "-", "-", "-", "-", "-", "-", gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, "-", "-", "-", "-", siteBottomCl1, siteBottomCl2, siteBottomCl3, siteBottomCl4, siteBottomCl5, "-", "-", trlerAcmpnyAt, caravAcmpnyAt, "-", "-", "-", sbrsCl, themaEnvrnCl, "-", animalCmgCl, "-", 0, 0);
 		
 		//페이징 정보
 		int count = 0;
@@ -339,7 +347,7 @@ public class SpotController {
 			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
 			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
 			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /*현재 페이지번호*/
-			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
+			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
 			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
 			urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
 			urlBuilder.append("&_type=json"); /*서비스명=어플명*/
@@ -361,7 +369,6 @@ public class SpotController {
 			}
 			
  			JSONObject json = new JSONObject(sb.toString());
-			System.out.println(json.toString());
 			
 			if(conn.getResponseCode() == 200) {
 				ArrayList<SpotDTO> allList = new ArrayList<SpotDTO>();
@@ -382,7 +389,8 @@ public class SpotController {
 					String featureNm = j.has("featureNm") ? j.get("featureNm").toString() : "-";
 					String induty = j.has("induty") ? j.get("induty").toString() : "-";
 					String lctCl1 = j.has("lctCl") ? j.get("lctCl").toString() : "-";
-					String addr11 = j.has("addr1") ? j.get("addr1").toString() : "-";
+					String doNm1 = j.has("doNm") ? j.get("doNm").toString() : "-";
+					String addr1 = j.has("addr1") ? j.get("addr1").toString() : "-";
 					String addr2 = j.has("addr2") ? j.get("addr2").toString() : "-";
 					String tel = j.has("tel") ? j.get("tel").toString() : "-";
 					String homepage = j.has("homepage") ? j.get("homepage").toString() : "-";
@@ -391,6 +399,7 @@ public class SpotController {
 					String glampSiteCo1 = j.has("glampSiteCo") ? j.get("glampSiteCo").toString() : "-";
 					String caravSiteCo1 = j.has("caravSiteCo") ? j.get("caravSiteCo").toString() : "-";
 					String indvdlCaravSiteCo1 = j.has("indvdlCaravSiteCo") ? j.get("indvdlCaravSiteCo").toString() : "-";
+					String sitedStnc = j.has("sitedStnc") ? j.get("sitedStnc").toString() : "-";
 					String siteMg1Width = j.has("siteMg1Width") ? j.get("siteMg1Width").toString() : "-";
 					String siteMg1Vrticl = j.has("siteMg1Vrticl") ? j.get("siteMg1Vrticl").toString() : "-";
 					String siteMg1Co = j.has("siteMg1Co") ? j.get("siteMg1Co").toString() : "-";
@@ -416,21 +425,17 @@ public class SpotController {
 					
 					// 리스트에 추가
 					allList.add(
-							new SpotDTO(contentId, facltNm, lineIntro, intro, bizrno, manageSttus, featureNm, induty, lctCl1, addr1, addr2, addr11, addr2, tel, homepage, gnrlSiteCo1, autoSiteCo1, glampSiteCo1, caravSiteCo1, indvdlCaravSiteCo1, siteMg1Width, siteMg1Vrticl, siteMg1Co, siteBottomCl11, siteBottomCl21, siteBottomCl31, siteBottomCl41, siteBottomCl51, operPdCl, operDeCl, trlerAcmpnyAt, caravAcmpnyAt, operDeCl, trlerAcmpnyAt1, caravAcmpnyAt1, sbrsCl1, themaEnvrnCl1, eqpmnLendCl, animalCmgCl1, firstImageUrl, star, review_count)
+							new SpotDTO(contentId, facltNm, lineIntro, intro, bizrno, manageSttus, featureNm, induty, lctCl1, doNm1, addr1, addr2, tel, homepage, tel, homepage, gnrlSiteCo1, autoSiteCo1, glampSiteCo1, caravSiteCo1, indvdlCaravSiteCo1, sitedStnc, siteMg1Width, siteMg1Vrticl, siteMg1Co, siteBottomCl11, siteBottomCl21, siteBottomCl31, siteBottomCl41, siteBottomCl51, operPdCl, operDeCl, trlerAcmpnyAt1, caravAcmpnyAt1, operDeCl, trlerAcmpnyAt1, caravAcmpnyAt1, sbrsCl1, themaEnvrnCl1, eqpmnLendCl, animalCmgCl1, firstImageUrl, star, review_count)
 							);
 					allList.get(i).toString();
 					
 				}
 
-				System.out.println(searchDTO.toString());
 				// allList 상세 조건에 맞는 dto를 list에 추가
 				for(int i=0; i<allList.size(); i++) {
-					System.out.println("size - th : " + i);
 					if(allList.get(i).equals(searchDTO)) {
 						list.add(allList.get(i));
-						System.out.println(list.get(i).toString());
 					}else {
-						System.out.println("맞는거없음" + i);
 					}
 				}
 				
