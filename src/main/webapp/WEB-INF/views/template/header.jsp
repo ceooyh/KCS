@@ -159,9 +159,35 @@
     .dropdown-content1 a:hover{
         color: #ecc34f;
     }
+    .dropdown-content2 {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            height:100px;
+            left: 0;
+            top:50px;
+	    	background-color: rgb(226, 226, 226);
+    }
+    .dropdown-content2 a {
+            text-decoration: none;
+    }
+    .dropdown-content2-li{
+    	margin-bottom: 20px;
+    	height: 20px;
+    }
+    .dropdown-content2-li:first-child{
+    	margin-top: 20px;
+    }
+    
+    .dropdown-content2 a:hover{
+        color: #ecc34f;
+    }
     
     .dropbtn_hcon:hover .dropdown-content {display: block;}
     .dropbtn_hcon:hover .dropdown-content1 {display: block;}
+    .dropbtn_hcon:hover .dropdown-content2 {display: block;}
     
 </style>
 </head>
@@ -175,7 +201,12 @@
             <div class="dropdown">
                 <ul>
                     <li class="dropbtn"><a href="infoView.do">소개</a></li>
-                    <li class="dropbtn"><a href="findCampSpotView.do">캠핑 스팟 찾기</a></li>
+                    <li class="dropbtn_hcon"><a href="findCampSpotView.do">캠핑 스팟 찾기</a>
+                    	<ul class="dropdown-content2">
+                            <li class="dropdown-content-li"><a href="findCampSpotView.do">캠핑장 키워드 검색</a></li>
+                            <li class="dropdown-content-li"><a href="spotCategorySearch.do">캠핑장 상세 검색</a></li>
+                        </ul>
+                    </li>
                     <li class="dropbtn"><a href="keepCampSpotView.do">찜한 스팟</a></li>
                     <li class="dropbtn"><a href="selectJoinView.do">회원가입</a></li>
                     <li class="dropbtn"><a href="loginView.do">로그인</a></li>
@@ -194,7 +225,12 @@
             <div class="dropdown">
                 <ul>
                             <li class="dropbtn"><a href="infoView.do">소개</a></li>
-                            <li class="dropbtn"><a href="findCampSpotView.do">캠핑 스팟 찾기</a></li>
+                            <li class="dropbtn_hcon"><a href="findCampSpotView.do">캠핑 스팟 찾기</a>
+                            	<ul class="dropdown-content2">
+                                    <li class="dropdown-content-li"><a href="findCampSpotView.do">캠핑장 키워드 검색</a></li>
+                                    <li class="dropdown-content-li"><a href="spotCategorySearch.do">캠핑장 상세 검색</a></li>
+                                </ul>
+                            </li>
                             <li class="dropbtn"><a href="keepCampSpotView.do">찜한 스팟</a></li>
                             <li class="dropbtn"><a href="qnaView.do">문의하기</a></li>
                             <li class="dropbtn_hcon"><a href="questMyPageView.do">마이 페이지</a>
