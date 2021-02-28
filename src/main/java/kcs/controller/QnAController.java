@@ -1,6 +1,7 @@
 package kcs.controller;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kcs.dto.MemberDTO;
 import kcs.dto.QnADTO;
 import kcs.service.QnAService;
 import kcs.vo.PaggingVO;
@@ -55,8 +55,34 @@ public class QnAController {
 	
 		request.setAttribute("list", list);
 		request.setAttribute("pageVo", pageVo);
-		return "qna/qna";
+		
+		return "qna/qna_detail_view";
 	}
+	
+	// 문의 상세페이지로 이동 -가현 20210228
+	@RequestMapping("/qnaDetailView.do")
+	public String qnaDetailView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		try {
+			if(session.getAttribute("id") == null) {	// 세션 종료된 경우
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+			}else {
+				int qno = 0;
+				if(request.getParameter("qno")!=null)
+					qno = Integer.parseInt(request.getParameter("qno"));
+				else
+					qno = (int)request.getAttribute("qno");
+				
+				List<QnADTO> list = service.selectQnaList(qno);
+				System.out.println(list.toString());
+				request.setAttribute("list", list);
+			
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+			return null;
+		}	
 	
 	// 문의 등록 - 희원,20210221
 	@RequestMapping("/sendQnA.do")
@@ -95,11 +121,11 @@ public class QnAController {
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('관리자만 이용할 수 있는 메뉴입니다.<br> 로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
 			}else {
-				String qno = "";
-				String writer = "";
-				String title = "";
-				String content = "";
-				QnADTO dto = new QnADTO(qno, writer, content);
+				String title = request.getParameter("title");
+				String writer = (String) request.getSession().getAttribute("writer");
+				String content = request.getParameter("content");
+				String answer = request.getParameter("response");
+				QnADTO dto = new QnADTO(title, writer, content);
 				
 				// 답변 등록
 				int count = service.insertAdminAnswer(dto);
@@ -121,17 +147,16 @@ public class QnAController {
 	@RequestMapping("/qnaAjaxUpdate.do")
 	public String qnaAjaxUpdate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {
-			String id = (String) session.getAttribute("id");
 			if(session.getAttribute("id") == null) {	// 세션 종료된 경우
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
 			}else {
 				String qno = (String) session.getAttribute("qno");
-				String writer = (String) session.getAttribute("id");
 				String title = request.getParameter("title");
+				String writer = (String) session.getAttribute("id");
 				String content = request.getParameter("content");
 				
-				QnADTO qnaDTO = service.selectQnADTO(qno,writer,title,content);
+				QnADTO qnaDTO = service.selectUpdateQnADTO(qno,title,writer,content);
 				// 문의 수정
 				if(qnaDTO == null) {
 					response.setContentType("text/html;charset=utf-8");
@@ -159,13 +184,13 @@ public class QnAController {
 		QnADTO qnaDTO = new QnADTO(title, writer, content);
 		try {
 			int count = service.qnaUpdateAction(qnaDTO);
-			if(count == 0) {
+			if(count == 1) {
 				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+				response.getWriter().write("<script>alert('페이지 오류');location.href='qna_detail_view.do';</script>");
 			}
 			else {
 				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('문의 수정 완료!');location.href='guestFavoriteUpdateView.do';</script>");
+				response.getWriter().write("<script>alert('문의 수정 완료!');location.href='qna_detail_view.do';</script>");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -183,7 +208,7 @@ public class QnAController {
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
 			}else {
-				String qno = (String) session.getAttribute("qno");
+				int qno = (int) session.getAttribute("qno");
 		
 				// 문의 삭제
 				int count = service.deleteQnA(qno);

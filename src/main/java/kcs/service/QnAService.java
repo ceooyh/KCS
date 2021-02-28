@@ -47,19 +47,19 @@ public class QnAService {
 		return mapper.sendQnA(dto);
 	}
 	
-	// 문의 관리자 답변페이지 - 가현,20210227
+	// 문의 관리자 답변페이지 - 가현,20210226
 	public int insertAdminAnswer(QnADTO qnaDTO) {
 		return mapper.insertAdminAnswer(qnaDTO);
 	}
 	
-	// 문의 수정 페이지로 이동 - 가현,20210227
-		public QnADTO selectQnADTO(String qno, String writer, String title, String content) {
+	// 문의 수정 페이지로 이동 - 가현,20210226
+		public QnADTO selectUpdateQnADTO(String qno, String title, String writer, String content) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("qno", qno);
-		map.put("writer", writer);
 		map.put("title", title);
+		map.put("writer", writer);
 		map.put("content", content);
-		return mapper.selectQnADTO(map);
+		return mapper.selectUpdateQnADTO(map);
 	} 
 	
 	// 문의 수정 진행 - 가현,20210227
@@ -67,10 +67,28 @@ public class QnAService {
 		return mapper.qnaUpdateAction(qnaDTO);
 	}
 	
-	// 문의 삭제
-	public int deleteQnA(String qno) {
+	// 문의 삭제 - 가현,20210227
+	public int deleteQnA(int qno) {
 		return mapper.deleteQnA(qno);
 	}
+	
+	//문의 상세페이지 이동 - 가현,20210227
+	public List<QnADTO> selectQnaList(int qno, String title, String writer, String content, int pageNo) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("qno", qno);
+		map.put("title", title);
+		map.put("writer", writer);
+		map.put("content", content);
+		map.put("pageNo", pageNo);
+		return mapper.selectQnADTO(map);
+
+	}
+
+	public List<QnADTO> selectQnaList(int qno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 }

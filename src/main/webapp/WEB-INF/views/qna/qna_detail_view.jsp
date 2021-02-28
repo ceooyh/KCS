@@ -158,11 +158,11 @@
                     }else{
                         alert("수정 실패");						
                     }
-                    location.href = "qnaViewMain.do";
+                    location.href = "qnaDetailView.do";
                 }
             });
         }
-        function delete_member(obj) {
+        function delete_qna(obj) {
             var data = "";
             data = "id=" + $(obj).parent().parent().find("input").first().val();
             console.log(data);
@@ -177,15 +177,15 @@
                     }else{
                         alert("삭제 실패");						
                     }
-                    location.href = "qnaDelete.do";	
+                    location.href = "qnaView.do";	
                 }
             });
             e.preventDefault();	
 		$(".update").click(function() {
-			update_member($(this));
+			update_qna($(this));
 		});
 		$(".delete").click(function() {
-			delete_member($(this));
+			delete_qna($(this));
 		});
 </script>
 </head>

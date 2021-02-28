@@ -255,9 +255,9 @@
 								<tr class="part_topic">
 									<td class="part_No"><p>${qna.qno }</p></td>
 									<td class="part_title"><a id="qna_link"
-										href="qnaView.do?qno=${dto.qno }">${qna.title }</a></td>
+										href="qnaDetailView.do?qno=${dto.qno }">${qna.title }</a></td>
 									<td class="part_content"><a id="qna_link"
-										href="qnaView.do?qno=${dto.qno }">${qna.content }</a></td>
+										href="qnaDetailView.do?qno=${dto.qno }">${qna.content }</a></td>
 									<td id="part_select"><p>${qna.writer}</p></td>
 									<td id="part_select"><p>${qna.qdate }</p></td>
 							        <td id="part_select"><c:choose>
@@ -422,16 +422,16 @@
 			
 			<div class="page_bar">
 				<c:if test="${pagging.previousPageGroup }">
-					<a href=" qnaList.do?pageNo=${pagging.startPageOfPageGroup - 1 }"
+					<a href=" qnaView.do?pageNo=${pagging.startPageOfPageGroup - 1 }"
 						id="btn_page">◀</a>
 				</c:if>
 				<c:forEach var="i" begin="${pagging.startPageOfPageGroup}"
 					end="${pagging.endPageOfPageGroup}">
-					<a href="qnaList.do?pageNo=${i }" id="btn_page">${ i}</a>
+					<a href="qnaView.do?pageNo=${i }" id="btn_page">${ i}</a>
 				</c:forEach>
 
 				<c:if test="${pagging.nextPageGroup }">
-					<a href="qnaList.do?pageNo=${pagging.endPageOfPageGroup + 1 }"
+					<a href="qnaView.do?pageNo=${pagging.endPageOfPageGroup + 1 }"
 						id="btn_page">▶</a>
 				</c:if>
 			</div>
