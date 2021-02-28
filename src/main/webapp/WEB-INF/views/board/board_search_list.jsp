@@ -136,7 +136,7 @@
             <div id="search_bar">
                 <form action="boardSearch.do">
                 	<select id="search_things" name="kind">
-                		<option value="id">아이디</option>
+                		<option value="writer">아이디</option>
                 		<option value="title">제목</option>
                 	</select>
                     <input type="text" id="search" name="search" placeholder="검색어를 입력해 주세요."><button id="btn_board_list_search" type="submit">검색</button>
