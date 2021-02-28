@@ -75,7 +75,6 @@ public class BoardController {
 			request.setAttribute("board", dto);
 			request.setAttribute("commentList", list);
 			request.setAttribute("file", fList);
-			System.out.println(fList);
 
 			return "board/board_detail_view";
 		}
