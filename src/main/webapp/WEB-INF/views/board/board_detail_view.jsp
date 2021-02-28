@@ -97,7 +97,7 @@
 	margin: 5px 0px;
 }
 .prev_next_list_btn{
-	margin: 20px 0 0 270px;
+	margin: 20px 0 0 360px;
 }
 
 .modify {
@@ -108,9 +108,8 @@
 	font-size: 14px;
 	text-align: center;
 	text-decoration: none;
-	background-color: #1a56fa;
+	background-color: rgb(248,203,173);
 	color: white;
-	border: 1px solid #00817b;
 	box-sizing: border-box;
 	display: inline-block;
 	border-radius: 3px;
@@ -125,29 +124,26 @@
 	font-size: 14px;
 	text-align: center;
 	text-decoration: none;
-	background-color: #1a56fa;
+	background-color: rgb(248,203,173);
 	color: white;
-	border: 1px solid #00817b;
 	box-sizing: border-box;
 	display: inline-block;
 	border-radius: 3px;
 	float: left;
 }
 .modify:hover{
-	background-color: #5eb3f8;
-	border: 1px solid #04cac0;
-	color: #3004a7
+	background-color: rgb(215,215,215);
+	color : white;
 }
 .move:hover{
-	background-color: #5eb3f8;
-	border: 1px solid #04cac0;
-	color: #3004a7
+	background-color: rgb(215,215,215);
+	color : white;
     
 }
 #board_like_hate{
 	clear: both;
 	display: inline-block;
-	margin: 30px 0 0 300px;
+	margin: 30px 0 0 286px;
 }
 .part_like_hate{
 	margin: 0 10px;
@@ -177,21 +173,19 @@
 }
 
 #comment_insert_btn{
-	background-color: #faea0f;
-	color: rgb(0, 0, 0);
+	background-color: rgb(44,42,41);
+	color: white;
 	width: 80px;
 	margin-right: 5px;
 	font-weight: normal;
 	font-size: 14px;
 	text-align: center;
-	border: 1px solid #f1d901;
 	box-sizing: border-box;
 	border-radius: 3px;
 }
 #comment_insert_btn:hover{
-	background-color: #a19707;
-	color: #faea0f;
-	border: 1px solid #5e5401;
+	background-color: rgb(215,215,215);
+	color: color:rgb(44,42,41);
 }
 
 #comment_area{
@@ -359,20 +353,18 @@
 			<section id="board_like_hate">
 				<div class="part_like_hate">
 					<a class="btn_like_hate"> 
-						<img src="../../../img/boardLike/good-quality.png" style="width: 50px;">
+						<img src="../../../img/boardLike/like.png" style="width: 50px;">
 							<span class="board_detail_span">${requestScope.board.blike }</span>
 					</a> 
 					<a class="btn_like_hate"> 
-						<img id="hate_img" src="../../../img/boardLike/good-quality.png">
+						<img id="hate_img" src="../../../img/boardLike/like.png">
 							<span class="board_detail_span">${requestScope.board.bhate }</span>
 					</a>
 				</div>
 			</section>
 			
 			<div class="prev_next_list_btn">
-				<a href="#" class="move">이전글</a>
 				<a href="boardList.do" class="move">목록보기</a> 
-				<a href="#" class="move">다음글</a>
 			</div>
 	
 			<div class="delete_update_btn">
