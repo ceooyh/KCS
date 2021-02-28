@@ -28,6 +28,15 @@ public class QnADTO {
 		this.writer = writer;
 		this.content = content;
 	}
+	// 문의 수정용
+	public QnADTO(int qno, String title, String writer, String content, String response) {
+		super();
+		this.qno = qno;
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+		this.response = response;
+	}
 	public int getQno() {
 		return qno;
 	}

@@ -53,13 +53,8 @@ public class QnAService {
 	}
 	
 	// 문의 수정 페이지로 이동 - 가현,20210226
-		public QnADTO selectUpdateQnADTO(String qno, String title, String writer, String content) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("qno", qno);
-		map.put("title", title);
-		map.put("writer", writer);
-		map.put("content", content);
-		return mapper.selectUpdateQnADTO(map);
+	public int selectUpdateQnA(int qno) {
+		return mapper.selectUpdateQnA(qno);
 	} 
 	
 	// 문의 수정 진행 - 가현,20210227
@@ -72,22 +67,16 @@ public class QnAService {
 		return mapper.deleteQnA(qno);
 	}
 	
-	//문의 상세페이지 이동 - 가현,20210227
-	public List<QnADTO> selectQnaList(int qno, String title, String writer, String content, int pageNo) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("qno", qno);
-		map.put("title", title);
-		map.put("writer", writer);
-		map.put("content", content);
-		map.put("pageNo", pageNo);
-		return mapper.selectQnADTO(map);
-
+	//문의 상세페이지 개인,사업자 이동 - 가현,20210227
+	public QnADTO selectQnADTO(int qno) {
+		return mapper.selectQnADTO(qno);
 	}
 
-	public List<QnADTO> selectQnaList(int qno) {
-		// TODO Auto-generated method stub
-		return null;
+	public void qnaStatusUpdate(int qno) {
+		mapper.qnaStatusUpdate(qno);
 	}
+
+
 
 
 	
