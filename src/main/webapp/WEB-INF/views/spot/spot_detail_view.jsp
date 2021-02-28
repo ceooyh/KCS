@@ -522,7 +522,14 @@
 <!-- 캠핑장 기본 이미지, 기본 정보 부분 start -->
 	        <div id="main_content_container">
 	            <div id="main_content_img">
-	                <img src="${requestScope.spotDTO.firstImageUrl}" alt="">
+	            	<c:choose>
+	            		<c:when test="${requestScope.spotDTO.firstImageUrl ne '-'}">
+			                <img src="${requestScope.spotDTO.firstImageUrl}" alt="">
+	            		</c:when>
+	            		<c:otherwise>
+			                <img src="../../../img/searchpage/noimg" alt="">
+	            		</c:otherwise>
+	            	</c:choose>
 	            </div>
 	            <div id="maint_content_info">
 	                <div class="detail_content_div">
