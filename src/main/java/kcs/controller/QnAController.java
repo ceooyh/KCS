@@ -69,11 +69,11 @@ public class QnAController {
                 response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
             }else {
             	int qno = Integer.parseInt(request.getParameter("qno"));
- 
+            	
                 // 문의 목록
                 QnADTO qnaDTO = null;
                 int user_type = (int) session.getAttribute("user_type");
-
+                
                 if(user_type == 0) {     // 관리자
                     service.qnaStatusUpdate(qno);
                     qnaDTO = service.selectQnADTO(qno);
