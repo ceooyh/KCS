@@ -255,17 +255,17 @@
 								<tr class="part_topic">
 									<td class="part_No"><p>${qna.qno }</p></td>
 									<td class="part_title"><a id="qna_link"
-										href="qnaDetailView.do?qno=${dto.qno }">${qna.title }</a></td>
+										href="qnaDetailView.do?qno=${qna.qno }">${qna.title }</a></td>
 									<td class="part_content"><a id="qna_link"
-										href="qnaDetailView.do?qno=${dto.qno }">${qna.content }</a></td>
+										href="qnaDetailView.do?qno=${qna.qno }">${qna.content }</a></td>
 									<td id="part_select"><p>${qna.writer}</p></td>
 									<td id="part_select"><p>${qna.qdate }</p></td>
 							        <td id="part_select"><c:choose>
-											<c:when test="${requestScope.dto.status==0}">0</c:when>
+											<c:when test="${requestScope.qna.status==0}">0</c:when>
 											<c:otherwise>1</c:otherwise>
 										</c:choose></td>
 									<td id="part_select"><c:choose>
-											<c:when test="${requestScope.dto.status==0}">0</c:when>
+											<c:when test="${requestScope.qna.status==0}">0</c:when>
 											<c:otherwise>1</c:otherwise>
 										</c:choose></td>
                                     </tr>
@@ -327,17 +327,17 @@
 								<tr class="part_topic">
 									<td class="part_No"><p>${qna.qno }</p></td>
 									<td class="part_title"><a id="qna_link"
-										href="qnaView.do?qno=${dto.qno }">${qna.title }</a></td>
+										href="qnaView.do?qno=${qna.qno }">${qna.title }</a></td>
 									<td class="part_content"><a id="qna_link"
-										href="qnaView.do?qno=${dto.qno }">${qna.content }</a></td>
+										href="qnaView.do?qno=${qna.qno }">${qna.content }</a></td>
 									<td id="part_select"><p>${qna.writer}</p></td>
 									<td id="part_select"><p>${qna.qdate }</p></td>
 									<td id="part_select"><c:choose>
-											<c:when test="${requestScope.dto.status==0}">0</c:when>
+											<c:when test="${requestScope.qna.status==0}">0</c:when>
 											<c:otherwise>1</c:otherwise>
 										</c:choose></td>
 									<td id="part_select"><c:choose>
-											<c:when test="${requestScope.dto.status==0}">0</c:when>
+											<c:when test="${requestScope.qna.status==0}">0</c:when>
 											<c:otherwise>1</c:otherwise>
 										</c:choose></td>
 								</tr>
@@ -399,17 +399,17 @@
 									<tr class="part_topic">
 										<td class="part_No"><p>${qna.qno }</p></td>
 										<td class="part_title"><a id="qna_link"
-											href="qnaView.do?qno=${dto.qno }">${qna.title }</a></td>
+											href="qnaView.do?qno=${qna.qno }">${qna.title }</a></td>
 										<td class="part_content"><a id="qna_link"
-											href="qnaView.do?qno=${dto.qno }">${qna.content }</a></td>
+											href="qnaView.do?qno=${qna.qno }">${qna.content }</a></td>
 										<td id="part_select"><p>${qna.writer}</p></td>
 										<td id="part_select"><p>${qna.qdate }</p></td>
 										<td id="part_select"><c:choose>
-												<c:when test="${requestScope.dto.status==0}">0</c:when>
+												<c:when test="${requestScope.qna.status==0}">0</c:when>
 												<c:otherwise>1</c:otherwise>
 											</c:choose></td>
 										<td id="part_select"><c:choose>
-												<c:when test="${requestScope.dto.status==0}">0</c:when>
+												<c:when test="${requestScope.qna.status==0}">0</c:when>
 												<c:otherwise>1</c:otherwise>
 											</c:choose></td>
 									</tr>

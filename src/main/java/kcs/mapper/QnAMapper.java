@@ -20,15 +20,19 @@ public interface QnAMapper {
 
 	int sendQnA(QnADTO dto);
 
-	int insertAdminAnswer(QnADTO dto);
+	int selectUpdateQnA(int qno);
 
-	QnADTO selectUpdateQnADTO(HashMap<String, Object> map);
+	int insertAdminAnswer(QnADTO dto);
 
 	int qnaUpdateAction(QnADTO qnaDTO);
 
 	int deleteQnA(int qno);
 
-	List<QnADTO> selectQnADTO(HashMap<String, Object> map);
+	QnADTO selectQnADTO(int qno);
+
+	void qnaStatusUpdate(int qno);
+
+
 
 
 }

@@ -18,17 +18,20 @@
 	<insert id="sendQnA" parameterType="qna">
 		insert into qna (qno, title, writer, content) values(SEQ_QNA_QNO.NEXTVAL, #{title}, #{writer}, #{content})
 	</insert>
-	<select id="selectQnAList" parameterType="map" resultType="qna">
-		select qno, title, content, qdate, writer, status, response from (select ceil(rownum / 5) as page, qno, title, content, qdate, writer, status, nvl(response,'입력된 답변이 없습니다') as response from (select * from qna where writer = #{id} order by qno desc)) where page = #{pageNo}
+	<select id="selectQnADTO" parameterType="int" resultType="qna">
+		select * from qna where qno = #{qno}	
 	</select>
+	<update id="qnaStatusUpdate" parameterType="int">
+		update qna set status = 1 where qno = #{qno} and status not in(1,2)
+	</update>
 	<update id="insertAdminAnswer" parameterType="map">
 		update qna set response = || #{answer}, status=2 where qno = #{qno}
 	</update>
-	<select id="selectUpdateQnADTO" parameterType="map" resultType="qna">
+	<select id="selectUpdateQnA" parameterType="int" resultType="qna">
 		select qno, title, content, qdate, writer, status, nvl(response,'답변 없음') from qna where qno = #{qno}
 	</select>
 	<update id="qnaUpdateAction" parameterType="qna">
-		update qna set response = || #{answer}, status=1 where qno = #{qno}
+		update qna set response = || #{answer}, status=2 where qno = #{qno}
 	</update>
 	<delete id="deleteQnA" parameterType="int">
 		delete from qna where qno = #{qno}
