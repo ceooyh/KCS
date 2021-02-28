@@ -427,7 +427,7 @@
                     	</c:choose>
                     </div>
                     <div id="spot_main_content">
-                        <span id="spot_name_title"><a href="spotDetailView.do?facltNm=${dto.facltNm}">${dto.facltNm}</a></span><br>
+                        <span id="spot_name_title"><a href="spotDetailView.do?contentId=${dto.contentId}&facltNm=${dto.facltNm}">${dto.facltNm}</a></span><br>
                         <span id="online_intro">${dto.lineIntro}</span><br>
                         <span id="spot_address_title" class="spot_title">${dto.addr1} ${dto.addr2} </span><br>
                         <span id="spot_tel_title" class="spot_title">${dto.tel}</span><br>
