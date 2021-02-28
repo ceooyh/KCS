@@ -220,12 +220,6 @@
     }
 </style>
 	<jsp:include page="../template/header2.jsp" flush="false"></jsp:include>
-		<c:if test="${sessionScope.login == null}">
-			<script>
-				alert("권한이 없습니다. 로그인 후 이용해 주세요");
-				location.href = "loginView.do";
-			</script>
-		</c:if>
 	<section>
 		<div id="container">
             <p id="headline">QnA</p>
@@ -242,7 +236,6 @@
 								<th class="part_content">[내용]</th>
 								<th id="part_select">[작성자]</th>
 								<th id="part_select">[작성일]</th>
-								<th id="part_select">[조회]</th>
 								<th id="part_select">[답변]</th>
 							</tr>
 	
@@ -255,21 +248,20 @@
 										href="qnaDetailView.do?qno=${qna.qno }">${qna.content }</a></td>
 									<td id="part_select"><p>${qna.writer}</p></td>
 									<td id="part_select"><p>${qna.qdate }</p></td>
-							        <td id="part_select"><c:choose>
-											<c:when test="${requestScope.qna.status==0}">0</c:when>
-											<c:otherwise>1</c:otherwise>
-										</c:choose></td>
-									<td id="part_select"><c:choose>
-											<c:when test="${requestScope.qna.status==0}">0</c:when>
-											<c:otherwise>1</c:otherwise>
-										</c:choose></td>
+							        <td id="part_select">
+											<c:choose>
+											<c:when test="${qna.status == 0}">미확인</c:when>
+											<c:when test="${qna.status == 1}">확인</c:when>
+											<c:when test="${qna.status == 2}">답변완료</c:when>
+										</c:choose>
+									</td>
                                     </tr>
                                 </c:forEach>
 						</table>
 					</div>
 				</c:when>
 
-				<c:when test="${sessionScope.user_type == 1}">
+				<c:otherwise>
 					
 					<div class="guestQnA">
 						<form action="sendQnA.do" method="get">
@@ -314,7 +306,6 @@
 								<th class="part_content">[내용]</th>
 								<th id="part_select">[작성자]</th>
 								<th id="part_select">[작성일]</th>
-								<th id="part_select">[조회]</th>
 								<th id="part_select">[답변]</th>
 							</tr>
 
@@ -322,98 +313,25 @@
 								<tr class="part_topic">
 									<td class="part_No"><p>${qna.qno }</p></td>
 									<td class="part_title"><a id="qna_link"
-										href="qnaView.do?qno=${qna.qno }">${qna.title }</a></td>
+										href="qnaDetailView.do?qno=${qna.qno }">${qna.title }</a></td>
 									<td class="part_content"><a id="qna_link"
-										href="qnaView.do?qno=${qna.qno }">${qna.content }</a></td>
+										href="qnaDetailView.do?qno=${qna.qno }">${qna.content }</a></td>
 									<td id="part_select"><p>${qna.writer}</p></td>
 									<td id="part_select"><p>${qna.qdate }</p></td>
-									<td id="part_select"><c:choose>
-											<c:when test="${requestScope.qna.status==0}">0</c:when>
-											<c:otherwise>1</c:otherwise>
-										</c:choose></td>
-									<td id="part_select"><c:choose>
-											<c:when test="${requestScope.qna.status==0}">0</c:when>
-											<c:otherwise>1</c:otherwise>
-										</c:choose></td>
+									<td id="part_select">
+										<c:choose>
+											<c:when test="${qna.status == 0}">미확인</c:when>
+											<c:when test="${qna.status == 1}">확인</c:when>
+											<c:when test="${qna.status == 2}">답변완료</c:when>
+										</c:choose>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>
 					</div>
-				</c:when>
-
-
-				
-				<c:when test="${sessionScope.user_type == 2}">
-					<div class="businessQnA">
-						<form action="sendQnA.do" method="get">
-							<div class="part_select">
-								<p>
-									<label for="#">[아이디]</label>
-								</p>
-								<span class="input_span"><input id="first_input"
-									type="text" name="id" id="id" value="${sessionScope.id}" readonly></span>
-							</div>
-							
-
-							<div class="part_select">
-								<p>
-									<label for="title">[제목]</label>
-								</p>
-								<span class="input_span"><input type="text" name="title"
-									id="title" placeholder="제목을 입력해주세요"></span>
-							</div>
-							
-
-							<div class="part_select">
-								<p id="qna_content_title">
-									<label for="title">[문의내용]</label>
-								</p>
-								<textarea name="content" id="content" cols="95" rows="20"
-									placeholder="문의내용을 입력하세요"></textarea>
-								<div>
-									<button id="btn_enter" type="submit">문의 등록</button>
-								</div>
-							</div>
-							
-						</form>
-
-						<div class="part">
-						
-							<table id="part_topic">
-								<tr>
-									<th class="part_No">[No]</th>
-									<th class="part_title">[제목]</th>
-									<th class="part_content">[내용]</th>
-									<th id="part_select">[작성자]</th>
-									<th id="part_select">[작성일]</th>
-									<th id="part_select">[조회]</th>
-									<th id="part_select">[답변]</th>
-								</tr>
-
-								<c:forEach var="qna" items="${requestScope.list }">
-									<tr class="part_topic">
-										<td class="part_No"><p>${qna.qno }</p></td>
-										<td class="part_title"><a id="qna_link"
-											href="qnaView.do?qno=${qna.qno }">${qna.title }</a></td>
-										<td class="part_content"><a id="qna_link"
-											href="qnaView.do?qno=${qna.qno }">${qna.content }</a></td>
-										<td id="part_select"><p>${qna.writer}</p></td>
-										<td id="part_select"><p>${qna.qdate }</p></td>
-										<td id="part_select"><c:choose>
-												<c:when test="${requestScope.qna.status==0}">0</c:when>
-												<c:otherwise>1</c:otherwise>
-											</c:choose></td>
-										<td id="part_select"><c:choose>
-												<c:when test="${requestScope.qna.status==0}">0</c:when>
-												<c:otherwise>1</c:otherwise>
-											</c:choose></td>
-									</tr>
-								</c:forEach>
-							</table>
-						</div>
-					</div>
-				</c:when>
+				</c:otherwise>
 			</c:choose>
+			
 			<div class="page_bar">
                 <c:set var="page" value="${requestScope.page}" scope="page"/>
                 <c:if test="${page.previousPageGroup }">

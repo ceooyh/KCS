@@ -48,15 +48,13 @@ public class QnAService {
 	}
 	
 	// 문의 관리자 답변페이지 - 가현,20210226
-	public int insertAdminAnswer(QnADTO qnaDTO) {
-		return mapper.insertAdminAnswer(qnaDTO);
+	public int insertAdminAnswer(int qno, String answer) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("qno", qno);
+		map.put("answer", answer);
+		return mapper.insertAdminAnswer(map);
 	}
-	
-	// 문의 수정 페이지로 이동 - 가현,20210226
-	public int selectUpdateQnA(int qno) {
-		return mapper.selectUpdateQnA(qno);
-	} 
-	
+
 	// 문의 수정 진행 - 가현,20210227
 	public int qnaUpdateAction(QnADTO qnaDTO) {
 		return mapper.qnaUpdateAction(qnaDTO);

@@ -74,19 +74,25 @@ public class QnAController {
                 QnADTO qnaDTO = null;
                 int user_type = (int) session.getAttribute("user_type");
                 
-                if(user_type == 0) {     // 관리자
+                qnaDTO = service.selectQnADTO(qno);
+
+                if(user_type == 0 && qnaDTO.getStatus() == 0) {     // 관리자
                     service.qnaStatusUpdate(qno);
-                    qnaDTO = service.selectQnADTO(qno);
-                }else { //사업자, 일반사용자
-                    qnaDTO = service.selectQnADTO(qno);
                 }
-                request.setAttribute("qna", qnaDTO);
+
+                if(qnaDTO != null) {
+                	request.setAttribute("dto", qnaDTO);
+                	return "qna/qna_detail_view";
+                }else {
+                	response.setContentType("text/html;charset=utf-8");
+                    response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-            return null;
-        }
+        return null;
+    }
 
 
 	// 문의 등록 - 희원,20210221
@@ -117,94 +123,29 @@ public class QnAController {
 		return null;
 	}
 
-	// 문의 답변 페이지 - 가현,20210224
-	@RequestMapping("/qnaAdminAnswer.do")
-	public String qnaAdminAnswer(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		try {
-			if ((int) session.getAttribute("user_type") != 0) { // 세션 종료된 경우
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write(
-						"<script>alert('관리자만 이용할 수 있는 메뉴입니다.<br> 로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
-			} else {
-				String title = request.getParameter("title");
-				String writer = (String) request.getSession().getAttribute("writer");
-				String content = request.getParameter("content");
-				QnADTO qnaDTO = new QnADTO(title, writer, content);
-
-				// 답변 등록
-				int count = service.insertAdminAnswer(qnaDTO);
-				if (count == 0) {
-					response.setContentType("text/html;charset=utf-8");
-					response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
-				} else {
-					response.setContentType("text/html;charset=utf-8");
-					response.getWriter().write("<script>alert('답변 등록 완료!');location.href='qnaView.do';</script>");
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return "qna/qna_response_view";
-	}
-
 	// 문의 수정 페이지 이동 - 가현,20210227
     @RequestMapping("/qnaAjaxUpdate.do")
     public String qnaAjaxUpdate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        int qno = Integer.parseInt(request.getParameter("qno"));
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        
+        int count = service.qnaUpdateAction(new QnADTO(qno, title, content));
+        
         try {
-            if(session.getAttribute("id") == null) {    // 세션 종료된 경우
-            response.setContentType("text/html;charset=utf-8");
-                response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
-            }else {
-                int qno = (int) session.getAttribute("qno");
-                String title = request.getParameter("title");
-                String writer = request.getParameter("id");
-                String content = request.getParameter("content");
-                String answer = request.getParameter("response");
-
-                // 문의 수정
-                QnADTO qnaDTO = null;
-
-                int count = service.selectUpdateQnA(qno);
-                request.setAttribute("qna", qnaDTO);
-
-                if(count==1) {
-                    response.setContentType("text/html;charset=utf-8");
-                    response.getWriter().write("<script>alert('답변 후 게시글 수정이 불가합니다.');location.href='qnaView.do';</script>");
-                }else {
-                    request.setAttribute("dto", qnaDTO );
-                    return "qna/qna_detail_view";
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    
-	// 문의 수정 진행 - 가현,20210227
-	@RequestMapping("/qnaUpdateAction.do")
-	public String qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		// 문의 불러오기
-		String title = request.getParameter("title");
-		String writer = (String) session.getAttribute("id");
-		String content = request.getParameter("content");
-
-		// 문의 수정
-		QnADTO qnaDTO = new QnADTO(title, writer, content);
-		try {
-			int count = service.qnaUpdateAction(qnaDTO);
-			if (count == 1) {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('페이지 오류');location.href='qna_detail_view.do';</script>");
-			} else {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('문의 수정 완료!');location.href='qna_detail_view.do';</script>");
-			}
+        	if(count == 0) {
+        		// 실패
+        		response.getWriter().print("false");
+        	}else {
+        		// 성공
+        		response.getWriter().print("true");
+        	}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
-	}
+        return null;
+    }
+    
 
 	// 문의 삭제 페이지 - 가현,2021026
 	@RequestMapping("/qnaAjaxDelete.do")
@@ -214,17 +155,17 @@ public class QnAController {
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
 			} else {
-				int qno = (int) session.getAttribute("qno");
+				int qno = Integer.parseInt(request.getParameter("qno"));
 
 				// 문의 삭제
 				int count = service.deleteQnA(qno);
-				if (count == 0) {
-					response.setContentType("text/html;charset=utf-8");
-					response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
-				} else {
-					response.setContentType("text/html;charset=utf-8");
-					response.getWriter().write("<script>alert('문의 삭제 완료!');location.href='qnaView.do';</script>");
-				}
+				if(count == 0) {
+	        		// 실패
+	        		response.getWriter().print("false");
+	        	}else {
+	        		// 성공
+	        		response.getWriter().print("true");
+	        	}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -232,4 +173,27 @@ public class QnAController {
 		return null;
 	}
 
+
+	// 문의 답변 페이지 - 가현,20210224
+	@RequestMapping("/qnaAdminAnswer.do")
+	public String qnaAdminAnswer(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		int qno = Integer.parseInt(request.getParameter("qno"));
+		String answer = request.getParameter("response");
+		
+		try {
+			// 답변 등록
+			int count = service.insertAdminAnswer(qno, answer);
+			if (count == 0) {
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('페이지 오류');location.href='qnaView.do';</script>");
+			} else {
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('답변 등록 완료!');location.href='qnaView.do';</script>");
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

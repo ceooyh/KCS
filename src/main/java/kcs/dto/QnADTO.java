@@ -28,14 +28,13 @@ public class QnADTO {
 		this.writer = writer;
 		this.content = content;
 	}
+	
 	// 문의 수정용
-	public QnADTO(int qno, String title, String writer, String content, String response) {
+	public QnADTO(int qno, String title, String content) {
 		super();
 		this.qno = qno;
 		this.title = title;
-		this.writer = writer;
 		this.content = content;
-		this.response = response;
 	}
 	public int getQno() {
 		return qno;
@@ -79,5 +78,11 @@ public class QnADTO {
 	public void setResponse(String response) {
 		this.response = response;
 	}
+	@Override
+	public String toString() {
+		return "QnADTO [qno=" + qno + ", title=" + title + ", writer=" + writer + ", content=" + content + ", qdate="
+				+ qdate + ", status=" + status + ", response=" + response + "]";
+	}
+	
 	
 }

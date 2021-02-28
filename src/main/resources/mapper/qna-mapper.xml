@@ -10,28 +10,28 @@
 		select count(*) from qna where writer like #{writer}
 	</select>
 	<select id="getAllQnAList" parameterType="int" resultType="qna">
-		select qno, title, writer, content, qdate, status, response from (select ceil(rownum / 7) as page, qno, title, writer, content, qdate, status, response from (select * from qna order by qno DESC)) where page = #{pageNo}
+		select qno, title, writer, content, to_char(qdate, 'yyyy-MM-dd'), status, response from (select ceil(rownum / 7) as page, qno, title, writer, content, qdate, status, response from (select * from qna order by qno DESC)) where page = #{pageNo}
 	</select>
 	<select id="getQnAList" parameterType="map" resultType="qna">
-		select qno, title, writer, content, qdate, status, response from (select ceil(rownum / 7) as page, qno, title, writer, content, qdate, status, response from (select * from qna where writer = #{writer} order by qno DESC)) where page = #{pageNo}
+		select qno, title, writer, content, to_char(qdate, 'yyyy-MM-dd'), status, response from (select ceil(rownum / 7) as page, qno, title, writer, content, qdate, status, response from (select * from qna where writer = #{writer} order by qno DESC)) where page = #{pageNo}
 	</select>
 	<insert id="sendQnA" parameterType="qna">
-		insert into qna (qno, title, writer, content) values(SEQ_QNA_QNO.NEXTVAL, #{title}, #{writer}, #{content})
+		insert into qna (qno, title, writer, content, qdate, status) values(SEQ_QNA_QNO.NEXTVAL, #{title}, #{writer}, #{content}, sysdate, 0)
 	</insert>
 	<select id="selectQnADTO" parameterType="int" resultType="qna">
 		select * from qna where qno = #{qno}	
 	</select>
 	<update id="qnaStatusUpdate" parameterType="int">
-		update qna set status = 1 where qno = #{qno} and status not in(1,2)
+		update qna set status=1 where qno = #{qno}
 	</update>
 	<update id="insertAdminAnswer" parameterType="map">
-		update qna set response = || #{answer}, status=2 where qno = #{qno}
+		update qna set response = #{answer}, status=2 where qno = #{qno}
 	</update>
 	<select id="selectUpdateQnA" parameterType="int" resultType="qna">
 		select qno, title, content, qdate, writer, status, nvl(response,'답변 없음') from qna where qno = #{qno}
 	</select>
 	<update id="qnaUpdateAction" parameterType="qna">
-		update qna set response = || #{answer}, status=2 where qno = #{qno}
+		update qna set title = #{title}, content = #{content}, status = 0 where qno = #{qno}
 	</update>
 	<delete id="deleteQnA" parameterType="int">
 		delete from qna where qno = #{qno}
