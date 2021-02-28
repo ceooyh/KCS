@@ -179,9 +179,14 @@ public class QnAController {
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
 			}
 			return null;
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		return null;
+	}
 
 
 	// 문의 수정 진행 - 가현,20210227
