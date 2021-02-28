@@ -108,7 +108,7 @@ public class SpotDTO {
 
 	
 	// 검색 목록 노출용
-	public SpotDTO(int contentId, String facltNm, String lineIntro, String manageSttus, String addr1, String addr2,
+	public SpotDTO(int contentId, String facltNm, String lineIntro, String manageSttus, String addr1, String addr2, String tel, 
 			String homepage, String sbrsCl, String firstImageUrl, double star, int review_count) {
 		super();
 		this.contentId = contentId;
@@ -117,6 +117,7 @@ public class SpotDTO {
 		this.manageSttus = manageSttus;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
+		this.tel = tel;
 		this.homepage = homepage;
 		this.sbrsCl = sbrsCl;
 		this.firstImageUrl = firstImageUrl;
