@@ -134,18 +134,10 @@
         text-decoration: none;
         color: rgb(46, 46, 46);
     }
-    label {
+    #title {
         font-family: '보통노토';
         font-size: 13px;
         color: rgb(46, 46, 46);
-    }
-
-    input {
-        border: none;
-    }
-
-    span {
-        display: inline-block;
     }
 
     input:focus {
@@ -162,6 +154,8 @@
         color: rgb(46, 46, 46);
         font-family: '보통노토';
         font-size: 20px;
+        display: inline-block;
+        border: none;
     }
 
     #first_input {
@@ -170,6 +164,7 @@
         color: rgb(46, 46, 46);
         font-family: '보통노토';
         font-size: 20px;
+        border: none;
     }
 
     .input_span input:focus {
@@ -419,22 +414,21 @@
 					</div>
 				</c:when>
 			</c:choose>
-			
 			<div class="page_bar">
-				<c:if test="${pagging.previousPageGroup }">
-					<a href=" qnaView.do?pageNo=${pagging.startPageOfPageGroup - 1 }"
+                <c:set var="page" value="${requestScope.page}" scope="page"/>
+                <c:if test="${page.previousPageGroup }">
+                    <a href=" qnaView.do?pageNo=${page.startPageOfPageGroup - 1 }"
 						id="btn_page">◀</a>
-				</c:if>
-				<c:forEach var="i" begin="${pagging.startPageOfPageGroup}"
-					end="${pagging.endPageOfPageGroup}">
-					<a href="qnaView.do?pageNo=${i }" id="btn_page">${ i}</a>
-				</c:forEach>
-
-				<c:if test="${pagging.nextPageGroup }">
-					<a href="qnaView.do?pageNo=${pagging.endPageOfPageGroup + 1 }"
+                </c:if>
+                <c:forEach var="i" begin="${page.startPageOfPageGroup}"
+                    end="${page.endPageOfPageGroup}" step="1">
+                    <a href="qnaView.do?pageNo=${i}" id="btn_page">${i}</a>
+                </c:forEach>
+                <c:if test="${page.nextPageGroup }">
+                    <a href="qnaView.do?pageNo=${page.endPageOfPageGroup + 1 }"
 						id="btn_page">▶</a>
-				</c:if>
-			</div>
+                </c:if>
+            </div>
 		</div>
 		<!--container 마지막 부분-->
 	</section>
