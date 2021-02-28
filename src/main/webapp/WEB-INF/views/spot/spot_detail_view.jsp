@@ -63,7 +63,7 @@
         width: 1920px;
         height: 320px;
         box-sizing: border-box;
-        background-image: url(img/detail_camping_viewimg.png);
+        background-image: url(../../../img/searchpage/detail_camping_viewimg.png);
     }
     #headLine_row{
         width: 100%;
