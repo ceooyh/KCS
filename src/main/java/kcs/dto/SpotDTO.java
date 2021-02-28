@@ -11,6 +11,7 @@ public class SpotDTO {
 	private String featureNm;
 	private String induty;
 	private String lctCl;
+	private String doNm;
 	private String addr1;
 	private String addr2;
 	private String mapX;
@@ -22,6 +23,7 @@ public class SpotDTO {
 	private String glampSiteCo;
 	private String caravSiteCo;
 	private String indvdlCaravSiteCo;
+	private String sitedStnc;
 	private String siteMg1Width;
 	private String siteMg1Vrticl;
 	private String siteMg1Co;
@@ -49,9 +51,9 @@ public class SpotDTO {
 	
 	// 기본 생성자
 	public SpotDTO(int contentId, String facltNm, String lineIntro, String intro, String bizrno, String manageSttus,
-			String featureNm, String induty, String lctCl, String addr1, String addr2, String mapX, String mapY,
+			String featureNm, String induty, String lctCl, String doNm, String addr1, String addr2, String mapX, String mapY,
 			String tel, String homepage, String gnrlSiteCo, String autoSiteCo, String glampSiteCo, String caravSiteCo,
-			String indvdlCaravSiteCo, String siteMg1Width, String siteMg1Vrticl, String siteMg1Co, String siteBottomCl1,
+			String indvdlCaravSiteCo, String sitedStnc, String siteMg1Width, String siteMg1Vrticl, String siteMg1Co, String siteBottomCl1,
 			String siteBottomCl2, String siteBottomCl3, String siteBottomCl4, String siteBottomCl5, String operPdCl,
 			String operDeCl, String trlerAcmpnyAt, String caravAcmpnyAt, String toiletCo, String swrmCo, String wtrplCo,
 			String sbrsCl, String themaEnvrnCl, String eqpmnLendCl, String animalCmgCl, String firstImageUrl,
@@ -66,6 +68,7 @@ public class SpotDTO {
 		this.featureNm = featureNm;
 		this.induty = induty;
 		this.lctCl = lctCl;
+		this.doNm = doNm;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
 		this.mapX = mapX;
@@ -77,6 +80,7 @@ public class SpotDTO {
 		this.glampSiteCo = glampSiteCo;
 		this.caravSiteCo = caravSiteCo;
 		this.indvdlCaravSiteCo = indvdlCaravSiteCo;
+		this.sitedStnc = sitedStnc;
 		this.siteMg1Width = siteMg1Width;
 		this.siteMg1Vrticl = siteMg1Vrticl;
 		this.siteMg1Co = siteMg1Co;
@@ -102,30 +106,6 @@ public class SpotDTO {
 	}
 
 
-	// 상세 검색 비교를 위한 생성자
-	public SpotDTO(String lctCl, String addr1, String gnrlSiteCo, String autoSiteCo, String glampSiteCo,
-			String caravSiteCo, String indvdlCaravSiteCo, String siteBottomCl1, String siteBottomCl2,
-			String siteBottomCl3, String siteBottomCl4, String siteBottomCl5, String trlerAcmpnyAt,
-			String caravAcmpnyAt, String sbrsCl, String themaEnvrnCl, String animalCmgCl) {
-		super();
-		this.lctCl = lctCl;
-		this.addr1 = addr1;
-		this.gnrlSiteCo = gnrlSiteCo;
-		this.autoSiteCo = autoSiteCo;
-		this.glampSiteCo = glampSiteCo;
-		this.caravSiteCo = caravSiteCo;
-		this.indvdlCaravSiteCo = indvdlCaravSiteCo;
-		this.siteBottomCl1 = siteBottomCl1;
-		this.siteBottomCl2 = siteBottomCl2;
-		this.siteBottomCl3 = siteBottomCl3;
-		this.siteBottomCl4 = siteBottomCl4;
-		this.siteBottomCl5 = siteBottomCl5;
-		this.trlerAcmpnyAt = trlerAcmpnyAt;
-		this.caravAcmpnyAt = caravAcmpnyAt;
-		this.sbrsCl = sbrsCl;
-		this.themaEnvrnCl = themaEnvrnCl;
-		this.animalCmgCl = animalCmgCl;
-	}
 	
 	// 검색 목록 노출용
 	public SpotDTO(int contentId, String facltNm, String lineIntro, String manageSttus, String addr1, String addr2,
@@ -194,6 +174,12 @@ public class SpotDTO {
 	public void setLctCl(String lctCl) {
 		this.lctCl = lctCl;
 	}
+	public String getDoNm() {
+		return doNm;
+	}
+	public void setDoNm(String doNm) {
+		this.doNm = doNm;
+	}
 	public String getAddr1() {
 		return addr1;
 	}
@@ -205,6 +191,18 @@ public class SpotDTO {
 	}
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
+	}
+	public String getMapX() {
+		return mapX;
+	}
+	public void setMapX(String mapX) {
+		this.mapX = mapX;
+	}
+	public String getMapY() {
+		return mapY;
+	}
+	public void setMapY(String mapY) {
+		this.mapY = mapY;
 	}
 	public String getTel() {
 		return tel;
@@ -350,6 +348,12 @@ public class SpotDTO {
 	public void setManageSttus(String manageSttus) {
 		this.manageSttus = manageSttus;
 	}
+	public String getSitedStnc() {
+		return sitedStnc;
+	}
+	public void setSitedStnc(String sitedStnc) {
+		this.sitedStnc = sitedStnc;
+	}
 	public String getSiteMg1Width() {
 		return siteMg1Width;
 	}
@@ -368,91 +372,76 @@ public class SpotDTO {
 	public void setSiteMg1Co(String siteMg1Co) {
 		this.siteMg1Co = siteMg1Co;
 	}
-	
 	public String getToiletCo() {
 		return toiletCo;
 	}
-
 	public void setToiletCo(String toiletCo) {
 		this.toiletCo = toiletCo;
 	}
-
 	public String getSwrmCo() {
 		return swrmCo;
 	}
-
 	public void setSwrmCo(String swrmCo) {
 		this.swrmCo = swrmCo;
 	}
-
 	public String getWtrplCo() {
 		return wtrplCo;
 	}
-
 	public void setWtrplCo(String wtrplCo) {
 		this.wtrplCo = wtrplCo;
 	}
 	
+	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == null) return false;
-		if(!(obj instanceof SpotDTO)) return false;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof SpotDTO))
+			return false;
 		SpotDTO temp = (SpotDTO) obj;
-		if(!temp.getAddr1().contains(addr1)) return false;
-		if(!temp.getGnrlSiteCo().equals(gnrlSiteCo)) return false;
-		if(!temp.getAutoSiteCo().equals(autoSiteCo)) return false;
-		if(!temp.getGlampSiteCo().equals(glampSiteCo)) return false;
-		if(!temp.getCaravSiteCo().equals(caravSiteCo)) return false;
-		if(!temp.getIndvdlCaravSiteCo().equals(indvdlCaravSiteCo)) return false;
-		if(!temp.getLctCl().contains(lctCl)) return false;
-		if(!temp.getSiteBottomCl1().equals(siteBottomCl1)) return false;
-		if(!temp.getSiteBottomCl2().equals(siteBottomCl2)) return false;
-		if(!temp.getSiteBottomCl3().equals(siteBottomCl3)) return false;
-		if(!temp.getSiteBottomCl4().equals(siteBottomCl4)) return false;
-		if(!temp.getSiteBottomCl5().equals(siteBottomCl5)) return false;
-		if(!temp.getSbrsCl().contains(sbrsCl)) return false;
-		if(!temp.getThemaEnvrnCl().contains(themaEnvrnCl)) return false;
-		if(!temp.getAnimalCmgCl().equals(animalCmgCl)) return false;
-		if(!temp.getTrlerAcmpnyAt().equals(trlerAcmpnyAt)) return false;
-		if(!temp.getCaravAcmpnyAt().equals(caravAcmpnyAt)) return false;
+		
+		if(!temp.getDoNm().equals("-") && !temp.getDoNm().contains(doNm)) return false;
+		if(!temp.getGnrlSiteCo().equals("-") && !temp.getGnrlSiteCo().equals(gnrlSiteCo)) return false;
+		if(!temp.getAutoSiteCo().equals("-") && !temp.getAutoSiteCo().equals(autoSiteCo)) return false;
+		if(!temp.getGlampSiteCo().equals("-") && !temp.getGlampSiteCo().equals(glampSiteCo)) return false;
+		if(!temp.getCaravSiteCo().equals("-") && !temp.getCaravSiteCo().equals(caravSiteCo)) return false;
+		if(!temp.getIndvdlCaravSiteCo().equals("-") && !temp.getIndvdlCaravSiteCo().equals(indvdlCaravSiteCo)) return false;
+		if(!temp.getLctCl().equals("-") && !temp.getLctCl().equals(lctCl)) return false;
+		if(!temp.getSiteBottomCl1().equals("-") && !temp.getSiteBottomCl1().equals(siteBottomCl1)) return false;
+		if(!temp.getSiteBottomCl2().equals("-") && !temp.getSiteBottomCl2().equals(siteBottomCl2)) return false;
+		if(!temp.getSiteBottomCl3().equals("-") && !temp.getSiteBottomCl3().equals(siteBottomCl3)) return false;
+		if(!temp.getSiteBottomCl4().equals("-") && !temp.getSiteBottomCl4().equals(siteBottomCl4)) return false;
+		if(!temp.getSiteBottomCl5().equals("-") && !temp.getSiteBottomCl5().equals(siteBottomCl5)) return false;
+		if(!temp.getSbrsCl().equals("-") && !temp.getSbrsCl().equals(sbrsCl)) return false;
+		if(!temp.getThemaEnvrnCl().equals("-") && !temp.getThemaEnvrnCl().equals(themaEnvrnCl)) return false;
+		if(!temp.getAnimalCmgCl().equals("-") && !temp.getAnimalCmgCl().equals(animalCmgCl)) return false;
+		if(!temp.getTrlerAcmpnyAt().equals("-") && !temp.getTrlerAcmpnyAt().equals(trlerAcmpnyAt)) return false;
+		if(!temp.getCaravAcmpnyAt().equals("-") && !temp.getCaravAcmpnyAt().equals(caravAcmpnyAt)) return false;
+		
 		return true;
 	}
-
+	
 
 	@Override
 	public String toString() {
 		return "SpotDTO [contentId=" + contentId + ", facltNm=" + facltNm + ", lineIntro=" + lineIntro + ", intro="
 				+ intro + ", bizrno=" + bizrno + ", manageSttus=" + manageSttus + ", featureNm=" + featureNm
-				+ ", induty=" + induty + ", lctCl=" + lctCl + ", addr1=" + addr1 + ", addr2=" + addr2 + ", mapX=" + mapX
-				+ ", mapY=" + mapY + ", tel=" + tel + ", homepage=" + homepage + ", gnrlSiteCo=" + gnrlSiteCo
-				+ ", autoSiteCo=" + autoSiteCo + ", glampSiteCo=" + glampSiteCo + ", caravSiteCo=" + caravSiteCo
-				+ ", indvdlCaravSiteCo=" + indvdlCaravSiteCo + ", siteMg1Width=" + siteMg1Width + ", siteMg1Vrticl="
-				+ siteMg1Vrticl + ", siteMg1Co=" + siteMg1Co + ", siteBottomCl1=" + siteBottomCl1 + ", siteBottomCl2="
-				+ siteBottomCl2 + ", siteBottomCl3=" + siteBottomCl3 + ", siteBottomCl4=" + siteBottomCl4
-				+ ", siteBottomCl5=" + siteBottomCl5 + ", operPdCl=" + operPdCl + ", operDeCl=" + operDeCl
-				+ ", trlerAcmpnyAt=" + trlerAcmpnyAt + ", caravAcmpnyAt=" + caravAcmpnyAt + ", toiletCo=" + toiletCo
-				+ ", swrmCo=" + swrmCo + ", wtrplCo=" + wtrplCo + ", sbrsCl=" + sbrsCl + ", themaEnvrnCl="
-				+ themaEnvrnCl + ", eqpmnLendCl=" + eqpmnLendCl + ", animalCmgCl=" + animalCmgCl + ", firstImageUrl="
-				+ firstImageUrl + ", star=" + star + ", review_count=" + review_count + ", getContentId()="
-				+ getContentId() + ", getFacltNm()=" + getFacltNm() + ", getLineIntro()=" + getLineIntro()
-				+ ", getIntro()=" + getIntro() + ", getBizrno()=" + getBizrno() + ", getFeatureNm()=" + getFeatureNm()
-				+ ", getInduty()=" + getInduty() + ", getLctCl()=" + getLctCl() + ", getAddr1()=" + getAddr1()
-				+ ", getAddr2()=" + getAddr2() + ", getTel()=" + getTel() + ", getHomepage()=" + getHomepage()
-				+ ", getGnrlSiteCo()=" + getGnrlSiteCo() + ", getAutoSiteCo()=" + getAutoSiteCo()
-				+ ", getGlampSiteCo()=" + getGlampSiteCo() + ", getCaravSiteCo()=" + getCaravSiteCo()
-				+ ", getIndvdlCaravSiteCo()=" + getIndvdlCaravSiteCo() + ", getSiteBottomCl1()=" + getSiteBottomCl1()
-				+ ", getSiteBottomCl2()=" + getSiteBottomCl2() + ", getSiteBottomCl3()=" + getSiteBottomCl3()
-				+ ", getSiteBottomCl4()=" + getSiteBottomCl4() + ", getSiteBottomCl5()=" + getSiteBottomCl5()
-				+ ", getOperPdCl()=" + getOperPdCl() + ", getOperDeCl()=" + getOperDeCl() + ", getTrlerAcmpnyAt()="
-				+ getTrlerAcmpnyAt() + ", getCaravAcmpnyAt()=" + getCaravAcmpnyAt() + ", getSbrsCl()=" + getSbrsCl()
-				+ ", getThemaEnvrnCl()=" + getThemaEnvrnCl() + ", getEqpmnLendCl()=" + getEqpmnLendCl()
-				+ ", getAnimalCmgCl()=" + getAnimalCmgCl() + ", getFirstImageUrl()=" + getFirstImageUrl()
-				+ ", getStar()=" + getStar() + ", getReview_count()=" + getReview_count() + ", getManageSttus()="
-				+ getManageSttus() + ", getSiteMg1Width()=" + getSiteMg1Width() + ", getSiteMg1Vrticl()="
-				+ getSiteMg1Vrticl() + ", getSiteMg1Co()=" + getSiteMg1Co() + ", getToiletCo()=" + getToiletCo()
-				+ ", getSwrmCo()=" + getSwrmCo() + ", getWtrplCo()=" + getWtrplCo() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", induty=" + induty + ", lctCl=" + lctCl + ", doNm=" + doNm + ", addr1=" + addr1 + ", addr2=" + addr2
+				+ ", mapX=" + mapX + ", mapY=" + mapY + ", tel=" + tel + ", homepage=" + homepage + ", gnrlSiteCo="
+				+ gnrlSiteCo + ", autoSiteCo=" + autoSiteCo + ", glampSiteCo=" + glampSiteCo + ", caravSiteCo="
+				+ caravSiteCo + ", indvdlCaravSiteCo=" + indvdlCaravSiteCo + ", sitedStnc=" + sitedStnc
+				+ ", siteMg1Width=" + siteMg1Width + ", siteMg1Vrticl=" + siteMg1Vrticl + ", siteMg1Co=" + siteMg1Co
+				+ ", siteBottomCl1=" + siteBottomCl1 + ", siteBottomCl2=" + siteBottomCl2 + ", siteBottomCl3="
+				+ siteBottomCl3 + ", siteBottomCl4=" + siteBottomCl4 + ", siteBottomCl5=" + siteBottomCl5
+				+ ", operPdCl=" + operPdCl + ", operDeCl=" + operDeCl + ", trlerAcmpnyAt=" + trlerAcmpnyAt
+				+ ", caravAcmpnyAt=" + caravAcmpnyAt + ", toiletCo=" + toiletCo + ", swrmCo=" + swrmCo + ", wtrplCo="
+				+ wtrplCo + ", sbrsCl=" + sbrsCl + ", themaEnvrnCl=" + themaEnvrnCl + ", eqpmnLendCl=" + eqpmnLendCl
+				+ ", animalCmgCl=" + animalCmgCl + ", firstImageUrl=" + firstImageUrl + ", star=" + star
+				+ ", review_count=" + review_count + "]";
 	}
 
+
+
+	
 	
 }

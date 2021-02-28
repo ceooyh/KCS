@@ -22,9 +22,10 @@ public interface QnAMapper {
 
 	int insertAdminAnswer(QnADTO dto);
 
-	int updateQnA(QnADTO dto);
+	QnADTO selectQnADTO(HashMap<String, Object> map);
+
+	int qnaUpdateAction(QnADTO qnaDTO);
 
 	int deleteQnA(String qno);
-
 
 }
