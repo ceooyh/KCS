@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="../../../lib/jquery-3.5.1.min.js"></script>
-<title>게시판 글쓰기 페이지</title>
+<title>게시판 수정 페이지</title>
 <style>
 	@font-face {
         font-family: '보통노토';
@@ -153,6 +153,12 @@
 		background-color: rgb(250, 187, 71);
 	    color: rgb(26, 2, 2);
 	}
+	#test{
+		width: 50px;
+		height: 50px;
+		background-color: yellow;
+		color: black;
+	}
 </style>
 
 <script>
@@ -190,13 +196,12 @@
  
 	<section class="board_write_container">
 		<h2 id="board_write_headline">게시글 수정 페이지</h2>
-		<form action="boardUpdateAction.do" enctype="multipart/form-data" method="post">
-			<div id="container">
-                <input type="hidden" name="bno" value="${requestScope.board.bno }">
-				<div id="title_box"><!--게시판 글쓰기 작성시작-->
-					<span id="title_head"><label for="title">[제목]</label></span>
-					<input type="text" id="board_write_title" name="title">
-				</div>
+				<form action="updateBoardAction.do?bno=${requestScope.board.bno }" enctype="multipart/form-data" method="post">
+				<div id="container">
+						<div id="title_box"><!--게시판 글쓰기 작성시작-->
+							<span id="title_head"><label for="title">[제목]</label></span>
+							<input type="text" id="board_write_title" name="title" value="${requestScope.board.title }">
+						</div>
 				
 				<div id="writer_box"><!--게시판 작성자-->
 					<span id="writer_head"><label for="writer">[작성자]</label></span>
@@ -206,16 +211,16 @@
 				
 				<div id="textarea_box"><!--게시판 내용-->
 					<span id="textarea_head"><label for="content">[내용]</label></span>
-					<span id="textarea_body"><textarea name="content" id="content"></textarea></span>
+					<span id="textarea_body"><textarea name="content" id="content">${requestScope.board.content }</textarea></span>
 				</div>
 	
 				<div id="file_form">
 					<span id="textarea_head">[첨부파일 등록]</span>
 						<div id="file_list">
 							<p><button type="button" class="plusminus_btn" id="plus">+</button> <button type="button" class="plusminus_btn" id="minus">-</button></p>
-							<p><input class='file_list' type="file" name="file" id="file"></p>
-							<p><input class='file_list' type="file" name="file" id="file"></p>
-							<p><input class='file_list' type="file" name="file" id="file"></p>
+							<p><input class='file_list' type="file" name="file" id="file" ></p>
+							<p><input class='file_list' type="file" name="file" id="file" ></p>
+							<p><input class='file_list' type="file" name="file" id="file" ></p>
 						</div>
 				</div>
 		
@@ -226,8 +231,8 @@
 					<span id="back_btn"><a href="javascript:history.back();" class="write_update_page_btn">뒤로가기</a></span>
 						<button class="write_update_page_btn">수정하기</button>
 					</div>
-		</form><!--폼 마감-->
-	</div>
+			</div><!-- #container 마감 -->
+			</form><!--폼 마감-->
 	</section><!--섹션 마감-->
 	
 	<jsp:include page="../template/footer.jsp" flush="false"></jsp:include>

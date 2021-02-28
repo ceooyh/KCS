@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록 페이지</title>
+<title>게시판 검색 목록 페이지</title>
 <style>
     @font-face {
         font-family: '보통노토';
@@ -65,6 +65,7 @@
         color: rgb(2, 11, 48);
         text-decoration: none;
         text-align: center;
+        margin: 5px;
     }
     #write_btn{
         display: inline-block;
@@ -135,7 +136,7 @@
             <div id="search_bar">
                 <form action="boardSearch.do">
                 	<select id="search_things" name="kind">
-                		<option value="writer">아이디</option>
+                		<option value="id">아이디</option>
                 		<option value="title">제목</option>
                 	</select>
                     <input type="text" id="search" name="search" placeholder="검색어를 입력해 주세요."><button id="btn_board_list_search" type="submit">검색</button>
@@ -160,6 +161,7 @@
                     
                 </script>
             </c:if> 
+            
             <c:forEach var="dto" items="${requestScope.list }">
                 <tr>
                     <td>${dto.bno }</td>
@@ -173,27 +175,13 @@
             </c:forEach>
             <tr>
                 <td colspan="7">
-                        <div class="page_bar">
-                            <c:if test="${pagging.previousPageGroup }">
-                                <a class="page_number_design" href="boardList.do?pageNo=${pagging.startPageOfPageGroup - 1 }">◀</a>
-                            </c:if>
-                            <c:forEach var="i" begin="${pagging.startPageOfPageGroup}" 
-                            end="${pagging.endPageOfPageGroup}">
-                                <a class="page_number_design" href="boardList.do?pageNo=${i }">${i}</a>
-                            </c:forEach>
-                        
-                            <c:if test="${pagging.nextPageGroup }">
-                                <a class="page_number_design" href="boardList.do?pageNo=${pagging.endPageOfPageGroup + 1 }">▶</a>
-                            </c:if>
-                             
-                           
+                                <a class="page_number_design" id="write_btn" href="boardList.do">전체목록</a>
                                 <a class="page_number_design" id="write_btn" href="boardWriteView.do">글쓰기</a>
-                        </div>
                 </td>
             </tr>    
         
             </table>
-        </div>
+        </div> 
     </div>
 
 

@@ -19,7 +19,20 @@ public class BoardCommentDTO {
 	private int chate;
 	
 	
-	
+	public BoardCommentDTO() {
+		super();
+	}
+
+
+	public BoardCommentDTO(int cno, int bno, String writer, String content) {
+		super();
+		this.cno = cno;
+		this.bno = bno;
+		this.writer = writer;
+		this.content = content;
+	}
+
+
 	public BoardCommentDTO(int bno, String writer, String content) {
 		super();
 		this.bno = bno;

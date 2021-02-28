@@ -223,10 +223,10 @@
 				<div id="board_write_page">
 					<span id="back_to_list_btn"><a href="boardList.do?pageNo=${requestScope.pageNo == null ? 1 : requestScope.pageNo }" class="write_page_btn">목록보기</a></span>
 					<span id="back_btn"><a href="javascript:history.back();" class="write_page_btn">뒤로가기</a></span>
-						<button class="write_page_btn">글쓰기</button>
+						<button class="write_page_btn" type="submit">글쓰기</button>
 					</div>
+			</div>
 		</form><!--폼 마감-->
-	</div>
 	</section><!--섹션 마감-->
 	
 	<jsp:include page="../template/footer.jsp" flush="false"></jsp:include>

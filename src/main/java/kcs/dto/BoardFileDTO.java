@@ -8,17 +8,39 @@ import org.apache.ibatis.type.Alias;
 
 @Alias("boardFile")
 public class BoardFileDTO {
+	private int fbno;
 	private int bno;
 	private String fileName;
 	private String writer;
 	
 	
 	
-	public BoardFileDTO(int bno, String fileName, String writer) {
+	public BoardFileDTO() {
 		super();
+	
+	}
+
+
+
+	public BoardFileDTO(int fbno, int bno, String fileName, String writer) {
+		super();
+		this.fbno = fbno;
 		this.bno = bno;
 		this.fileName = fileName;
 		this.writer = writer;
+	}
+
+
+
+
+	public int getFbno() {
+		return fbno;
+	}
+
+
+
+	public void setFbno(int fbno) {
+		this.fbno = fbno;
 	}
 
 
@@ -61,8 +83,11 @@ public class BoardFileDTO {
 
 	@Override
 	public String toString() {
-		return "Board_FileDTO [bno=" + bno + ", fileName=" + fileName + ", writer=" + writer + "]";
+		return "BoardFileDTO [fbno=" + fbno + ", bno=" + bno + ", fileName=" + fileName + ", writer=" + writer + "]";
 	}
+
+
+
 	
 	
 	

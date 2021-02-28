@@ -28,7 +28,7 @@
 	</select>
 	
 	<insert id="insertBoardComment" parameterType="boardComment">
-		insert into board_comment(cno,bno,writer,content) values(seq_board_sno.nextval,#{bno},#{writer},#{content})
+		insert into board_comment(cno,bno,writer,content) values(seq_board_cno.nextval,#{bno},#{writer},#{content})
 	</insert>
 	
 	<update id="updateCommentLike" parameterType="int">
@@ -52,20 +52,45 @@
 		where bno = #{bno}
 	</update>
 	
-	<insert id="insertBoard" parameterType="int">
-		insert into board(bno,title,writer,content) values(#{bno},#{title},#{writer},#{content})
+	<insert id="insertBoard" parameterType="board">
+		insert into board(bno,writer,title,content) values(#{bno},#{writer},#{title},#{content})
 	</insert>
 	
 	<insert id="insertFileList" parameterType="boardFile">
-		insert into board_file(bno, filename, writer) values(#{bno},#{filename},#{writer})
+		insert into board_file(fbno, bno, fileName, writer) values(#{fbno},#{bno},#{fileName},#{writer})
 	</insert>
 	
 	<delete id="deleteBoard" parameterType="int">
-		delete from board where bno = #{bno}
+		delete * from board where bno = #{bno}
 	</delete>
 	
 	<update id="updateBoard" parameterType="board">
 		update board set title = #{title}, writer=#{writer}, content = #{content} where bno = #{bno}
 	</update>
+	
+	<select id="newBno" resultType="int">
+		select seq_board_bno.nextval from dual
+	</select>
+	
+	<select id="newFbno" resultType="int">
+		select fbno_seq.nextval from dual
+	</select>
+	
+	
+	<delete id="deleteFile" parameterType="int">
+		delete from board_file where fbno = #{fbno}
+	</delete>
+	
+	<select id="selectSearchBoard" parameterType="map" resultType="board">
+		select * from board where
+		<choose>
+			<when test="kind.equals('writer')">
+				writer like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				title like '%'||#{search}||'%' 
+			</otherwise>
+		</choose>
+	</select>
 	
 </mapper>
