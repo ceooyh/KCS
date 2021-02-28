@@ -24,6 +24,7 @@ public class BoardService {
 		mapper.addCount(bno);
 		
 	}
+
 	// 여기부터 서비스 메서드 작성
 	
 	//게시판 1개 읽어오기 - 성진
@@ -94,7 +95,28 @@ public class BoardService {
 		
 	}
 
+	public int newBno() {
+		return mapper.newBno();
+	}
 
+	//작성자가 올린 파일 삭제
 	
-	
+
+	public int newFbno() {
+		return mapper.newFbno();
+	}
+
+	public int deleteFile(int fbno) {
+		return mapper.deleteFile(fbno);
+	}
+
+	public List<BoardDTO> selectSearchBoard(String kind, String search) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("kind", kind);
+		map.put("search", search);
+		return mapper.selectSearchBoard(map);
+	}
+
+
 }
+

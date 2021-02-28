@@ -97,7 +97,7 @@
 	margin: 5px 0px;
 }
 .prev_next_list_btn{
-	margin: 20px 0 0 285px;
+	margin: 20px 0 0 270px;
 }
 
 .modify {
@@ -147,11 +147,22 @@
 #board_like_hate{
 	clear: both;
 	display: inline-block;
-	margin: 30px 0 0 255px;
+	margin: 30px 0 0 300px;
 }
 .part_like_hate{
 	margin: 0 10px;
 	float: left;
+}
+.btn_like_hate{
+	margin: 0 20px;
+	cursor: pointer;
+}
+#hate_img{
+	width: 50px;
+	position: relative;
+	transform: rotate(0.5turn);
+	z-index: -1;
+	cursor: pointer;
 }
 #comment_write_box{
 	clear: both;
@@ -214,7 +225,12 @@
 	font-size: 15px;
 }
 
-
+#hate_btn{
+	width: 50px; 
+	transform: rotate(0.5turn);
+	position: relative;
+	z-index: -1;
+}
 .part_comment_view{
 	width: 100px;
 	box-sizing: border-box;
@@ -250,7 +266,7 @@
 		$(".comment_form textarea").keyup(function() {
 			$(this).next().text($(this).val().length+"/500");
 		});
-		$(".comment_insert_btn").click(function(){
+		$("#comment_insert_btn").click(function(){
 			var data = $("#comment").serialize();
 			$.ajax({
 				url : "insertComment.do",
@@ -330,39 +346,37 @@
             <div id="file_list">
 		 	       <span class="board_detail_span">[첨부파일]</span><br>
                             <c:forEach var="f" items="${requestScope.file }">
-                                <a href="fileDownload.do?writer=${f.writer }&file=${f.fileName}"><span>${f.fileName}</span></a><br>
-                                
-								<c:if test="${f.type =='image' }">
-                                    <img src="imageLoad.do?writer=${f.writer }&file=${f.fileName}&type=${f.type}">
-                                </c:if>
-                                <c:if test="${f.type =='video' }">
-                                    <video controls src="imageLoad.do?writer=${f.writer }&file=${f.fileName}&type=${f.type}"></video>
-                                </c:if>
+                            
+                                <a href="fileDownload.do?writer=${f.writer }&fileName=${f.fileName}">
+                                <span>${f.fileName}</span></a>
+		 	       			<c:if test="${sessionScope.id eq requestScope.board.writer }">
+                            	<span><a href="deleteFile.do?bno=${requestScope.board.bno }&fbno=${f.fbno }">파일삭제</a></span><br>
+                            </c:if>
                             </c:forEach>
+                                
 			</div>
-			
+
 			<section id="board_like_hate">
-			<div class="part_like_hate">
-				<a href="commentLike.do?cno=0" class="btn_like_hate">
-					<img src="../../../img/boardLike/good-quality.png" style="width: 50px;">
-					<span class="board_detail_span">${requestScope.board.blike }</span>
-				</a>
-			</div>  
-			<div class="part_like_hate">
-				<a href="commentLike.do?cno=1" class="btn_like_hate">
-					<img src="../../../img/boardLike/good-quality.png" style="width: 50px; transform: rotate(0.5turn);">
-					<span class="board_detail_span">${requestScope.board.bhate }</span>
-				</a>
-			</div>
+				<div class="part_like_hate">
+					<a class="btn_like_hate"> 
+						<img src="../../../img/boardLike/good-quality.png" style="width: 50px;">
+							<span class="board_detail_span">${requestScope.board.blike }</span>
+					</a> 
+					<a class="btn_like_hate"> 
+						<img id="hate_img" src="../../../img/boardLike/good-quality.png">
+							<span class="board_detail_span">${requestScope.board.bhate }</span>
+					</a>
+				</div>
 			</section>
+			
 			<div class="prev_next_list_btn">
 				<a href="#" class="move">이전글</a>
-				<a href="javascript:history.back();" class="move">목록보기</a> 
+				<a href="boardList.do" class="move">목록보기</a> 
 				<a href="#" class="move">다음글</a>
 			</div>
 	
 			<div class="delete_update_btn">
-				<c:if test="${sessionScope.id == requestScope.board.writer }">
+				<c:if test="${sessionScope.id eq requestScope.board.writer }">
 					<a href="deleteBoard.do?bno=${requestScope.board.bno }"
 						class="modify">삭제</a>
 					<a href="updateBoard.do?bno=${requestScope.board.bno}" class="modify">수정</a>
@@ -375,9 +389,9 @@
 		<section id="comment_write_box">
         	<c:if test="${sessionScope.login == true}">
             	<div class="comment_form">
-                	<form id="comment" action="insertComment.do">
+                	<form id="comment">
 						<p id="comment_headline">[댓글을 작성해주세요]</p>
-                    	<input type="hidden" name="bno" value="${requestScope.board.bno }">
+                    	<input type="hidden" name="bno" value="${requestScope.board.bno }" readonly="readonly">
                     	<input type="hidden" name="writer" value="${sessionScope.id }">
                     	<span class="writer">${sessionScope.id }</span>
                         <textarea id="comment_area" name="content" maxlength="500"></textarea>
@@ -421,10 +435,10 @@
 						<span id="comment_content">${comment.content}</span>
 					</td>               
 					<td class="part_comment_view">
-						<span id="comment_clike"><a id="comment_like" href="commentLike.do?cno=${comment.clike}">${comment.clike}</a></span>
+						<span id="comment_clike"><a id="comment_like" href="commentLike.do?cno=${comment.cno}&bno=${requestScope.board.bno}">${comment.clike}</a></span>
 					</td>
 					<td class="part_comment_view">
-						<span id="comment_chate"><a id="comment_hate" href="commentHate.do?cno=${comment.chate}">${comment.chate}</a></span> 
+						<span id="comment_chate"><a id="comment_hate" href="commentHate.do?cno=${comment.cno}&bno=${requestScope.board.bno}">${comment.chate}</a></span> 
 					</td>
 				</tr>	              
 				</c:forEach>

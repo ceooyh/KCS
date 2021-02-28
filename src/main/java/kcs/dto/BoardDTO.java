@@ -15,6 +15,11 @@ public class BoardDTO {
 	private int views;
 	private int comment_count;
 	
+	
+	public BoardDTO() {
+		super();
+	}
+
 	//
 	public BoardDTO(int bno, String writer, String title, String content) {
 		super();
