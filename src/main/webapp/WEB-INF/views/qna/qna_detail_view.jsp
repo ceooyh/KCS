@@ -146,7 +146,7 @@
                 console.log(i,$(o).val());
                 data += $(o).attr("name") + "=" + $(o).val()  + "&"; 
             });
-            console.log(data);
+            alert(data);
             $.ajax({
                 url : "qnaAjaxUpdate.do",
                 data : data,
@@ -158,21 +158,21 @@
                     }else{
                         alert("수정 실패");						
                     }
-                    location.href = "qnaDetailView.do";
+                    location.href = "qnaView.do";
                 }
             });
         }
         function delete_qna(obj) {
             var data = "";
             data = "id=" + $(obj).parent().parent().find("input").first().val();
-            console.log(data);
+            alert(data);
             $.ajax({
                 url : "qnaAjaxDelete.do",
                 data : data,
                 method:"get",
                 success:function(d){
-                    d = Number(d);
-                    if(d==1){
+                	d = d === "true"; 
+                    if(d){
                         alert("삭제 성공");
                     }else{
                         alert("삭제 실패");						
@@ -181,22 +181,16 @@
                 }
             });
             e.preventDefault();	
-		$(".update").click(function() {
+		$(".btn_modify").click(function() {
 			update_qna($(this));
 		});
-		$(".delete").click(function() {
+		$(".btn_delete").click(function() {
 			delete_qna($(this));
 		});
 </script>
 </head>
 <body>
 	<jsp:include page="../template/header.jsp"></jsp:include>
-    <c:if test="${sessionScope.login != '0'}">
-				<script>
-					alert("권한이 없습니다. 로그인 후 이용해 주세요");
-					location.href="loginView.do";
-				</script>
-	</c:if>
 	<div id="container">
         <p id="headline">QnA</p><!--헤드라인-->
 		<div class="qna_title">
@@ -207,27 +201,44 @@
 
                  <div class="part_select">
                      <p id="qna_content_title"><label for="title">[제목]</label></p>
-                     <span>${requestScope.dto.title }</span>
+                     <input type="text" name="title" value="${requestScope.dto.title }" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>
                  </div><!--제목-->
 
                  <div class="part_select">
                      <p id="qna_content_title"><label for="title">[문의내용]</label></p>
-                     <span id="qna_content">${requestScope.dto.content }</span>
+                     <textarea name="content" rows="" cols="" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
                      </div>
                  </div><!--내용-->	
                 
                 <div id="btn_update">
+                	<input type="hidden" value="${requestScope.dto.qno }">
                     <button id="btn_delete">삭제</button>
-                    <c:if test="${sessionScope.response == '0' }">
+                    <c:if test="${sessionScope.status != 2 }">
                         <button id="btn_modify">수정</button>
                     </c:if>
                 </div>
 			<hr>
-            <div class="response">
-                <input type="hidden" name="qno" value="${requestScope.dto.response }">
-                <p id="qna_content_title"><label for="title">[답변내용]</label></p>
-                <span id="qna_response">${requestScope.dto.response}</span>
-            </div> <!--답변-->
+			<c:if test="${requestScope.dto.status == 2 }">
+	            <div class="response">
+	                <p id="qna_content_title"><label for="title">[답변내용]</label></p>
+	                <span id="qna_response">${requestScope.dto.response}</span>
+	            </div> <!--답변-->
+			</c:if>
+            <c:if test="${requestScope.dto.status != 2 && sessionScope.user_type == 0}">
+            	<div id="qna_form"><!--답변 입력란-->
+					<form action="qnaAdminAnswer.do" method="get" id="admin_answer">
+						<input type="hidden" name="qno" value="${requestScope.dto.qno }">
+		                    <p id="qna_content_title"><label for="title">[답변]</label></p>
+						<table>
+		                    <tr>
+		                        <td><textarea name="response" placeholder="답변 내용을 입력해 주세요"></textarea>
+								</td>
+							</tr>
+						</table>
+		                    <button id="btn_enter">답변 등록</button>
+					</form>
+				</div>
+            </c:if>
 		</div><!--container-->
 	<jsp:include page="../template/footer.jsp"></jsp:include>
 </body>
