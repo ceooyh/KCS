@@ -35,7 +35,7 @@
         padding: 20px;
         border: 1px solid black;
         width: 704px;
-        margin: 20px auto;
+        margin: 60px auto;
     }
     #headline{
         text-align: center;
@@ -140,59 +140,29 @@
     .star.on{
         background-image: url(../../../img/reviewpage/star_on1.png);
     }
-    
-    .plusminus_btn{
-		border-radius: 25%;
-		display: inline-block;
-		margin: 10px 0px 0px 0;
-		width: 30px;
-		height: 25px;
-		border: 1px solid  #416f9431;
-		background-color: #646262;
-		color: white;
-	}
-	.plusminus_btn:hover{
-		background-color: rgb(250, 187, 71);
-	    color: rgb(26, 2, 2);
-	}
-    .file_list{
-		width: 80%;
-		margin-top: 10px;
-	}
 </style>
 <script src="../../../lib/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 	    $(".star").on('click',function(){
 	        var idx = $(this).index();
+	       
 	    $(".star").removeClass("on");
 	        for(var i=0; i<=idx; i++){
 	        $(".star").eq(i).addClass("on");
 	        }
+	        
+	       console.log($('.on').length);
+	       $("#star").val($('.on').length);
 	    });
-	    
-	    var count = 3;//첨부파일 태그 개수
-		$("#plus").click(function(){
-			if(count == 5) return;
-			count++;
-			$("#file_list").append("<p><input class='file_list' type='file' name='file'></p>");
-		});
-		$("#minus").click(function(){
-			if(count == 1) return;
-				$(this).parent().parent().children("p").last().remove();
-			count--;
-		});
 	})
 </script>
 </head>
 <body>
  <section>
  <jsp:include page="../template/header2.jsp" flush="false"></jsp:include>
-        <form action="reviewWriteAction.do" enctype="multipart/form-data" method="post">
+        <form action="reviewWriteAction.do">
             <div id="container">
-            	<input type="hidden" name="contentId" value="${requestScope.contentId }">
-            	<input type="hidden" name="facltNm" value="${requestScope.facltNm }">
-            	<input type="hidden" name="bno" value="${requestScope.bno }">
                         <p id="headline">캠핑장후기</p><!--헤드라인-->
                         <div class="part_select">
                             <span id="qna_content_title"><label for="title">[후기내용]</label></span>
@@ -211,17 +181,9 @@
                               
                                <span class="star star_left"></span>
                                <span class="star star_right"></span>
+                               <input value=""	type="hidden" placeholder="별점점수부분" name="star" id="star">
                               </div>
-                            <textarea name="content" id="content" cols="95" rows="20" placeholder="문의내용을 입력하세요"></textarea>
-                            <div id="file_form">
-								<span id="textarea_head">[첨부파일 등록]</span>
-									<div id="file_list">
-										<p><button type="button" class="plusminus_btn" id="plus">+</button> <button type="button" class="plusminus_btn" id="minus">-</button></p>
-										<p><input class='file_list' type="file" name="file" id="file"></p>
-										<p><input class='file_list' type="file" name="file" id="file"></p>
-										<p><input class='file_list' type="file" name="file" id="file"></p>
-									</div>
-							</div>
+                            <textarea name="content" id="content" cols="95" rows="20" placeholder="문의내용을 입력하세요" style="resize: none;"></textarea>
                             <div id="btn_submit">
                             <button id="btn" type="submit">전송</button>
                             </div>
