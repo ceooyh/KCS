@@ -132,15 +132,19 @@
                             	<c:when test="${dto.status == 2}">
 		                            <td><p class="inside_content">결제완료</p></td>
                             	</c:when>
+                            	<c:when test="${dto.status == 3}">
+		                            <td><p class="inside_content">후기작성완료</p></td>
+                            	</c:when>
                             </c:choose>
                             <td><p class="inside_content">${dto.facltNm}</p></td>
                             <c:choose>
                             	<c:when test="${dto.status == 1}">
 		                            <td><p class="inside_content"><a id="status_click_button" href="guestBookCancel.do?bno=${dto.bno}">예약취소</a></p></td>
                             	</c:when>
-                            	<c:when test="${requestScope.today >= dto.start_date}">
+                            	<c:when test="${requestScope.today >= dto.start_date && dto.status < 3}">
 		                            <td><p class="inside_content"><a id="status_click_button" href="reviewWriteView.do?contentId=${dto.contentId}&facltNm=${dto.facltNm}&bno=${dto.bno}">후기남기기</a></p></td>
                             	</c:when>
+                            	<c:otherwise><td><p class="inside_content"></p></td></c:otherwise>
                             </c:choose>
                         </tr>
                     </c:forEach>

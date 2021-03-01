@@ -25,4 +25,7 @@
 	<insert id="insertBook" parameterType="book">
 		insert into book values(#{bno}, TO_DATE(#{start_date},'yyyy-MM-dd'),  TO_DATE(#{end_date},'yyyy-MM-dd'), sysdate, #{contentId}, #{id}, 0, #{facltNm})
 	</insert>
+	<update id="updateBookStatus" parameterType="String">
+		update book set status = 3 where bno like #{bno}
+	</update>
 </mapper>

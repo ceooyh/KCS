@@ -57,5 +57,10 @@ public class BookService {
 		return mapper.insertBook(dto);
 	}
 
+	// 예약 내역 상태 변경 (후기작성완료-3)
+	public void updateBookStatus(String bno) {
+		mapper.updateBookStatus(bno);
+	}
+
 	
 }

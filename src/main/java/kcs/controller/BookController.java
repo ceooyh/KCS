@@ -152,6 +152,8 @@ public class BookController {
 				}
 				// 후기 파일 테이블에 추가
 				service.insertReviewFile(fList);
+				// 예약 상태 - 후기 작성 완료 로 변경
+				service.updateBookStatus(bno);
 				
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('후기등록 완료!');location.href='guestBookListView.do';</script>");

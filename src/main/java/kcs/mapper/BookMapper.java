@@ -32,5 +32,8 @@ public interface BookMapper {
 	// 예약 테이블에 추가
 	int insertBook(BookDTO dto);
 
+	// 예약 내역 상태 변경 (후기작성완료-3)
+	void updateBookStatus(String bno);
+
 }
 
