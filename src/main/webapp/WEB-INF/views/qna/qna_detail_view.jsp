@@ -37,7 +37,7 @@
         border: 1px solid rgb(46, 46, 46);
         border-radius: 8px;
         padding: 20px;
-        margin: 80px auto;
+        margin: 20px auto;
         font-family: '굵은노토';
     }
     #headline{
@@ -51,34 +51,17 @@
         border-top: 2px solid rgb(46, 46, 46);
         padding: 10px;
     }
-    #title{
+    label{
         font-family: '굵은노토';
         font-size: 16px;
         color: rgb(46, 46, 46);
     }
-    #span{
+    span{
         display: inline-block;
         border-bottom: 2px solid rgb(231, 231, 231);
         margin-bottom: 5px;
         padding: 3px;
     }
-    #first_input {
-        border-bottom: 2px solid rgb(231, 231, 231);
-        padding: 5px 0;
-        color: rgb(46, 46, 46);
-        font-family: '보통노토';
-        font-size: 16px;
-        border: none;
-    }
-
-    .input_span input:focus {
-        border-bottom: 2px solid rgb(46, 46, 46);
-    }
-
-    #first_input:focus {
-        border-bottom: 2px solid rgb(46, 46, 46);
-    }
-
     #qna_content_title{
         font-weight: bold;
         color: rgb(46, 46, 46);
@@ -96,9 +79,6 @@
         height: 100px;
         border: 2px solid rgb(231, 231, 231);
         border-radius: 10px;
-        display: inline-block;
-        margin-bottom: 5px;
-        padding: 3px;
         margin-top: 5px;
         margin-bottom: 10px;
     }
@@ -117,7 +97,6 @@
     #btn_modify{
         width: 100px;
         margin-right: 5px;
-        margin-top: 10px;
         margin-bottom: 10px;
         border: 2px solid rgb(46, 46, 46);
         background-color: rgb(231, 231, 231);
@@ -132,22 +111,7 @@
     #btn_delete{
         width: 100px;
         margin-right: 5px;
-        margin-top: 10px;
         margin-bottom: 10px;
-        border: 2px solid rgb(46, 46, 46);
-        background-color: rgb(231, 231, 231);
-        border-radius: 5px;
-        font-family: '보통노토';
-        font-size:16px;
-        color: rgb(46, 46, 46);
-        cursor: pointer;
-        float: right;
-    }
-    #btn_enter{
-        width: 100px;
-        margin-right: 5px;
-        margin-top: 10px;
-        margin-bottom: 5px;
         border: 2px solid rgb(46, 46, 46);
         background-color: rgb(231, 231, 231);
         border-radius: 5px;
@@ -165,10 +129,8 @@
         background-color: rgb(46, 46, 46);
         color: rgb(231, 231, 231);
     }
-
     #btn_enter:hover{
         background-color: rgb(46, 46, 46);
-        color: rgb(231, 231, 231);
     }
     hr{
         margin: 10px 0px;
@@ -233,17 +195,15 @@
 		<div class="qna_title">
                  <div class="part_select">
                      <p id="qna_content_title"><label for="#">[아이디]</label></p>
-                     <span id="span">${requestScope.dto.writer }</span>
+                     <span>${requestScope.dto.writer }</span>
                  </div><!--아이디-->
-
                  <div class="part_select">
                      <p id="qna_content_title"><label for="title">[제목]</label></p>
-                     <span class="input_span"><input id="first_input" type="text" name="title"  value="${requestScope.dto.title }" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>></span>
+                     <input type="text" name="title" value="${requestScope.dto.title }" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>
                  </div><!--제목-->
-
                  <div class="part_select">
                      <p id="qna_content_title"><label for="title">[문의내용]</label></p>
-                     <textarea name="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
+                     <textarea name="content" rows="" cols="" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
                      </div>
                  </div><!--내용-->	
                 
@@ -271,8 +231,8 @@
 		                        <td><textarea name="response" placeholder="답변 내용을 입력해 주세요"></textarea>
 								</td>
 							</tr>
-		                    <td><button id="btn_enter">답변 등록</button></td>
 						</table>
+		                    <button id="btn_enter">답변 등록</button>
 					</form>
 				</div>
             </c:if>
