@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kcs.mapper.KeepMapper">
+	<insert id="insertKeep" parameterType="keep">
+		insert into keep values(SEQ_KEEP_KNO.NEXTVAL, #{contentId}, #{id}, sysdate, #{facltNm})
+	</insert>	
+	<select id="getKeepList" parameterType="String" resultType="keep">
+		select * from keep where id like #{id}
+	</select>
+	<select id="checkKeep" parameterType="keep" resultType="keep">
+		select * from keep where contentId = #{contentId} and id like #{id}
+	</select>
+	<delete id="deleteKeep" parameterType="map">
+		delete from keep where contentId = #{contentId} and id like #{id}
+	</delete>
+</mapper>

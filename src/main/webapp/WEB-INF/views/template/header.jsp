@@ -207,7 +207,7 @@
                             <li class="dropdown-content-li"><a href="spotCategorySearch.do">캠핑장 상세 검색</a></li>
                         </ul>
                     </li>
-                    <li class="dropbtn"><a href="keepCampSpotView.do">찜한 스팟</a></li>
+                    <li class="dropbtn"><a href="keepSpotView.do">찜한 스팟</a></li>
                     <li class="dropbtn"><a href="selectJoinView.do">회원가입</a></li>
                     <li class="dropbtn"><a href="loginView.do">로그인</a></li>
                 </ul>
@@ -231,7 +231,7 @@
                                     <li class="dropdown-content-li"><a href="spotCategorySearch.do">캠핑장 상세 검색</a></li>
                                 </ul>
                             </li>
-                            <li class="dropbtn"><a href="keepCampSpotView.do">찜한 스팟</a></li>
+                            <li class="dropbtn"><a href="keepSpotView.do">찜한 스팟</a></li>
                             <li class="dropbtn"><a href="qnaView.do">문의하기</a></li>
                             <li class="dropbtn_hcon"><a href="questMyPageView.do">마이 페이지</a>
                                 <ul class="dropdown-content">
