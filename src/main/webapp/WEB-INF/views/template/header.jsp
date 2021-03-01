@@ -40,6 +40,7 @@
         position:fixed;
         text-align: center;
         background-color: rgb(226, 226, 226);
+        z-index: 10;
     }
     #company_logo_text{
         float: left;
