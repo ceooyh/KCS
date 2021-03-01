@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kcs.dto.BookDTO;
-import kcs.dto.BusinessFileDTO;
 import kcs.dto.ReviewDTO;
 import kcs.dto.ReviewFileDTO;
 import kcs.service.BookService;
@@ -91,8 +91,14 @@ public class BookController {
     			response.setContentType("text/html;charset=utf-8");
     			response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
     		}else {
-    			String sno = request.getParameter("sno");
-    			request.setAttribute("sno", sno);
+    			int contentId = Integer.parseInt(request.getParameter("contentId"));
+    			String facltNm = request.getParameter("facltNm");
+    			String bno = request.getParameter("bno");
+    			
+    			request.setAttribute("contentId", contentId);
+    			request.setAttribute("facltNm", facltNm);
+    			request.setAttribute("bno", bno);
+    			
     			return "book/review_write";
     		}
 		} catch (IOException e) {
@@ -103,12 +109,17 @@ public class BookController {
     // 캠핑장 후기 작성 - 희원,20210223
     @RequestMapping("/reviewWriteAction.do")
     public String reviewWriteAction(MultipartHttpServletRequest request, HttpServletResponse response, HttpSession session) {
-    	int sno = Integer.parseInt(request.getParameter("sno"));
+    	System.out.println("여기까지");
+    	int contentId = Integer.parseInt(request.getParameter("contentId"));
     	String id = (String) session.getAttribute("id");
-    	double star = Double.parseDouble(request.getParameter("star"));
+//    	double star = Double.parseDouble(request.getParameter("star"));
+    	double star = 4.5;
     	String content = request.getParameter("content");
-
-    	ReviewDTO reviewDTO = new ReviewDTO(sno, id, star, content);
+    	String facltNm = request.getParameter("facltNm");
+    	String bno = request.getParameter("bno");
+    	
+    	int rno = service.getRno();
+    	ReviewDTO reviewDTO = new ReviewDTO(rno, contentId, id, star, content, facltNm, bno);
     	int count = service.insertReview(reviewDTO);
     	try {
     		if(count == 0) {
@@ -127,7 +138,7 @@ public class BookController {
 					
 					// 파일 업로드
 					String safeFile = path + originalFileName;
-					fList.add(new ReviewFileDTO(sno, id, originalFileName));
+					fList.add(new ReviewFileDTO(contentId, id, originalFileName, facltNm, rno));
 					File parentPath = new File(path);
 					if(!parentPath.exists()) parentPath.mkdirs();	// 경로 생성
 					try {
@@ -150,4 +161,69 @@ public class BookController {
 		}
     	return null;
     }
+    
+    // 예약하기 페이지로 이동 - 희원,20210301
+ 	@RequestMapping("/bookView.do")
+ 	public String bookView(HttpServletRequest request) {
+ 		int contentId = Integer.parseInt(request.getParameter("contentId"));
+ 		String facltNm = request.getParameter("facltNm");
+ 		
+ 		request.setAttribute("contentId", contentId);
+ 		request.setAttribute("facltNm", facltNm);
+ 		
+ 		return "spot/spot_book_view";
+ 	}
+ 	
+ 	// 랜덤 예약번호 생성 -희원,20210301
+ 	public static String getRandomStr(int size) {
+		if(size > 0) {
+			char[] tmp = new char[size];
+			for(int i=0; i<tmp.length; i++) {
+				int div = (int) Math.floor( Math.random() * 2 );
+				
+				if(div == 0) { // 0이면 숫자로
+					tmp[i] = (char) (Math.random() * 10 + '0') ;
+				}else { //1이면 알파벳
+					tmp[i] = (char) (Math.random() * 26 + 'A') ;
+				}
+			}
+			return new String(tmp);
+		}
+		return "ERROR : Size is required."; 
+	}
+ 	
+ 	// 예약 하기 - 희원,20210301
+ 	@RequestMapping("/bookAction.do")
+ 	public String bookAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+ 		String start_date = request.getParameter("start_date");
+ 		String end_date = request.getParameter("end_date");
+ 		int contentId = Integer.parseInt(request.getParameter("contentId"));
+ 		String id = (String) session.getAttribute("id");
+ 		String facltNm = request.getParameter("facltNm");
+ 		
+ 		// 예약번호 생성
+ 		String bno = null;
+ 		// 예약번호 중복 확인
+ 		while(true) {
+ 			bno = getRandomStr(6);
+ 			String check = service.checkBno(bno); 		
+ 			if(check == null) break;
+ 		}
+ 		
+ 		// 예약 테이블에 추가
+ 		BookDTO dto = new BookDTO(bno, start_date, end_date, contentId, id, facltNm);
+ 		int count = service.insertBook(dto);
+ 		try {
+ 			if(count == 0) {
+ 				response.setContentType("text/html;charset=utf-8");
+ 				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+ 			}else {
+ 				response.setContentType("text/html;charset=utf-8");
+ 				response.getWriter().write("<script>alert('예약 신청 완료!');location.href='guestBookListView.do';</script>");
+ 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+ 		return null;
+ 	}
 }

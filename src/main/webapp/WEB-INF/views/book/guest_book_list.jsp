@@ -106,10 +106,9 @@
                         <th><p class="head_name">시작일</p></th>
                         <th><p class="head_name">종료일</p></th>
                         <th><p class="head_name">예약일</p></th>
-                        <th><p class="head_name">캠핑장자리</p></th>
+                        <th><p class="head_name">캠핑장번호</p></th>
                         <th><p class="head_name">예약자 아이디</p></th>
                         <th><p class="head_name">예약 상태</p></th>
-                        <th><p class="head_name">가격</p></th>
                         <th><p class="head_name">캠핑장 이름</p></th>
                         <th><p class="head_name"></p></th>
                     </tr>
@@ -121,7 +120,7 @@
                             <td><p class="inside_content">${dto.start_date}</p></td>
                             <td><p class="inside_content">${dto.end_date}</p></td>
                             <td><p class="inside_content">${dto.book_date}</p></td>
-                            <td><p class="inside_content">${dto.sano}</p></td>
+                            <td><p class="inside_content">${dto.contentId}</p></td>
                             <td><p class="inside_content">${sessionScope.id}</p></td>
                             <c:choose>
                             	<c:when test="${dto.status == 0}">
@@ -134,14 +133,13 @@
 		                            <td><p class="inside_content">결제완료</p></td>
                             	</c:when>
                             </c:choose>
-                            <td><p class="inside_content">${dto.price}원</p></td>
-                            <td><p class="inside_content">${dto.sname}</p></td>
+                            <td><p class="inside_content">${dto.facltNm}</p></td>
                             <c:choose>
                             	<c:when test="${dto.status == 1}">
 		                            <td><p class="inside_content"><a id="status_click_button" href="guestBookCancel.do?bno=${dto.bno}">예약취소</a></p></td>
                             	</c:when>
                             	<c:when test="${requestScope.today >= dto.start_date}">
-		                            <td><p class="inside_content"><a id="status_click_button" href="reviewWriteView.do?bno=${dto.bno}&sno=${dto.sno}">후기남기기</a></p></td>
+		                            <td><p class="inside_content"><a id="status_click_button" href="reviewWriteView.do?contentId=${dto.contentId}&facltNm=${dto.facltNm}&bno=${dto.bno}">후기남기기</a></p></td>
                             	</c:when>
                             </c:choose>
                         </tr>

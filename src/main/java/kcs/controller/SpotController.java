@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -676,10 +677,8 @@ public class SpotController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 		return null;
 	}
+	
 	
 }
