@@ -9,4 +9,5 @@
 	<select id="getReviewCount" parameterType="int" resultType="int">
 		select count(*) as review_count from review where contentId = #{contentId}
 	</select>
+	
 </mapper>
