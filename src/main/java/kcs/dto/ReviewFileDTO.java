@@ -5,16 +5,30 @@ import org.apache.ibatis.type.Alias;
 @Alias("reviewFile")
 public class ReviewFileDTO {
 	private int rfno;
-	private int sno;
+	private int contentId;
 	private String writer;
 	private String fileName;
+	private String facltNm;
+	private int rno;
 	
-	// 후기 파일 등록용
-	public ReviewFileDTO(int sno, String writer, String fileName) {
+	public ReviewFileDTO(int rfno, int contentId, String writer, String fileName, String facltNm, int rno) {
 		super();
-		this.sno = sno;
+		this.rfno = rfno;
+		this.contentId = contentId;
 		this.writer = writer;
 		this.fileName = fileName;
+		this.facltNm = facltNm;
+		this.rno = rno;
+	}
+
+	// 후기 파일 생성용
+	public ReviewFileDTO(int contentId, String writer, String fileName, String facltNm, int rno) {
+		super();
+		this.contentId = contentId;
+		this.writer = writer;
+		this.fileName = fileName;
+		this.facltNm = facltNm;
+		this.rno = rno;
 	}
 
 	public int getRfno() {
@@ -25,12 +39,12 @@ public class ReviewFileDTO {
 		this.rfno = rfno;
 	}
 
-	public int getSno() {
-		return sno;
+	public int getContentId() {
+		return contentId;
 	}
 
-	public void setSno(int sno) {
-		this.sno = sno;
+	public void setContentId(int contentId) {
+		this.contentId = contentId;
 	}
 
 	public String getWriter() {
@@ -48,6 +62,23 @@ public class ReviewFileDTO {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
+
+	public String getFacltNm() {
+		return facltNm;
+	}
+
+	public void setFacltNm(String facltNm) {
+		this.facltNm = facltNm;
+	}
+
+	public int getRno() {
+		return rno;
+	}
+
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+	
 	
 	
 }

@@ -8,32 +8,40 @@ public class BookDTO {
 	private String start_date;
 	private String end_date;
 	private String book_date;
-	private int sano;
+	private int contentId;
 	private String id;
 	private int status;
-	private int sno;
-	private int price;
-	private String sname;
+	private String facltNm;
 	
-	// 예약 목록 확인용
-	public BookDTO(String bno, String start_date, String end_date, String book_date, int sano, String id, int status,
-			int sno, int price, String sname) {
+	public BookDTO(String bno, String start_date, String end_date, String book_date, int contentId, String id,
+			int status, String facltNm) {
 		super();
 		this.bno = bno;
 		this.start_date = start_date;
 		this.end_date = end_date;
 		this.book_date = book_date;
-		this.sano = sano;
+		this.contentId = contentId;
 		this.id = id;
 		this.status = status;
-		this.sno = sno;
-		this.price = price;
-		this.sname = sname;
+		this.facltNm = facltNm;
 	}
 
+	// 예약 생성용
+	public BookDTO(String bno, String start_date, String end_date, int contentId, String id, String facltNm) {
+		super();
+		this.bno = bno;
+		this.start_date = start_date;
+		this.end_date = end_date;
+		this.contentId = contentId;
+		this.id = id;
+		this.facltNm = facltNm;
+	}
+	
+	
 	public String getBno() {
 		return bno;
 	}
+
 
 	public void setBno(String bno) {
 		this.bno = bno;
@@ -63,12 +71,12 @@ public class BookDTO {
 		this.book_date = book_date;
 	}
 
-	public int getSano() {
-		return sano;
+	public int getContentId() {
+		return contentId;
 	}
 
-	public void setSano(int sano) {
-		this.sano = sano;
+	public void setContentId(int contentId) {
+		this.contentId = contentId;
 	}
 
 	public String getId() {
@@ -87,28 +95,12 @@ public class BookDTO {
 		this.status = status;
 	}
 
-	public int getSno() {
-		return sno;
+	public String getFacltNm() {
+		return facltNm;
 	}
 
-	public void setSno(int sno) {
-		this.sno = sno;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public String getSname() {
-		return sname;
-	}
-
-	public void setSname(String sname) {
-		this.sname = sname;
+	public void setFacltNm(String facltNm) {
+		this.facltNm = facltNm;
 	}
 	
 	

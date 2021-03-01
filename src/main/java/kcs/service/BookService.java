@@ -41,5 +41,21 @@ public class BookService {
 		for(int i=0; i<fList.size(); i++)
 			mapper.insertReviewFile(fList.get(i));
 	}
+
+	// 캠핑장 후기 번호(rno) 생성
+	public int getRno() {
+		return mapper.getRno();
+	}
+
+	// 예약 번호 중복 확인
+	public String checkBno(String bno) {
+		return mapper.checkBno(bno);
+	}
+
+	// 예약 테이블에 추가
+	public int insertBook(BookDTO dto) {
+		return mapper.insertBook(dto);
+	}
+
 	
 }

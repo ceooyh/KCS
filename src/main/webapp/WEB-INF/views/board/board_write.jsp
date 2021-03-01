@@ -172,22 +172,7 @@
 </script>
 </head>
 <body>
-
-
-	<c:if test="${sessionScope.login == null || sessionScope.login == false  }">
-		<c:set var="page" target="${sessionScope }" value="${pageContext.request.requestURI}${pageContext.request.queryString }" property="resultPage" scope="session"/>
-		${pageContext.request.requestURI}${pageContext.request.queryString }
-		<script>
-			alert("로그인을 하셔야 이용할수 있습니다.");
-			location.href="loginView.do";
-		</script>
-	</c:if>
-	
-	
-	
 	<jsp:include page="../template/header2.jsp" flush="false"></jsp:include>
-	
- 
 	<section class="board_write_container">
 		<h2 id="board_write_headline">글쓰기 페이지</h2>
 		<form action="boardWriteAction.do" enctype="multipart/form-data" method="post">

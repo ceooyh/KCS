@@ -23,5 +23,14 @@ public interface BookMapper {
 	// 캠핑장 후기 파일 등록
 	void insertReviewFile(ReviewFileDTO reviewFileDTO);
 
+	// 캠핑장 후기 번호 생성
+	int getRno();
+
+	// 예약 번호 중복 확인
+	String checkBno(String bno);
+
+	// 예약 테이블에 추가
+	int insertBook(BookDTO dto);
+
 }
 
