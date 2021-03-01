@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kcs.mapper.BookMapper">
+	<select id="getGuestBookList" parameterType="String" resultType="book">
+		select b.bno, TO_CHAR(b.start_date, 'YYYY-MM-DD'), TO_CHAR(b.end_date, 'YYYY-MM-DD'), TO_CHAR(b.book_date, 'YYYY-MM-DD'), b.sano, b.id, b.status, a.sno, a.price, s.sname 
+		from book b, spot_area a, spot s
+		where b.sano = a.sano and a.sno = s.sno and b.id like #{id}
+	</select>
+	<delete id="guestBookCancel" parameterType="String">
+		delete from book where bno like #{bno}
+	</delete>
+	<insert id="insertReview" parameterType="review">
+		insert into review (SEQ_REVIEW_RNO.NEXTVAL, #{sno}, #{id}, #{star}, #{content}, sysdate)
+	</insert>
+	<insert id="insertReviewFile" parameterType="reviewFile">
+		insert into review_file (SEQ_REVIEW_FILE_RFNO.NEXTVAL, #{sno}, #{writer}, #{fileName})
+	</insert>
+</mapper>
