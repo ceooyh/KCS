@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: '보통노토';
+    src: url(../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Medium.otf);
+}
+@font-face {
+    font-family: '얇은노토';
+    src: url(../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Light.otf);
+}
+@font-face {
+    font-family: '얇은노토2';
+    src: url(../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-DemiLight.otf);
+}
+@font-face {
+    font-family: '굵은노토';
+    src: url(../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Black.otf);
+}
+@font-face {
+    font-family: '검은고딕';
+    src: url(../Font/검은고딕/OFL.txt);
+}
+@font-face {
+    font-family: '보통로보';
+    src: url(../Font/Roboto/Roboto-Medium.ttf);
+}
+@font-face {
+    font-family: '두꺼운로보';
+    src: url(../Font/Roboto/Roboto-Bold.ttf);
+}
+@font-face {
+    font-family: '에스코어8';
+    src: url(../Font/S-Core_Dream_OTF/SCDream8.otf);
+}
+@font-face {
+    font-family: '에스코어7';
+    src: url(../Font/S-Core_Dream_OTF/SCDream7.otf);
+}
+@font-face {
+    font-family: '에스코어6';
+    src: url(../Font/S-Core_Dream_OTF/SCDream6.otf);
+}
+@font-face {
+    font-family: '에스코어5';
+    src: url(../Font/S-Core_Dream_OTF/SCDream5.otf);
+}
+@font-face {
+    font-family: '에스코어4';
+    src: url(../Font/S-Core_Dream_OTF/SCDream4.otf);
+}
+*{
+    padding: 0;
+    margin: 0;
+}
