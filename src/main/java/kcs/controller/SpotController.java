@@ -281,7 +281,8 @@ public class SpotController {
 		String doNm = "";
 		if(request.getParameterValues("doNm") != null) {
 			arr_doNm = request.getParameterValues("doNm");
-			for(int i=0; i<arr_doNm.length; i++) doNm += arr_doNm[i].trim();
+			for(int i=0; i<arr_doNm.length; i++) doNm += arr_doNm[i] + ",";
+			doNm += arr_doNm[arr_doNm.length-1];
 		}else {
 			doNm = "-";
 		}
@@ -298,7 +299,8 @@ public class SpotController {
 		String lctCl = "";
 		if(request.getParameterValues("lctCl") != null) {
 			arr_lctCl = request.getParameterValues("lctCl");
-			for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i].trim();
+			for(int i=0; i<arr_lctCl.length-1; i++) lctCl += arr_lctCl[i] + ",";
+			lctCl += arr_lctCl[arr_lctCl.length-1];
 		}else {
 			lctCl = "-";
 		}
@@ -315,7 +317,8 @@ public class SpotController {
 		String sbrsCl = "";
 		if(request.getParameterValues("sbrsCl") != null) {
 			arr_sbrsCl = request.getParameterValues("sbrsCl");
-			for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i].trim();
+			for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i] + ",";
+			sbrsCl += arr_sbrsCl[arr_sbrsCl.length-1];
 		}else {
 			sbrsCl = "-";
 		}
@@ -325,7 +328,8 @@ public class SpotController {
 		String themaEnvrnCl = "";
 		if(request.getParameterValues("themaEnvrnCl") != null) {
 			arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
-			for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i].trim();
+			for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i] + ",";
+			themaEnvrnCl += arr_themaEnvrnCl[arr_themaEnvrnCl.length-1];
 		}else {
 			themaEnvrnCl = "-";
 		}

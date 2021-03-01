@@ -400,8 +400,8 @@ public class SpotDTO {
 		if (!(obj instanceof SpotDTO))
 			return false;
 		SpotDTO temp = (SpotDTO) obj;
-		
-		if(!temp.getDoNm().equals("-") && !temp.getDoNm().contains(doNm)) return false;
+		// temp 가 searchDTO
+		if(!temp.getDoNm().equals("-")) return false;
 		if(!temp.getGnrlSiteCo().equals("-") && !temp.getGnrlSiteCo().equals(gnrlSiteCo)) return false;
 		if(!temp.getAutoSiteCo().equals("-") && !temp.getAutoSiteCo().equals(autoSiteCo)) return false;
 		if(!temp.getGlampSiteCo().equals("-") && !temp.getGlampSiteCo().equals(glampSiteCo)) return false;
