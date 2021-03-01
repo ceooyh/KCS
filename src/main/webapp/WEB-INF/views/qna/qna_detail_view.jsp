@@ -181,7 +181,7 @@
             var data = "";
             $.each($(obj).parent().parent().find("input"), function(i,o) {
                 console.log(i,$(o).val());
-                data += $(o).attr("name") + "=" + $(o).val()  + "&"; 
+                data += $(o).attr("qno") + "=" + $(o).val()  + "&"; 
             });
             alert(data);
             $.ajax({
@@ -230,7 +230,7 @@
 	<jsp:include page="../template/header.jsp"></jsp:include>
 	<div id="container">
         <p id="headline">QnA</p><!--헤드라인-->
-		<div class="qna_title">
+			<div class="qna_title">
                  <div class="part_select">
                      <p id="qna_content_title"><label for="#">[아이디]</label></p>
                      <span id="span">${requestScope.dto.writer }</span>
