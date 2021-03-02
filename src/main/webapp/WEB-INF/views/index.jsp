@@ -655,10 +655,10 @@
     
     <div id="slide_down_btn">
         <span id="slide_down_btn_right">
-			<a class="btn_sitemove" id="detail_go" href="">+ 상세검색페이지 이동</a> 
+			<a class="btn_sitemove" id="detail_go" href="spotCategorySearch.do">+ 상세검색페이지 이동</a> 
         </span>
         <span id="slide_down_btn_left">
-			<a class="btn_sitemove" id="keyword_go" href="">키워드검색페이지 이동 +</a>
+			<a class="btn_sitemove" id="keyword_go" href="findCampSpotView.do">키워드검색페이지 이동 +</a>
         </span>
     </div>    
 
