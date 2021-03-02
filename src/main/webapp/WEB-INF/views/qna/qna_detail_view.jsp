@@ -62,7 +62,7 @@
         margin-bottom: 5px;
         padding: 3px;
     }
-    #first_input {
+    #title_input {
         border-bottom: 2px solid rgb(231, 231, 231);
         padding: 5px 0;
         color: rgb(46, 46, 46);
@@ -75,7 +75,7 @@
         border-bottom: 2px solid rgb(46, 46, 46);
     }
 
-    #first_input:focus {
+    #title_input:focus {
         border-bottom: 2px solid rgb(46, 46, 46);
     }
 
@@ -102,7 +102,7 @@
         margin-top: 5px;
         margin-bottom: 10px;
     }
-    .textarea{
+    #content{
         width: 700px;
         height: 100px;
         resize: none;
@@ -112,6 +112,9 @@
         font-size:16px;
         margin-top: 10px;
         padding: 8px;
+    }
+    #content:focus {
+		border: 2px solid rgb(46, 46, 46);
     }
    
     #btn_modify{
@@ -176,85 +179,37 @@
     }
 
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-        function update_qna(obj) {
-            var data = "";
-            $.each($(obj).parent().parent().find(".input_span",".textarea"), function(i,o) {
-                console.log(i,$(o).val());
-                data += $(o).attr("qno") + "=" + $(o).val()  + "&"; 
-            });
-            alert(data);
-            $.ajax({
-                url : "qnaAjaxUpdate.do",
-                data : data,
-                method:"get",
-                success:function(d){
-                    d = d === "true"; 
-                    if(d){
-                        alert("수정 성공");
-                    }else{
-                        alert("수정 실패");						
-                    }
-                    location.href = "qnaView.do";
-                }
-            });
-        }
-        function delete_qna(obj) {
-            var data = "";
-            data = "qno=" + $(obj).parent().parent().find(".input_span",".textarea").first().val();
-            alert(data);
-            $.ajax({
-                url : "qnaAjaxDelete.do",
-                data : data,
-                method:"get",
-                success:function(d){
-                	d = d === "true"; 
-                    if(d){
-                        alert("삭제 성공");
-                    }else{
-                        alert("삭제 실패");						
-                    }
-                    location.href = "qnaView.do";	
-                }
-            });
-            e.preventDefault();	
-		$(".btn_modify").click(function() {
-			update_qna($(this));
-		});
-		$(".btn_delete").click(function() {
-			delete_qna($(this));
-		});
-</script>
 </head>
 <body>
 	<jsp:include page="../template/header.jsp"></jsp:include>
 	<div id="container">
         <p id="headline">QnA</p><!--헤드라인-->
-			<div class="qna_title">
-                 <div class="part_select">
-                     <p id="qna_content_title"><label for="#">[아이디]</label></p>
-                     <span id="span">${requestScope.dto.writer }</span>
-                 </div><!--아이디-->
+			<form action="qna_guest" method="get">
+				<div class="qna_title">
+    	             <div class="part_select">
+        	             <p id="qna_content_title"><label for="#">[아이디]</label></p>
+            	         <span id="span">${requestScope.dto.writer }</span>
+                	 </div><!--아이디-->
                  
-                 <div class="part_select">
-                     <p id="qna_content_title"><label for="title">[제목]</label></p>
-                     <span class="input_span"><input id="first_input" type="text" name="title"  value="${requestScope.dto.title }" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>></span>
-                 </div><!--제목-->
+                 	<div class="part_select">
+                    	 <p id="qna_content_title"><label for="title">[제목]</label></p>
+                     	<span class="input_span"><input id="title_input" type="text" name="title"  value="${requestScope.dto.title }" <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>></span>
+                 	</div><!--제목-->
                  
-                <div class="part_select">
-                     <p id="qna_content_title"><label for="title">[문의내용]</label></p>
-                     <span class="textarea"><textarea name="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea></span>
-                     </div>
-                 </div><!--내용-->	
+                	<div class="part_select">
+                    	 <p id="qna_content_title"><label for="title">[문의내용]</label></p>
+                     	<textarea name="content" id="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
+                     	</div>
+                 	</div><!--내용-->	
                 
-                <div id="btn_update">
-                	<input type="hidden" value="${requestScope.dto.qno }">
-                    <button id="btn_delete">삭제</button>
-                    <c:if test="${sessionScope.status != 2 }">
-                        <button id="btn_modify">수정</button>
-                    </c:if>
+               	 <div id="btn_update">
+                		<input type="hidden" value="${requestScope.dto.qno }">
+                	    	<button id="btn_delete">삭제</button>
+                    	<c:if test="${sessionScope.status != 2 }">
+                    	    <button id="btn_modify">수정</button>
+                  	 	 </c:if>
                 </div>
+			</form>
 			<hr>
 			<c:if test="${requestScope.dto.status == 2 }">
 	            <div class="response">

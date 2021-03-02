@@ -134,12 +134,12 @@ public class QnAController {
         
         try {
         	if(count == 0) {
-        		// 실패
-        		response.getWriter().print("false");
-        	}else {
-        		// 성공
-        		response.getWriter().print("true");
-        	}
+        		response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+			} else {
+				response.setContentType("text/html;charset=utf-8");
+				response.getWriter().write("<script>alert('문의 수정 완료!');location.href='qnaView.do';</script>");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -159,13 +159,14 @@ public class QnAController {
 
 				// 문의 삭제
 				int count = service.deleteQnA(qno);
+				
 				if(count == 0) {
-	        		// 실패
-	        		response.getWriter().print("false");
-	        	}else {
-	        		// 성공
-	        		response.getWriter().print("true");
-	        	}
+	        		response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+				} else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('문의 삭제 완료!');location.href='qnaView.do';</script>");
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
