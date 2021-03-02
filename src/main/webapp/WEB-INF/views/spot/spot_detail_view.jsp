@@ -708,7 +708,7 @@ section {
 						href="${requestScope.spotDTO.homepage}">${requestScope.spotDTO.homepage}</a></span>
 				</div>
 				<div class="detail_content_div">
-					<span class="detail_content_div_first">애완동물출입 여부</span> <span
+					<span class="detail_content_div_first">애완동물출입</span> <span
 						class="detail_content_div_second">${requestScope.spotDTO.animalCmgCl }</span>
 				</div>
 				<div class="detail_content_div">

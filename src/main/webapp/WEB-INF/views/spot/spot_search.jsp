@@ -280,6 +280,8 @@
         font-size: 23px;
         color: rgb(44, 42, 41);
         margin-bottom: 10px;
+        overflow:hidden;
+        text-overflow: ellipsis;
     }
     .spot_title{
         display: inline-block;
