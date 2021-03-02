@@ -296,13 +296,17 @@
             </div>
             <div id="facilities" class="category">
                 <p id="category_5">부가시설</p>
-                <input type="checkbox" id="wifi" name="sbrsCl"  value="-와이파이"><label for="wifi"><span>#와이파이</span></label>
-                <input type="checkbox" id="hot_water" name="sbrsCl"  value="-온수"><label for="hot_water"><span>#온수</span></label>
-                <input type="checkbox" id="shower" name="sbrsCl"  value="-샤워시설"><label for="shower"><span>#샤워시설</span></label>
-                <input type="checkbox" id="mart" name="sbrsCl"  value="-마트편의점"><label for="mart"><span>#마트편의점</span></label>
-                <input type="checkbox" id="toeilet" name="sbrsCl"  value="-화장실"><label for="toeilet"><span>#화장실</span></label>
-                <input type="checkbox" id="electric" name="sbrsCl"  value="-전기"><label for="electric"><span>#전기</span></label>
-                <input type="checkbox" id="pet_open" name="sbrsCl"  value="-반려동물동반"><label for="pet_open"><span>#반려동물동반</span></label>
+                <input type="checkbox" id="sbrsCl1" name="sbrsCl"  value="전기"><label for="sbrsCl1"><span>#전기</span></label>
+                <input type="checkbox" id="sbrsCl2" name="sbrsCl"  value="무선인터넷"><label for="sbrsCl2"><span>#무선인터넷</span></label>
+                <input type="checkbox" id="sbrsCl3" name="sbrsCl"  value="장작판매"><label for="sbrsCl3"><span>#장작판매</span></label>
+                <input type="checkbox" id="sbrsCl4" name="sbrsCl"  value="온수"><label for="sbrsCl4"><span>#온수</span></label>
+                <input type="checkbox" id="sbrsCl5" name="sbrsCl"  value="트렘폴린"><label for="sbrsCl5"><span>#트렘폴린</span></label>
+                <input type="checkbox" id="sbrsCl6" name="sbrsCl"  value="물놀이장"><label for="sbrsCl6"><span>#물놀이장</span></label>
+                <input type="checkbox" id="sbrsCl7" name="sbrsCl"  value="놀이터"><label for="sbrsCl7"><span>#놀이터</span></label>
+                <input type="checkbox" id="sbrsCl8" name="sbrsCl"  value="산책로"><label for="sbrsCl8"><span>#산책로</span></label>
+                <input type="checkbox" id="sbrsCl9" name="sbrsCl"  value="운동장"><label for="sbrsCl9"><span>#운동장</span></label>
+                <input type="checkbox" id="sbrsCl10" name="sbrsCl"  value="운동시설"><label for="sbrsCl10"><span>#운동시설</span></label>
+                <input type="checkbox" id="sbrsCl11" name="sbrsCl"  value="마트.편의점"><label for="sbrsCl11"><span>#마트.편의점</span></label>
             </div>
             <div id="btn_submit">
                 <button>변경 완료</button>

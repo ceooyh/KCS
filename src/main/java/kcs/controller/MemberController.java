@@ -160,7 +160,9 @@ public class MemberController {
 				String lctCl = "";
 				if(request.getParameterValues("lctCl") != null) {
 					arr_lctCl = request.getParameterValues("lctCl");
-					for(int i=0; i<arr_lctCl.length-1; i++) lctCl += arr_lctCl[i] + ",";
+					for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i] + ",";
+					if(arr_lctCl.length > 1) lctCl = lctCl.substring(0, lctCl.length()-1);
+					else lctCl = arr_lctCl[0];
 				}else {
 					lctCl = "-";
 				}
@@ -171,6 +173,8 @@ public class MemberController {
 				if(request.getParameterValues("sbrsCl") != null) {
 					arr_sbrsCl = request.getParameterValues("sbrsCl");
 					for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i] + ",";
+					if(arr_sbrsCl.length > 1) sbrsCl = sbrsCl.substring(0, sbrsCl.length()-1);
+					else sbrsCl = arr_sbrsCl[0];
 				}else {
 					sbrsCl = "-";
 				}
@@ -181,6 +185,8 @@ public class MemberController {
 				if(request.getParameterValues("themaEnvrnCl") != null) {
 					arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
 					for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i] + ",";
+					if(arr_themaEnvrnCl.length > 1) themaEnvrnCl = themaEnvrnCl.substring(0, themaEnvrnCl.length()-1);
+					else themaEnvrnCl = arr_themaEnvrnCl[0];
 				}else {
 					themaEnvrnCl = "-";
 				}
@@ -394,7 +400,9 @@ public class MemberController {
 				String lctCl = "";
 				if(request.getParameterValues("lctCl") != null) {
 					arr_lctCl = request.getParameterValues("lctCl");
-					for(int i=0; i<arr_lctCl.length-1; i++) lctCl += arr_lctCl[i] + ",";
+					for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i] + ",";
+					if(arr_lctCl.length > 1) lctCl = lctCl.substring(0, lctCl.length()-1);
+					else lctCl = arr_lctCl[0];
 				}else {
 					lctCl = "-";
 				}
@@ -405,6 +413,8 @@ public class MemberController {
 				if(request.getParameterValues("sbrsCl") != null) {
 					arr_sbrsCl = request.getParameterValues("sbrsCl");
 					for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i] + ",";
+					if(arr_sbrsCl.length > 1) sbrsCl = sbrsCl.substring(0, sbrsCl.length()-1);
+					else sbrsCl = arr_sbrsCl[0];
 				}else {
 					sbrsCl = "-";
 				}
@@ -415,6 +425,8 @@ public class MemberController {
 				if(request.getParameterValues("themaEnvrnCl") != null) {
 					arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
 					for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i] + ",";
+					if(arr_themaEnvrnCl.length > 1) themaEnvrnCl = themaEnvrnCl.substring(0, themaEnvrnCl.length()-1);
+					else themaEnvrnCl = arr_themaEnvrnCl[0];
 				}else {
 					themaEnvrnCl = "-";
 				}
@@ -427,17 +439,24 @@ public class MemberController {
 				
 				// 취향 수정
 				FavoriteDTO favoriteDTO = new FavoriteDTO(id, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, themaEnvrnCl, animalCmgCl, trlerAcmpnyAt, caravAcmpnyAt, lctCl, sbrsCl);
-						
 				
-					int count = service.guestFavoriteUpdate(favoriteDTO);
-					if(count == 0) {
-						response.setContentType("text/html;charset=utf-8");
-						response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
-					}
-					else {
-						response.setContentType("text/html;charset=utf-8");
-						response.getWriter().write("<script>alert('취향정보 수정 완료!');location.href='indexView.do';</script>");
-					}
+				// 기존에 등록해놓은 정보가 있는지 확인
+				FavoriteDTO check = service.checkFavorite(id);
+				int count = 0;
+				if(check == null) 
+					count = service.guestFavoriteJoin(favoriteDTO);
+				else 
+					count = service.guestFavoriteUpdate(favoriteDTO);
+				
+				// 결과 확인
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');location.href='guestFavoriteUpdateView.do';</script>");
+				}
+				else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('취향정보 수정 완료!');location.href='indexView.do';</script>");
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
