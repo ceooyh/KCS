@@ -716,7 +716,7 @@ section {
 						class="detail_content_div_second">${requestScope.spotDTO.featureNm}</span>
 				</div>
 				<div class="detail_content_div">
-					<span id="resevation_btn"><a href="bookView.do?contentId=${requestScope.spotDTO.contentId }&facltNm=${requestScope.spotDTO.facltNm}">예약하기</a></span> <span
+					<span id="resevation_btn"><a href="bookView.do?contentId=${requestScope.spotDTO.contentId }&facltNm=${requestScope.spotDTO.facltNm}&bizrno=${requestScope.spotDTO.bizrno}">예약하기</a></span> <span
 						id="keep_btn"><a href="keepAction.do?contentId=${requestScope.spotDTO.contentId }&facltNm=${requestScope.spotDTO.facltNm}">찜하기</a></span>
 				</div>
 			</div>

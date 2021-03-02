@@ -622,11 +622,6 @@ $(function(){
                     <span><input class="guest_input4" type="text" value="${requestScope.business_no3 }" id="business_no3" name="business_no3" placeholder="00000"></span><br>
                  </div><!--사업자 등록번호 입력 end-->
 
-
-                <div id="file_upload" class="part">
-                   	<span><input type="file" name="file" id="file"><label for="file">파일업로드</label></span>
-                </div>    
-
                 <div id="btn_continer">
                     <button class="btn_submit">정보수정</button>
                     <button type="button" class="btn_before">이전</button>

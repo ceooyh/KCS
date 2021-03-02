@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import kcs.dto.BusinessDTO;
-import kcs.dto.BusinessFileDTO;
 import kcs.dto.FavoriteDTO;
 import kcs.dto.MemberDTO;
 import kcs.mapper.MemberMapper;
@@ -89,28 +88,6 @@ public class MemberService {
 		int count = mapper.businessUpdate(businessDTO);
 		if(count == 0) return 0;
 		else return mapper.businessInfoUpdate(memberDTO);
-	}
-
-	// business 테이블의 bno 가져오기 - 희원,20210223
-	public int getBusinessBno(String id) {
-		return mapper.getBusinessBno(id);
-	}
-
-	// 사업자 등록 파일 로드 - 희원,20210223
-	public List<BusinessFileDTO> getBusinessFile(String id) {
-		return mapper.getBusinessFile(id);
-	}
-
-	// 사업자 등록 파일 테이블에 추가 - 희원,20210223
-	public void insertBusinessFile(ArrayList<BusinessFileDTO> fList) {
-		for(int i=0; i<fList.size(); i++)
-			mapper.insertBusinessFile(fList.get(i));
-	}
-
-	// 사업자 등록 파일 테이블에서 수정 - 희원,20210223
-	public void updateBusinessFile(ArrayList<BusinessFileDTO> fList) {
-		for(int i=0; i<fList.size(); i++)
-			mapper.updateBusinessFile(fList.get(i));
 	}
 
 	// 기존에 등록해놓은 취향정보가 있는지 확인 -희원,20210302

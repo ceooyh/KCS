@@ -88,13 +88,6 @@
                 <div class="dropdown">
                     <ul>
                         <li class="dropbtn"><a href="infoView.do">소개</a></li>
-                        <li class="dropbtn_hcon"><a href="#">캠핑장 등록</a>
-                            <ul class="dropdown-content1">
-                                <li class="dropdown-content-li"><a href="applySpotView.do">캠핑장 등록 신청</a></li>
-                                <li class="dropdown-content-li"><a href="applySpotStatusView.do">캠핑장 신청/현황</a></li>
-                                <li class="dropdown-content-li"><a href="applySpotListView.do">캠핑장 관리</a></li>
-                            </ul>
-                        </li>
                         <li class="dropbtn"><a href="manageBookListView.do">예약 관리</a></li>
                         <li class="dropbtn"><a href="qnaView.do">문의하기</a></li>
                         <li class="dropbtn_hcon"><a href="#">마이 페이지</a>
@@ -125,7 +118,6 @@
                 </div>
                 <div class="dropdown">
                     <ul>
-                        <li class="dropbtn"><a href="applyManageListView.do">캠핑장 등록 허가</a></li>
                         <li class="dropbtn"><a href="memberManageListView.do">회원 관리</a></li>
                         <li class="dropbtn"><a href="qnaView.do">문의 관리</a></li>
                         <li class="dropbtn"><a href="boardView.do">게시판</a></li>

@@ -12,9 +12,10 @@ public class BookDTO {
 	private String id;
 	private int status;
 	private String facltNm;
+	private String bizrno;
 	
 	public BookDTO(String bno, String start_date, String end_date, String book_date, int contentId, String id,
-			int status, String facltNm) {
+			int status, String facltNm, String bizrno) {
 		super();
 		this.bno = bno;
 		this.start_date = start_date;
@@ -24,10 +25,11 @@ public class BookDTO {
 		this.id = id;
 		this.status = status;
 		this.facltNm = facltNm;
+		this.setBizrno(bizrno);
 	}
 
 	// 예약 생성용
-	public BookDTO(String bno, String start_date, String end_date, int contentId, String id, String facltNm) {
+	public BookDTO(String bno, String start_date, String end_date, int contentId, String id, String facltNm, String bizrno) {
 		super();
 		this.bno = bno;
 		this.start_date = start_date;
@@ -35,6 +37,7 @@ public class BookDTO {
 		this.contentId = contentId;
 		this.id = id;
 		this.facltNm = facltNm;
+		this.setBizrno(bizrno);
 	}
 	
 	
@@ -101,6 +104,14 @@ public class BookDTO {
 
 	public void setFacltNm(String facltNm) {
 		this.facltNm = facltNm;
+	}
+
+	public String getBizrno() {
+		return bizrno;
+	}
+
+	public void setBizrno(String bizrno) {
+		this.bizrno = bizrno;
 	}
 	
 	

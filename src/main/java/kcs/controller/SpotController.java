@@ -669,7 +669,6 @@ public class SpotController {
 					if(spotDTO.getSbrsCl() != "" && spotDTO.getSbrsCl() != "-") {
 						sbrsClList = spotDTO.getSbrsCl().split(",");
 					}
-					
 					request.setAttribute("sbrsClList", sbrsClList);
 					request.setAttribute("spotDTO", spotDTO);
 					return "spot/spot_detail_view";

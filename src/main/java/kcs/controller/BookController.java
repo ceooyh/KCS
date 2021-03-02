@@ -167,9 +167,11 @@ public class BookController {
  	public String bookView(HttpServletRequest request) {
  		int contentId = Integer.parseInt(request.getParameter("contentId"));
  		String facltNm = request.getParameter("facltNm");
+ 		String bizrno = request.getParameter("bizrno");
  		
  		request.setAttribute("contentId", contentId);
  		request.setAttribute("facltNm", facltNm);
+ 		request.setAttribute("bizrno", bizrno);
  		// 날짜 정보
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
@@ -204,6 +206,7 @@ public class BookController {
  		int contentId = Integer.parseInt(request.getParameter("contentId"));
  		String id = (String) session.getAttribute("id");
  		String facltNm = request.getParameter("facltNm");
+ 		String bizrno = request.getParameter("bizrno");
  		
  		// 예약번호 생성
  		String bno = null;
@@ -215,7 +218,7 @@ public class BookController {
  		}
  		
  		// 예약 테이블에 추가
- 		BookDTO dto = new BookDTO(bno, start_date, end_date, contentId, id, facltNm);
+ 		BookDTO dto = new BookDTO(bno, start_date, end_date, contentId, id, facltNm, bizrno);
  		int count = service.insertBook(dto);
  		try {
  			if(count == 0) {
@@ -230,4 +233,11 @@ public class BookController {
 		}
  		return null;
  	}
+ 	
+ 	// 예약 관리 페이지로 이동 (사업자) - 희원,20210302
+ 	@RequestMapping("/manageBookListView.do")
+	public String manageBookListView() {
+ 		return "manage/manage_book_list";
+ 	}
+ 	
 }

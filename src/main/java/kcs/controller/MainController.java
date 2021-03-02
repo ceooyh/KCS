@@ -39,7 +39,7 @@ public class MainController {
 		return index(request, response, session);
 	}
 	
-	// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천 / (일반 사용자)로그인 : 별점, 취향순 추천
+	// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천 / (일반 사용자)로그인 : 별점, 취향순 추천 -희원,20210302
 	@RequestMapping("indexView.do")
 	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// 모든 목록을 10개씩 가져오고
@@ -121,7 +121,7 @@ public class MainController {
 		return "main/info";
 	}
 	
-	// 캠핑장 총 개수
+	// 캠핑장 총 개수 -희원,20210302
 	public int getTotal() {
 		int count = 0;
 		try {
@@ -162,7 +162,7 @@ public class MainController {
 		return count;
 	}
 	
-	// 캠핑장 리스트
+	// 캠핑장 리스트 -희원,20210302
 	private ArrayList<SpotDTO> getSpotList(int pageNo) {
 		ArrayList<SpotDTO> list = new ArrayList<SpotDTO>();
 		try {
@@ -234,7 +234,7 @@ public class MainController {
 		return list;
 	}
 	
-	// 별점 추천 목록을 반환하는 메서드
+	// 별점 추천 목록을 반환하는 메서드 -희원,20210302
 	public ArrayList<SpotDTO> getTop3StarSpotRank(int totalPage){
 		
 		ArrayList<SpotDTO> starList = new ArrayList<SpotDTO>();
@@ -263,7 +263,7 @@ public class MainController {
 		return starList; 
 	}
 	
-	// 찜 많은 순 추천 목록을 반환하는 메서드
+	// 찜 많은 순 추천 목록을 반환하는 메서드 -희원,20210302
 	private ArrayList<SpotDTO> getTop3KeepSpotRank(int totalPage) {
 
 		ArrayList<SpotDTO> reviewList = new ArrayList<SpotDTO>();
