@@ -64,6 +64,9 @@ public interface MemberMapper {
 	// 사업자 등록 파일 테이블에서 수정
 	void updateBusinessFile(BusinessFileDTO businessFileDTO);
 
+	// 기존에 등록해놓은 취향 정보가 있는지 확인
+	FavoriteDTO checkFavorite(String id);
+
 	
 }
 

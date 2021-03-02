@@ -105,6 +105,14 @@ public class FavoriteDTO {
 	public void setSbrsCl(String sbrsCl) {
 		this.sbrsCl = sbrsCl;
 	}
+	@Override
+	public String toString() {
+		return "FavoriteDTO [id=" + id + ", gnrlSiteCo=" + gnrlSiteCo + ", autoSiteCo=" + autoSiteCo + ", glampSiteCo="
+				+ glampSiteCo + ", caravSiteCo=" + caravSiteCo + ", indvdlCaravSiteCo=" + indvdlCaravSiteCo
+				+ ", themaEnvrnCl=" + themaEnvrnCl + ", animalCmgCl=" + animalCmgCl + ", trlerAcmpnyAt=" + trlerAcmpnyAt
+				+ ", caravAcmpnyAt=" + caravAcmpnyAt + ", lctCl=" + lctCl + ", sbrsCl=" + sbrsCl + "]";
+	}
+	
 	
 	
 }

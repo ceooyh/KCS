@@ -10,7 +10,7 @@
 		insert into member values(#{id}, #{pass}, #{name}, #{tel1}, #{tel2}, #{tel3}, to_date(#{birth}, 'YYYY-MM-DD'), #{email1}, #{email2}, #{gender}, #{user_type})
 	</insert>
 	<insert id="guestFavoriteJoin" parameterType="favorite">
-		insert into favorite values(#{id}, #{gnrlSiteCo}, #{autoSiteCo}, #{glampSiteCo}, #{caravSiteCo}, #{indvdlCaravSiteCo}, #{themaEnvrnCl}, #{animalCmgCl}, #{trlerAcmpnyAt}, #{caravAcmpnyAt}, #{lctCl}, #{sbrsCl})
+		insert into favorite values(#{id}, #{gnrlSiteCo}, #{autoSiteCo}, #{glampSiteCo}, #{caravSiteCo}, #{indvdlCaravSiteCo}, #{lctCl}, #{sbrsCl}, #{themaEnvrnCl}, #{animalCmgCl}, #{trlerAcmpnyAt}, #{caravAcmpnyAt})
 	</insert>
 	<insert id="businessJoin" parameterType="member">
 		insert into member values(#{id}, #{pass}, #{name}, #{tel1}, #{tel2}, #{tel3}, #{birth}, #{email1}, #{email2}, #{gender}, #{user_type})
@@ -31,7 +31,7 @@
 		update member set pass = #{pass}, name = #{name}, tel1 = #{tel1}, tel2 = #{tel2},  tel3 = #{tel3},  birth = #{birth},  email1 = #{email1},  email2 = #{email2},  gender = #{gender} where id like #{id}
 	</update>
 	<update id="guestFavoriteUpdate" parameterType="favorite">
-		update favorite set gnrlSiteCo = #{gnrlSiteCo}, autoSiteCo = #{autoSiteCo}, glampSiteCo = #{glampSiteCo}, caravSiteCo = #{caravSiteCo}, indvdlCaravSiteCo = #{indvdlCaravSiteCo}, themaEnvrnCl = #{themaEnvrnCl}, animalCmgCl = #{animalCmgCl}, trlerAcmpnyAt = #{trlerAcmpnyAt}, caravAcmpnyAt = #{caravAcmpnyAt}, lctCl = #{lctCl}, sbrsCl = #{sbrsCl} where id like #{id}
+		update favorite set gnrlSiteCo = #{gnrlSiteCo}, autoSiteCo = #{autoSiteCo}, glampSiteCo = #{glampSiteCo}, caravSiteCo = #{caravSiteCo}, indvdlCaravSiteCo = #{indvdlCaravSiteCo}, lctCl = #{lctCl}, sbrsCl = #{sbrsCl}, themaEnvrnCl = #{themaEnvrnCl}, animalCmgCl = #{animalCmgCl}, trlerAcmpnyAt = #{trlerAcmpnyAt}, caravAcmpnyAt = #{caravAcmpnyAt} where id like #{id}
 	</update>
 	<select id="selectBusinessDTO" parameterType="String" resultType="business">
 		select * from business where id like #{id}
@@ -54,4 +54,7 @@
 	<update id="updateBusinessFile" parameterType="businessFile">
 		update business_file set fileName = #{fileName} where id like #{id}
 	</update>
+	<select id="checkFavorite" parameterType="String" resultType="favorite">
+		select * from favorite where id like #{id}
+	</select>
 </mapper>
