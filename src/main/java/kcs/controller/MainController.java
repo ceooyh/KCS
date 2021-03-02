@@ -72,10 +72,13 @@ public class MainController {
 						if(originList.get(j).favoriteEquals(favoriteSpotDTO)) {
 							// 일치하면 결과 favoriteList에 추가
 							favoriteList.add(originList.get(j));
+							if(favoriteList.size() > 3) break;
 						}
 					}
 				}
 			}
+			for(SpotDTO l :favoriteList)
+				System.out.println(l.toString());
 			// 취향 추천 목록 보내주기
 			request.setAttribute("favoriteList", favoriteList);
 			
