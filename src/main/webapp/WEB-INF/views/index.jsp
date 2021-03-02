@@ -702,7 +702,7 @@
 		                    </span>
 		                </div>
 		                <div id="img_container_all2">
-			                <c:forEach var="list" items="requestScope.starlist">
+			                <c:forEach var="list" items="${ requestScope.starlist}">
 			                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -758,7 +758,7 @@
 		                    </span>
 		                </div>
 		                <div id="img_container_all3">
-		                    <c:forEach var="list" items="requestScope.reviewlist">
+		                    <c:forEach var="list" items="${ requestScope.reviewlist}">
 			                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -820,7 +820,7 @@
 				                    </span>
 				                </div>
 				                <div id="img_container_all2">
-				                    <c:forEach var="list" items="requestScope.starlist">
+				                    <c:forEach var="list" items="${ requestScope.starlist}">
 					                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -877,7 +877,7 @@
 					                    </span>
 					                </div>
 					                <div id="img_container_all3">
-					                    <c:forEach var="list" items="requestScope.reviewlist">
+					                    <c:forEach var="list" items="${ requestScope.reviewlist}">
 						                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -938,7 +938,7 @@
 				                    </span>
 				                </div>
 				                <div id="img_container_all">
-				                   <c:forEach var="list" items="requestScope.favoritelist">
+				                   <c:forEach var="list" items="${ requestScope.favoritelist}">
 					                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -951,9 +951,6 @@
 							                    </div>
 				                    		</c:otherwise>
 				                    	</c:choose>
-					                    <div class="img_container" style="background-image: url('${list.firstImageUrl}');">
-					                        <span id="img_info">${list.facltNm}</span>
-					                    </div>
 					                </c:forEach>
 				                </div>
 				            </div>
@@ -1000,7 +997,7 @@
 				                    </span>
 				                </div>
 				                <div id="img_container_all2">
-				                    <c:forEach var="list" items="requestScope.starlist">
+				                    <c:forEach var="list" items="${ requestScope.starlist}">
 				                    	<c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -1060,7 +1057,7 @@
 				                    </span>
 				                </div>
 				                <div id="img_container_all2">
-				                    <c:forEach var="list" items="requestScope.starlist">
+				                    <c:forEach var="list" items="${ requestScope.starlist}">
 							             <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -1120,7 +1117,7 @@
 				                    </span>
 				                </div>
 				                <div id="img_container_all3">
-				                    <c:forEach var="list" items="requestScope.reviewlist">
+				                    <c:forEach var="list" items="${ requestScope.reviewlist}">
 							           <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
