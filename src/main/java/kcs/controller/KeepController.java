@@ -75,7 +75,7 @@ public class KeepController {
 		return null;
 	}
 	
-	// 찜한 캠핑장 정보 검색
+	// 찜한 캠핑장 정보 검색 -희원,20210302
 	public SpotDTO getSpotInfo(int contentId, String facltNm) {
 		SpotDTO dto = null;
 		try {

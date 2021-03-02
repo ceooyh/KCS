@@ -14,4 +14,9 @@
 		(select contentId, avg(star) as star from review group by contentId order by star desc)
 		where rownum <![CDATA[ <= ]]> 3
 	</select>
+	<select id="getTopKeepRank" resultType="int">
+		select contentId from
+		(select contentId, count(*) as keep from keep group by contentId order by keep desc)
+		where rownum <![CDATA[ <= ]]> 3
+	</select>
 </mapper>

@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kcs.dto.BusinessDTO;
-import kcs.dto.BusinessFileDTO;
 import kcs.dto.FavoriteDTO;
 import kcs.dto.MemberDTO;
 import kcs.service.MemberService;
@@ -43,30 +42,38 @@ public class MemberController {
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 
-		MemberDTO dto = service.login(id, pass);
-		if (dto != null) {
-			session.setAttribute("login", true);
-			session.setAttribute("id", dto.getId());
-			session.setAttribute("pass", dto.getPass());
-			session.setAttribute("name", dto.getName());
-			session.setAttribute("user_type", dto.getUser_type());
-			return "index";
-		} else {
-			try {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('아이디와 비밀번호를 확인하세요');history.back();</script>");
-			} catch (IOException e) {
-				e.printStackTrace();
+		try {
+			MemberDTO dto = service.login(id, pass);
+			if (dto != null) {
+				session.setAttribute("login", true);
+				session.setAttribute("id", dto.getId());
+				session.setAttribute("pass", dto.getPass());
+				session.setAttribute("name", dto.getName());
+				session.setAttribute("user_type", dto.getUser_type());
+				response.getWriter().write("<script>location.href='indexView.do';</script>");
+	//			return "index";
+			} else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('아이디와 비밀번호를 확인하세요');history.back();</script>");
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
 	// 멤버 로그아웃 - 성진
 	@RequestMapping("/logoutAction.do")
-	public String logout(HttpServletRequest request, HttpSession session) {
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		session.invalidate();
-		return "index";
+		try {
+			response.getWriter().write("<script>location.href='indexView.do';</script>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		return "index";
+		return null;
 	}
 	
 	// 회원가입 사용자 선택 페이지로 이동 - 희원,20210219
@@ -254,35 +261,6 @@ public class MemberController {
 				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
 			}
 			else {
-				// bno 가져오기
-				int bno = service.getBusinessBno(id);
-				// 사업자 등록증 파일 업로드
-				List<MultipartFile> fileList = request.getFiles("file");
-				String path = "c:\\fileupload\\business\\"+ id+"\\";
-				ArrayList<BusinessFileDTO> fList = new ArrayList<BusinessFileDTO>();
-				
-				for(MultipartFile mf : fileList) {
-					String originalFileName = mf.getOriginalFilename();
-					long fileSize = mf.getSize();
-					if(fileSize == 0) continue;
-					
-					// 파일 업로드
-					String safeFile = path + originalFileName;
-					fList.add(new BusinessFileDTO(bno, id, originalFileName));
-					File parentPath = new File(path);
-					if(!parentPath.exists()) parentPath.mkdirs();	// 경로 생성
-					try {
-						mf.transferTo(new File(safeFile));
-						
-					} catch (IllegalStateException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				// 사업자 등록 파일 테이블에 추가
-				service.insertBusinessFile(fList);
-				
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('회원가입 완료!');location.href='loginView.do';</script>");
 			}
@@ -492,10 +470,6 @@ public class MemberController {
 					request.setAttribute("business_no2", business_no2);
 					request.setAttribute("business_no3", business_no3);
 					
-					// 파일 로드 부분 - 희원,20210223
-					List<BusinessFileDTO> fList = service.getBusinessFile(id);
-					request.setAttribute("file", fList);
-					
 					return "member/business_info_update";
 				}
 			}
@@ -533,45 +507,6 @@ public class MemberController {
 				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
 			}
 			else {
-				// 사업자 등록증 파일 업로드
-				List<MultipartFile> fileList = request.getFiles("file");
-				String path = "c:\\fileupload\\business\\"+ id+"\\";
-				ArrayList<BusinessFileDTO> fList = new ArrayList<BusinessFileDTO>();
-				for(MultipartFile mf : fileList) {
-					String originalFileName = mf.getOriginalFilename();
-					long fileSize = mf.getSize();
-					if(fileSize == 0) continue;
-					
-					// 파일 업로드
-					// bno 가져오기
-					int bno = service.getBusinessBno(id);
-					String safeFile = path + originalFileName;
-					fList.add(new BusinessFileDTO(bno, id, originalFileName));
-					File parentPath = new File(path);
-					if(!parentPath.exists()) parentPath.mkdirs();	// 경로 생성
-					try {
-						mf.transferTo(new File(safeFile));
-						
-					} catch (IllegalStateException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-
-				// 사업자 등록증 수정
-				if(fList.size() != 0) {
-					// 파일을 업로드 한 경우
-					List<BusinessFileDTO> prevfList = service.getBusinessFile(id);
-					if(prevfList.size() == 0 || prevfList == null) {
-						// 등록 파일이 없다면 사업자 등록 파일 테이블에 추가
-						service.insertBusinessFile(fList);
-					}else {
-						// 등록 파일이 있다면 사업자 등록 파일 테이블에서 수정
-						service.updateBusinessFile(fList);
-					}
-				}
-				
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().write("<script>alert('사업자 정보 수정 완료!');location.href='indexView.do';</script>");
 			}

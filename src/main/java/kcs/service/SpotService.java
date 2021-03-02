@@ -29,5 +29,10 @@ public class SpotService {
 	public int[] getTopStarRank() {
 		return mapper.getTopStarRank();
 	}
+
+	// 찜 많은 캠핑장 top3
+	public int[] getTopKeepRank() {
+		return mapper.getTopKeepRank();
+	}
 	
 }

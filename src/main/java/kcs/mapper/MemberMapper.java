@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import kcs.dto.BusinessDTO;
-import kcs.dto.BusinessFileDTO;
 import kcs.dto.FavoriteDTO;  
 import kcs.dto.MemberDTO; 
 
@@ -51,18 +50,6 @@ public interface MemberMapper {
 
 	// 사업자 개인정보 수정 (member 테이블)
 	int businessInfoUpdate(MemberDTO memberDTO);
-
-	// business 테이블의 bno 가져오기
-	int getBusinessBno(String id);
-
-	// 사업자 등록 파일 로드
-	List<BusinessFileDTO> getBusinessFile(String id);
-
-	// 사업자 등록 파일 테이블에 추가
-	void insertBusinessFile(BusinessFileDTO businessFileDTO);
-
-	// 사업자 등록 파일 테이블에서 수정
-	void updateBusinessFile(BusinessFileDTO businessFileDTO);
 
 	// 기존에 등록해놓은 취향 정보가 있는지 확인
 	FavoriteDTO checkFavorite(String id);
