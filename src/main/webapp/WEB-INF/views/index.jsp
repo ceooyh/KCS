@@ -743,7 +743,7 @@
 		
 		        <div id="slider_img_review">
 		            <span id="slider_img_favor_headline3">
-		                <span id="img_headLine3">＜리뷰수가 가장 많은 캠핑장 TOP3＞</span>
+		                <span id="img_headLine3">＜찜횟수가 가장 많은 캠핑장 TOP3＞</span>
 		            </span>
 		
 		            <div id="info_img_container3">
@@ -753,12 +753,12 @@
 		                    </span>
 		                    <span id="img_totalinfo_text3">
 		                        <span id="favor_btn3">추천해요</span>
-		                        <p>후기와 이용률이 가장 중요하신 분들</p>
-		                        <p>KCS에서 후기가 가장 많이 달린 캠핑장으로 초대합니다. </p>
+		                        	<p>인기가 좋은 캠핑장을 추천드립니다.</p>
+		                        	<p>KCS에서 가장많은 찜을 받은 캠핑장을 추천해드려요</p>
 		                    </span>
 		                </div>
 		                <div id="img_container_all3">
-		                    <c:forEach var="list" items="${ requestScope.reviewlist}">
+		                    <c:forEach var="list" items="${requestScope.keeplist}">
 			                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -863,7 +863,7 @@
 				
 				        <div id="slider_img_review">
 					            <span id="slider_img_favor_headline3">
-					                <span id="img_headLine3">＜리뷰수가 가장 많은 캠핑장 TOP3＞</span>
+					                <span id="img_headLine3">＜찜횟수가 가장 많은 캠핑장 TOP3＞</span>
 					            </span>
 					
 					            <div id="info_img_container3">
@@ -872,12 +872,12 @@
 					                    </span>
 					                    <span id="img_totalinfo_text3">
 					                        <span id="favor_btn3">추천해요</span>
-					                        <p>후기와 이용률이 가장 중요하신 분들</p>
-					                        <p>KCS에서 후기가 가장 많이 달린 캠핑장으로 초대합니다. </p>
+						                        <p>인기가 좋은 캠핑장을 추천드립니다.</p>
+			                        			<p>KCS에서 가장많은 찜을 받은 캠핑장을 추천해드려요</p>
 					                    </span>
 					                </div>
 					                <div id="img_container_all3">
-					                    <c:forEach var="list" items="${ requestScope.reviewlist}">
+					                    <c:forEach var="list" items="${ requestScope.keeplist}">
 						                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -1102,7 +1102,7 @@
 				
 				        <div id="slider_img_review">
 				            <span id="slider_img_favor_headline3">
-				                <span id="img_headLine3">＜리뷰수가 가장 많은 캠핑장 TOP3＞</span>
+				                <span id="img_headLine3">＜찜횟수가 가장 많은 캠핑장 TOP3＞</span>
 				            </span>
 				
 				            <div id="info_img_container3">
@@ -1112,12 +1112,12 @@
 				                    </span>
 				                    <span id="img_totalinfo_text3">
 				                        <span id="favor_btn3">추천해요</span>
-				                        <p>후기와 이용률이 가장 중요하신 분들</p>
-				                        <p>KCS에서 후기가 가장 많이 달린 캠핑장으로 초대합니다. </p>
+					                        <p>인기가 좋은 캠핑장을 추천드립니다.</p>
+		                        			<p>KCS에서 가장많은 찜을 받은 캠핑장을 추천해드려요</p>
 				                    </span>
 				                </div>
 				                <div id="img_container_all3">
-				                    <c:forEach var="list" items="${ requestScope.reviewlist}">
+				                    <c:forEach var="list" items="${ requestScope.keeplist}">
 							           <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
