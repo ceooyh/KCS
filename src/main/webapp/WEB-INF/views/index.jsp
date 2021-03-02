@@ -903,7 +903,7 @@
 				                </div>
 				                <div id="img_container_all">
 				                   <c:forEach var="list" items="requestScope.favoritelist">
-					                    <div class="img_container" style="background-image: ${list.firstImageUrl};">
+					                    <div class="img_container" style="background-image: url('${list.firstImageUrl}');">
 					                        <span id="img_info">${list.facltNm}</span>
 					                    </div>
 					                </c:forEach>

@@ -76,7 +76,6 @@ public class MainController {
 					}
 				}
 			}
-			System.out.println(favoriteList.size() + "가 사이즈다");
 			// 취향 추천 목록 보내주기
 			request.setAttribute("favoriteList", favoriteList);
 			
@@ -141,7 +140,7 @@ public class MainController {
 			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
 			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
 			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(Integer.toString(pageNo), "UTF-8")); /*현재 페이지번호*/
-			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수*/
+			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
 			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
 			urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
 			urlBuilder.append("&_type=json"); /*서비스명=어플명*/
@@ -163,7 +162,6 @@ public class MainController {
 			}
 			
  			JSONObject json = new JSONObject(sb.toString());
-			
 			if(conn.getResponseCode() == 200) {
 				
 				// 목록 받아오기
@@ -185,11 +183,12 @@ public class MainController {
 					String trlerAcmpnyAt = j.has("trlerAcmpnyAt") ? j.get("trlerAcmpnyAt").toString() : "-";
 					String caravAcmpnyAt = j.has("caravAcmpnyAt") ? j.get("caravAcmpnyAt").toString() : "-";
 					String firstImageUrl = j.has("firstImageUrl") ? j.get("firstImageUrl").toString() : "-";
-					
-					// 리스트에 추가
-					list.add(
-							new SpotDTO(contentId, facltNm, lctCl, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, trlerAcmpnyAt, caravAcmpnyAt, sbrsCl, themaEnvrnCl, animalCmgCl, firstImageUrl)
-							);
+					if(firstImageUrl != "-") {
+						// 이미지 있을 경우만 리스트에 추가
+						list.add(
+								new SpotDTO(contentId, facltNm, lctCl, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, trlerAcmpnyAt, caravAcmpnyAt, sbrsCl, themaEnvrnCl, animalCmgCl, firstImageUrl)
+								);
+					}
 					
 				}
 				
