@@ -20,7 +20,6 @@ import kcs.dto.FavoriteDTO;
 import kcs.dto.SpotDTO;
 import kcs.service.MemberService;
 import kcs.service.SpotService;
-import kcs.vo.PaggingVO;
 
 @Controller
 public class MainController {
