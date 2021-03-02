@@ -157,13 +157,13 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../template/header.jsp"></jsp:include>
  	<c:if test="${sessionScope.login != 0}">
 				<script>
 					alert("권한이 없습니다. 로그인 후 이용해 주세요");
 					location.href="loginView.do";
 				</script>
 	</c:if>
-	<jsp:include page="../template/header.jsp"></jsp:include>
 	<div id="container">
         <p id="headline">문의사항 관리자 페이지</p><!--헤드라인-->
 		<div class="qna_title">
