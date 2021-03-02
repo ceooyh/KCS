@@ -184,7 +184,7 @@
 	<jsp:include page="../template/header.jsp"></jsp:include>
 	<div id="container">
         <p id="headline">QnA</p><!--헤드라인-->
-			<form action="qna_guest" method="get">
+			<form action="qnaUpdate.do" method="get">
 				<div class="qna_title">
     	             <div class="part_select">
         	             <p id="qna_content_title"><label for="#">[아이디]</label></p>

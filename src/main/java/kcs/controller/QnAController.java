@@ -123,15 +123,16 @@ public class QnAController {
 		return null;
 	}
 
-	// 문의 수정 페이지 이동 - 가현,20210227
-    @RequestMapping("/qnaAjaxUpdate.do")
+	// 문의 수정 - 가현,20210227
+    @RequestMapping("/qnaUpdate.do")
     public String qnaAjaxUpdate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-        int qno = Integer.parseInt(request.getParameter("qno"));
-        String title = request.getParameter("title");
-        String content = request.getParameter("content");
-        
-        int count = service.qnaUpdateAction(new QnADTO(qno, title, content));
-        
+       
+    	int qno = Integer.parseInt(request.getParameter("qno"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+
+		QnADTO qnaDTO = new QnADTO(null, title, content);
+        int count = service.qnaUpdateAction(qnaDTO);
         try {
         	if(count == 0) {
         		response.setContentType("text/html;charset=utf-8");
