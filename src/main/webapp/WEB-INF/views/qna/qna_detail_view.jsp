@@ -102,7 +102,7 @@
         margin-top: 5px;
         margin-bottom: 10px;
     }
-    textarea{
+    .textarea{
         width: 700px;
         height: 100px;
         resize: none;
@@ -180,7 +180,7 @@
 <script>
         function update_qna(obj) {
             var data = "";
-            $.each($(obj).parent().parent().find("div:gt(1)"), function(i,o) {
+            $.each($(obj).parent().parent().find(".input_span",".textarea"), function(i,o) {
                 console.log(i,$(o).val());
                 data += $(o).attr("qno") + "=" + $(o).val()  + "&"; 
             });
@@ -202,7 +202,7 @@
         }
         function delete_qna(obj) {
             var data = "";
-            data = "qno=" + $(obj).parent().parent().find("div:gt(1)").first().val();
+            data = "qno=" + $(obj).parent().parent().find(".input_span",".textarea").first().val();
             alert(data);
             $.ajax({
                 url : "qnaAjaxDelete.do",
@@ -244,7 +244,7 @@
                  
                 <div class="part_select">
                      <p id="qna_content_title"><label for="title">[문의내용]</label></p>
-                     <textarea name="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
+                     <span class="textarea"><textarea name="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea></span>
                      </div>
                  </div><!--내용-->	
                 
