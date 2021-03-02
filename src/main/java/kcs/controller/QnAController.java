@@ -124,7 +124,7 @@ public class QnAController {
 	}
 
 	// 문의 수정 - 가현,20210227
-    @RequestMapping("/qnaAjaxUpdate.do")
+    @RequestMapping("/qnaUpdate.do")
     public String qnaAjaxUpdate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
        
     	int qno = Integer.parseInt(request.getParameter("qno"));
