@@ -4,76 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../../../css/fonts/font.css">
+<link rel="stylesheet" href="../../../css/template/footer.css">
 <title>회사 정보</title>
-<style>
-	@font-face {
-        font-family: '보통노토';
-        src: url(../../../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Medium.otf);
-    }
-    @font-face {
-        font-family: '굵은노토';
-        src: url(../../../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Black.otf);
-    }
-    @font-face {
-        font-family: '검은고딕';
-        src: url(../../../Font/검은고딕/OFL.txt);
-    }
-    @font-face {
-        font-family: '보통로보';
-        src: url(../../../Font/Roboto/Roboto-Medium.ttf);
-    }
-    @font-face {
-        font-family: '두꺼운로보';
-        src: url(../../../Font/Roboto/Roboto-Bold.ttf);
-    }
-     *{
-        margin:0;
-        padding: 0;
-    }
-    footer{
-        padding-top:10px;
-        width: 100%;
-        background-color: rgb(44, 42, 41);
-        height: 150px;
-        box-sizing: border-box;
-    }
-    #top_footer{
-        color: rgb(241, 241, 241);
-        width: 80%;
-        margin: 0 auto;
-    }
-    #bottom_footer{
-        font-family: '보통노토';
-        color: rgb(196, 196, 196);
-        width: 80%;
-        height: 10%;
-        margin: 0 auto;
-        text-align: center;
-        font-size: 13px;
-    }
-    #top_footer{
-        width: 80%;
-        height: 10%;
-        margin: 0 auto;
-        margin-top: 20px;
-        text-align: center;
-    }
-    #top_footer a{
-        font-family: '보통노토';
-        color: rgb(196, 196, 196);
-        text-decoration: none;
-        width: 20%;
-        font-size: 15px;
-        padding: 0 30px;
-    }
-    #footer_hyperline{
-        border: 1px solid rgb(241, 241, 241);
-        margin: 20px 0;
-    }
-    #top_footer a:hover{
-        text-decoration: underline;
-    }
-</style>
+
 </head>
 <body>
     <footer>
