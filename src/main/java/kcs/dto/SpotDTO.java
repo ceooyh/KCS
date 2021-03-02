@@ -125,7 +125,6 @@ public class SpotDTO {
 		this.firstImageUrl = firstImageUrl;
 		this.star = star;
 		this.review_count = review_count;
-		this.firstImageUrl = firstImageUrl;
 	}
 
 	// 취향 비교위한 생성자
@@ -146,6 +145,7 @@ public class SpotDTO {
 		this.sbrsCl = sbrsCl;
 		this.themaEnvrnCl = themaEnvrnCl;
 		this.animalCmgCl = animalCmgCl;
+		this.firstImageUrl = firstImageUrl;
 	}
 	
 	

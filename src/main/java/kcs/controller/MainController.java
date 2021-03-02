@@ -65,22 +65,20 @@ public class MainController {
 				ArrayList<SpotDTO> originList = new ArrayList<SpotDTO>();
 				// 100개의 캠핑장 목록
 				for(int i=0; i<totalPage; i++) {
-					if(favoriteList.size() > 3) break;
+					if(favoriteList.size() > 2) break;
 					originList = getSpotList(i);
 					// 100개씩 가져와서 내가 설정한 취향 dto와 맞는지 비교
 					for(int j=0; j<originList.size(); j++) {
 						if(originList.get(j).favoriteEquals(favoriteSpotDTO)) {
+							if(favoriteList.size() > 2) break;
 							// 일치하면 결과 favoriteList에 추가
 							favoriteList.add(originList.get(j));
-							if(favoriteList.size() > 3) break;
 						}
 					}
 				}
 			}
-			for(SpotDTO l :favoriteList)
-				System.out.println(l.toString());
 			// 취향 추천 목록 보내주기
-			request.setAttribute("favoriteList", favoriteList);
+			request.setAttribute("favoritelist", favoriteList);
 			
 		}else {
 			// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천
