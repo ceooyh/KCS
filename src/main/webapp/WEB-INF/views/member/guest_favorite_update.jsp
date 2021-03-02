@@ -255,7 +255,6 @@
     <div id="container">
 	<form action="guestFavoriteUpdateAction.do">
         <p id="headline">취향 정보 수정</p>
-       		<input type="text" id="hidden_id_value" name="id" value="${requestScope.id}">
              <div id="camp_type" class="category">
                 <p id="category_1">캠핑의 종류</p>
                 <input type="checkbox" id="camping" name="theme" value="-일반야영장"><label for="camping"><span>#일반야영장</span></label>
@@ -315,7 +314,7 @@
                 <input type="checkbox" id="pet_open" name="theme"  value="-반려동물동반"><label for="pet_open"><span>#반려동물동반</span></label>
             </div>
             <div id="btn_submit">
-                <button>변경 완료</button>
+                <button type="submit">변경 완료</button>
                 <a href="indexView.do">취소</a>
             </div>
             </form>
