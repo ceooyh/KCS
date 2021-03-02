@@ -42,6 +42,11 @@ public class MainController {
 	// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천 / (일반 사용자)로그인 : 별점, 취향순 추천
 	@RequestMapping("indexView.do")
 	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		// 모든 목록을 10개씩 가져오고
+		// 총 캠핑장 개수
+		int total = getTotal();
+		// 100개씩 총 돌아갈 횟수
+		int totalPage = total / 100 + 1;
 		
 		if(session.getAttribute("id") != null && session.getAttribute("user_type") != null && (int)session.getAttribute("user_type") == 1) {
 			// (일반 사용자)로그인 : 별점, 취향순 추천
@@ -49,11 +54,6 @@ public class MainController {
 			/*S:취향 추천*/
 			ArrayList<SpotDTO> favoriteList = new ArrayList<SpotDTO>();
 			
-			// 모든 목록을 10개씩 가져오고
-			// 총 캠핑장 개수
-			int total = getTotal();
-			// 100개씩 총 돌아갈 횟수
-			int totalPage = total / 100 + 1;
 			
 			// 취향 dto
 			String id = (String) session.getAttribute("id");
@@ -86,40 +86,35 @@ public class MainController {
 			/*S:별점 추천*/
 			// 별점 추천 목록
 			ArrayList<SpotDTO> starList = new ArrayList<SpotDTO>();
-			
-			// review 테이블에서 별점 평균이 가장 높은 3개의 캠핑장 번호를 출력
-			int[] arr_contentId = spotService.getTopStarRank();
-			
-			// 캠핑장 검색
-			ArrayList<SpotDTO> originList = new ArrayList<SpotDTO>();
-			// 100개의 캠핑장 목록을 totalPage만큼 반복
-			for(int i=0; i<totalPage; i++) {
-				if(starList.size() > 2) break;
-				originList = getSpotList(i);
-				// 100개씩 가져와서 arr_contentId와 맞는지 비교
-				for(int j=0; j<originList.size(); j++) {
-					for(int k=0; k<3; k++) {
-						if(originList.get(j).getContentId() == (arr_contentId[k])) {
-							if(starList.size() > 2) break;
-							// 일치하면 결과 starList에 추가
-							starList.add(originList.get(j));
-						}
-					}
-				}
-			}
-
+			starList = getTop3StarSpotRank(totalPage);
 			// 별점 추천 목록 보내주기
 			request.setAttribute("starlist", starList);
-			
 			/*E:별점 추천*/
 			
 			
 		}else {
 			// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천
+			
+			/*S:별점 추천*/
+			// 별점 추천 목록
+			ArrayList<SpotDTO> starList = new ArrayList<SpotDTO>();
+			starList = getTop3StarSpotRank(totalPage);
+			// 별점 추천 목록 보내주기
+			request.setAttribute("starlist", starList);
+			/*E:별점 추천*/
+			
+			/*S:찜 많은 순 추천*/
+			// 찜 추천 목록
+			ArrayList<SpotDTO> keepList = new ArrayList<SpotDTO>();
+			keepList = getTop3KeepSpotRank(totalPage);
+			// 찜 추천 목록 보내주기
+			request.setAttribute("keeplist", keepList);
+			/*E:찜 많은 순 추천*/
 		}
 		return "index";
 	}
 	
+
 
 	@RequestMapping("/infoView.do")
 	public String info() {
@@ -237,5 +232,63 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	// 별점 추천 목록을 반환하는 메서드
+	public ArrayList<SpotDTO> getTop3StarSpotRank(int totalPage){
+		
+		ArrayList<SpotDTO> starList = new ArrayList<SpotDTO>();
+		
+		// review 테이블에서 별점 평균이 가장 높은 3개의 캠핑장 번호를 출력
+		int[] arr_contentId = spotService.getTopStarRank();
+		
+		// 캠핑장 검색
+		ArrayList<SpotDTO> originList = new ArrayList<SpotDTO>();
+		// 100개의 캠핑장 목록을 totalPage만큼 반복
+		for(int i=0; i<totalPage; i++) {
+			if(starList.size() > 2) break;
+			originList = getSpotList(i);
+			// 100개씩 가져와서 arr_contentId와 맞는지 비교
+			for(int j=0; j<originList.size(); j++) {
+				for(int k=0; k<3; k++) {
+					if(originList.get(j).getContentId() == (arr_contentId[k])) {
+						if(starList.size() > 2) break;
+						// 일치하면 결과 starList에 추가
+						starList.add(originList.get(j));
+					}
+				}
+			}
+		} 
+		
+		return starList; 
+	}
+	
+	// 찜 많은 순 추천 목록을 반환하는 메서드
+	private ArrayList<SpotDTO> getTop3KeepSpotRank(int totalPage) {
+
+		ArrayList<SpotDTO> reviewList = new ArrayList<SpotDTO>();
+		
+		// keep 테이블에서 찜개수가 가장 높은 3개의 캠핑장 번호를 출력
+		int[] arr_contentId = spotService.getTopKeepRank();
+		
+		// 캠핑장 검색
+		ArrayList<SpotDTO> originList = new ArrayList<SpotDTO>();
+		// 100개의 캠핑장 목록을 totalPage만큼 반복
+		for(int i=0; i<totalPage; i++) {
+			if(reviewList.size() > 2) break;
+			originList = getSpotList(i);
+			// 100개씩 가져와서 arr_contentId와 맞는지 비교
+			for(int j=0; j<originList.size(); j++) {
+				for(int k=0; k<3; k++) {
+					if(originList.get(j).getContentId() == (arr_contentId[k])) {
+						if(reviewList.size() > 2) break;
+						// 일치하면 결과 starList에 추가
+						reviewList.add(originList.get(j));
+					}
+				}
+			}
+		} 
+		
+		return reviewList; 
 	}
 }

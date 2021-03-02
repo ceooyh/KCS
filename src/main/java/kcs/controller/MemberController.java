@@ -43,30 +43,38 @@ public class MemberController {
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 
-		MemberDTO dto = service.login(id, pass);
-		if (dto != null) {
-			session.setAttribute("login", true);
-			session.setAttribute("id", dto.getId());
-			session.setAttribute("pass", dto.getPass());
-			session.setAttribute("name", dto.getName());
-			session.setAttribute("user_type", dto.getUser_type());
-			return "index";
-		} else {
-			try {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('아이디와 비밀번호를 확인하세요');history.back();</script>");
-			} catch (IOException e) {
-				e.printStackTrace();
+		try {
+			MemberDTO dto = service.login(id, pass);
+			if (dto != null) {
+				session.setAttribute("login", true);
+				session.setAttribute("id", dto.getId());
+				session.setAttribute("pass", dto.getPass());
+				session.setAttribute("name", dto.getName());
+				session.setAttribute("user_type", dto.getUser_type());
+				response.getWriter().write("<script>location.href='indexView.do';</script>");
+	//			return "index";
+			} else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('아이디와 비밀번호를 확인하세요');history.back();</script>");
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
 
 	// 멤버 로그아웃 - 성진
 	@RequestMapping("/logoutAction.do")
-	public String logout(HttpServletRequest request, HttpSession session) {
+	public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		session.invalidate();
-		return "index";
+		try {
+			response.getWriter().write("<script>location.href='indexView.do';</script>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		return "index";
+		return null;
 	}
 	
 	// 회원가입 사용자 선택 페이지로 이동 - 희원,20210219

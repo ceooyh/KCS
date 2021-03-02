@@ -14,4 +14,7 @@ public interface SpotMapper {
 	// 별점 평균 높은 캠핑장 top3
 	int[] getTopStarRank();
 
+	// 찜 많은 캠핑장 top3
+	int[] getTopKeepRank();
+
 }
