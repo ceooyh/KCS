@@ -117,4 +117,5 @@ public class MemberService {
 	public FavoriteDTO checkFavorite(String id) {
 		return mapper.checkFavorite(id);
 	}
+
 }
