@@ -55,7 +55,7 @@ public class QnAService {
 		return mapper.insertAdminAnswer(map);
 	}
 
-	// 문의 수정 진행 - 가현,20210227
+	// 문의 수정 - 가현,20210227
 	public int qnaUpdateAction(QnADTO qnaDTO) {
 		return mapper.qnaUpdateAction(qnaDTO);
 	}
