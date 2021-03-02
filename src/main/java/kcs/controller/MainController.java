@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,6 +84,33 @@ public class MainController {
 			/*E:취향 추천*/
 			
 			/*S:별점 추천*/
+			// 별점 추천 목록
+			ArrayList<SpotDTO> starList = new ArrayList<SpotDTO>();
+			
+			// review 테이블에서 별점 평균이 가장 높은 3개의 캠핑장 번호를 출력
+			int[] arr_contentId = spotService.getTopStarRank();
+			
+			// 캠핑장 검색
+			ArrayList<SpotDTO> originList = new ArrayList<SpotDTO>();
+			// 100개의 캠핑장 목록을 totalPage만큼 반복
+			for(int i=0; i<totalPage; i++) {
+				if(starList.size() > 2) break;
+				originList = getSpotList(i);
+				// 100개씩 가져와서 arr_contentId와 맞는지 비교
+				for(int j=0; j<originList.size(); j++) {
+					for(int k=0; k<3; k++) {
+						if(originList.get(j).getContentId() == (arr_contentId[k])) {
+							if(starList.size() > 2) break;
+							// 일치하면 결과 starList에 추가
+							starList.add(originList.get(j));
+						}
+					}
+				}
+			}
+
+			// 별점 추천 목록 보내주기
+			request.setAttribute("starlist", starList);
+			
 			/*E:별점 추천*/
 			
 			

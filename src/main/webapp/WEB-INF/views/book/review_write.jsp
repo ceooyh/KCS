@@ -153,7 +153,7 @@
 	        }
 	        
 	       console.log($('.on').length);
-	       $("#star").val($('.on').length);
+	       $("#star").val($('.on').length/2);
 	    });
 	})
 </script>
@@ -161,8 +161,11 @@
 <body>
  <section>
  <jsp:include page="../template/header2.jsp" flush="false"></jsp:include>
-        <form action="reviewWriteAction.do">
+        <form action="reviewWriteAction.do" enctype="multipart/form-data" method="post">
             <div id="container">
+            	<input type="hidden" name="contentId" value="${requestScope.contentId }">
+            	<input type="hidden" name="facltNm" value="${requestScope.facltNm }">
+            	<input type="hidden" name="bno" value="${requestScope.bno }">
                         <p id="headline">캠핑장후기</p><!--헤드라인-->
                         <div class="part_select">
                             <span id="qna_content_title"><label for="title">[후기내용]</label></span>
@@ -184,6 +187,15 @@
                                <input value=""	type="hidden" placeholder="별점점수부분" name="star" id="star">
                               </div>
                             <textarea name="content" id="content" cols="95" rows="20" placeholder="문의내용을 입력하세요" style="resize: none;"></textarea>
+                            <div id="file_form">
+								<span id="textarea_head">[첨부파일 등록]</span>
+									<div id="file_list">
+										<p><button type="button" class="plusminus_btn" id="plus">+</button> <button type="button" class="plusminus_btn" id="minus">-</button></p>
+										<p><input class='file_list' type="file" name="file" id="file"></p>
+										<p><input class='file_list' type="file" name="file" id="file"></p>
+										<p><input class='file_list' type="file" name="file" id="file"></p>
+									</div>
+							</div>
                             <div id="btn_submit">
                             <button id="btn" type="submit">전송</button>
                             </div>

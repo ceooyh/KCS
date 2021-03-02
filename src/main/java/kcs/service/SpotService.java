@@ -24,5 +24,10 @@ public class SpotService {
 	public int getReviewCount(int contentId) {
 		return mapper.getReviewCount(contentId);
 	}
+
+	// 별점 평균 높은 캠핑장 top3 
+	public int[] getTopStarRank() {
+		return mapper.getTopStarRank();
+	}
 	
 }

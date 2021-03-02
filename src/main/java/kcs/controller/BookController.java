@@ -109,11 +109,9 @@ public class BookController {
     // 캠핑장 후기 작성 - 희원,20210223
     @RequestMapping("/reviewWriteAction.do")
     public String reviewWriteAction(MultipartHttpServletRequest request, HttpServletResponse response, HttpSession session) {
-    	System.out.println("여기까지");
     	int contentId = Integer.parseInt(request.getParameter("contentId"));
     	String id = (String) session.getAttribute("id");
-//    	double star = Double.parseDouble(request.getParameter("star"));
-    	double star = 4.5;
+    	double star = Double.parseDouble(request.getParameter("star"));
     	String content = request.getParameter("content");
     	String facltNm = request.getParameter("facltNm");
     	String bno = request.getParameter("bno");

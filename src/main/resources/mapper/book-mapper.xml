@@ -11,7 +11,7 @@
 		delete from book where bno like #{bno}
 	</delete>
 	<insert id="insertReview" parameterType="review">
-		insert into review values(#{rno}, #{contentId}, #{id}, #{star}, #{content}, sysdate, #{facltNm})
+		insert into review values(#{rno}, #{contentId}, #{id}, #{star}, #{content}, sysdate, #{facltNm}, #{bno})
 	</insert>
 	<insert id="insertReviewFile" parameterType="reviewFile">
 		insert into review_file values(SEQ_REVIEW_FILE_RFNO.NEXTVAL, #{contentId}, #{writer}, #{fileName}, #{facltNm}, #{rno})
