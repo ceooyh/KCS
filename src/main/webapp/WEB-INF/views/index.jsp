@@ -703,9 +703,18 @@
 		                </div>
 		                <div id="img_container_all2">
 			                <c:forEach var="list" items="requestScope.starlist">
-			                    <div class="img_container2" style="background-image: ${list.firstImageUrl};">
-			                        <span id="img_info2">${list.facltNm}</span>
-			                    </div>
+			                    <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container2" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 			                </c:forEach>
 		                </div>
 		            </div>
@@ -750,9 +759,18 @@
 		                </div>
 		                <div id="img_container_all3">
 		                    <c:forEach var="list" items="requestScope.reviewlist">
-			                    <div class="img_container2" style="background-image: ${list.firstImageUrl};">
-			                        <span id="img_info2">${list.facltNm}</span>
-			                    </div>
+			                    <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info3">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container3" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info3">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 			                </c:forEach>
 		                </div>
 		            </div>
@@ -803,9 +821,18 @@
 				                </div>
 				                <div id="img_container_all2">
 				                    <c:forEach var="list" items="requestScope.starlist">
-					                    <div class="img_container2" style="background-image: ${list.firstImageUrl};">
-					                        <span id="img_info2">${list.facltNm}</span>
-					                    </div>
+					                    <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container2" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 					                </c:forEach>
 				                </div>
 				            </div>
@@ -851,9 +878,18 @@
 					                </div>
 					                <div id="img_container_all3">
 					                    <c:forEach var="list" items="requestScope.reviewlist">
-						                    <div class="img_container3" style="background-image: ${list.firstImageUrl};">
-						                        <span id="img_info3">${list.facltNm}</span>
-						                    </div>
+						                    <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info3">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container3" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info3">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 						                </c:forEach>
 					                </div>
 					            </div>
@@ -903,9 +939,18 @@
 				                </div>
 				                <div id="img_container_all">
 				                   <c:forEach var="list" items="requestScope.favoritelist">
-					                    <div class="img_container" style="background-image: ${list.firstImageUrl};">
-					                        <span id="img_info">${list.facltNm}</span>
-					                    </div>
+					                    <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 					                </c:forEach>
 				                </div>
 				            </div>
@@ -953,9 +998,18 @@
 				                </div>
 				                <div id="img_container_all2">
 				                    <c:forEach var="list" items="requestScope.starlist">
-					                    <div class="img_container2" style="background-image: ${list.firstImageUrl};">
-					                        <span id="img_info2">${list.facltNm}</span>
-					                    </div>
+				                    	<c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container2" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 					                </c:forEach>
 				                </div>
 				            </div>
@@ -1004,9 +1058,18 @@
 				                </div>
 				                <div id="img_container_all2">
 				                    <c:forEach var="list" items="requestScope.starlist">
-					                    <div class="img_container2" style="background-image: ${list.firstImageUrl};">
-					                        <span id="img_info2">${list.facltNm}</span>
-					                    </div>
+							             <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container2" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container2" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info2">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 					                </c:forEach>
 				                </div>
 				            </div>
@@ -1055,9 +1118,18 @@
 				                </div>
 				                <div id="img_container_all3">
 				                    <c:forEach var="list" items="requestScope.reviewlist">
-					                    <div class="img_container3" style="background-image: ${list.firstImageUrl};">
-					                        <span id="img_info3">${list.facltNm}</span>
-					                    </div>
+							           <c:choose>
+				                    		<c:when test="${list.firstImageUrl ne '-'}">
+							                    <div class="img_container3" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
+							                        <span id="img_info3">${list.facltNm}</span>
+							                    </div>
+				                    		</c:when>
+				                    		<c:otherwise>
+							                    <div class="img_container3" style="background-image: url(../../img/indexpage/캠핑장사진.jpg);">
+							                        <span id="img_info3">${list.facltNm}</span>
+							                    </div>
+				                    		</c:otherwise>
+				                    	</c:choose>
 					                </c:forEach>
 				                </div>
 				            </div>
