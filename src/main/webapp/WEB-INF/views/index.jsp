@@ -939,7 +939,6 @@
 				                </div>
 				                <div id="img_container_all">
 				                   <c:forEach var="list" items="requestScope.favoritelist">
-<<<<<<< HEAD
 					                    <c:choose>
 				                    		<c:when test="${list.firstImageUrl ne '-'}">
 							                    <div class="img_container" style="background-image: url(${list.firstImageUrl});" onclick="location.href='spotDetailView.do?contentId=${list.contentId}&facltNm=${list.facltNm}'">
@@ -952,11 +951,9 @@
 							                    </div>
 				                    		</c:otherwise>
 				                    	</c:choose>
-=======
 					                    <div class="img_container" style="background-image: url('${list.firstImageUrl}');">
 					                        <span id="img_info">${list.facltNm}</span>
 					                    </div>
->>>>>>> 4aef03b01b5528abbc08e8cdbd8238c1e85b12f7
 					                </c:forEach>
 				                </div>
 				            </div>
