@@ -1,0 +1,126 @@
+.board_write_container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 100px;
+  margin-bottom: 200px;
+}
+#container > div {
+  width: 98%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+#board_write_headline {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+}
+#title_box {
+  padding: 10px;
+  display: flex;
+}
+
+#title_head {
+  width: 11%;
+  margin: 0px;
+  font-family: "보통노토";
+  font-size: 14px;
+}
+#board_write_title {
+  padding: 8px;
+  font-size: 12px;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+#writer_box {
+  padding: 10px;
+  display: flex;
+}
+#writer_head {
+  width: 14%;
+  font-family: "보통노토";
+  font-size: 14px;
+}
+#textarea_box {
+  padding: 10px;
+}
+#textarea_head {
+  width: 5%;
+  font-size: 14px;
+  font-family: "보통노토";
+}
+textarea {
+  width: 98%;
+  height: 200px;
+  resize: none;
+  box-sizing: border-box;
+  margin-top: 10px;
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 12px;
+}
+
+#title_box > input {
+  width: 50%;
+  height: 22px;
+  box-sizing: border-box;
+}
+
+#textarea_box {
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #282828;
+  color: #ffffff;
+}
+.plusminus_btn {
+  border-radius: 25%;
+  display: inline-block;
+  margin: 10px 0px 0px 0;
+  width: 30px;
+  height: 25px;
+  border: 1px solid #416f9431;
+  background-color: #646262;
+  color: white;
+}
+.plusminus_btn:hover {
+  background-color: rgb(250, 187, 71);
+  color: rgb(26, 2, 2);
+}
+.file_list {
+  width: 80%;
+  margin-top: 10px;
+}
+
+#board_write_page {
+  display: flex;
+  justify-content: flex-end;
+}
+.write_update_page_btn {
+  text-decoration: none;
+  width: 80px;
+  padding: 5px 0px;
+  font-weight: normal;
+  border: 1px solid #585858;
+  text-align: center;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-radius: 7px;
+  background-color: #646262;
+  color: white;
+  display: inline-block;
+  margin: 15px 0px 0px 10px;
+}
+.write_update_page_btn:hover {
+  background-color: rgb(250, 187, 71);
+  color: rgb(26, 2, 2);
+}
+#test {
+  width: 50px;
+  height: 50px;
+  background-color: yellow;
+  color: black;
+}
