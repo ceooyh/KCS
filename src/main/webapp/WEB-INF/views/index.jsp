@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
-<link rel="stylesheet" href="../../css/font.css">
+<link rel="stylesheet" href="../../css/fonts/font.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
@@ -729,7 +729,7 @@
 		                <span class="middle_banner_mm_text">KCS에서 추천받으세요</span>
 		                <span class="middle_banner_small_text">아직도 취향선택을 안하신 회원분들</span>
 		                <span class="middle_banner_small_text">취향을 선택하시고 </span>
-		                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span>
+		                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span><br>
 		                <c:choose>
 		                	<c:when test="${sessionScope.login == true}">
 				                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
@@ -848,7 +848,7 @@
 				                <span class="middle_banner_mm_text">KCS에서 추천받으세요</span>
 				                <span class="middle_banner_small_text">아직도 취향선택을 안하신 회원분들</span>
 				                <span class="middle_banner_small_text">취향을 선택하시고 </span>
-				                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span>
+				                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span><br>
 				                 <c:choose>
 				                	<c:when test="${sessionScope.login == true}">
 						                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
@@ -972,7 +972,7 @@
 						                <span class="middle_banner_mm_text">KCS에서 추천받으세요</span>
 						                <span class="middle_banner_small_text">아직도 취향선택을 안하신 회원분들</span>
 						                <span class="middle_banner_small_text">취향을 선택하시고 </span>
-						                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span>
+						                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span><br>
 						                 <c:choose>
 						                	<c:when test="${sessionScope.login == true}">
 								                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
@@ -1092,7 +1092,7 @@
 				                <span class="middle_banner_mm_text">KCS에서 추천받으세요</span>
 				                <span class="middle_banner_small_text">아직도 취향선택을 안하신 회원분들</span>
 				                <span class="middle_banner_small_text">취향을 선택하시고 </span>
-				                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span>
+				                <span class="middle_banner_small_text">맞춤 캠핑장을 추천받으세요</span><br>
 				                <c:choose>
 				                	<c:when test="${sessionScope.login == true}">
 						                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
