@@ -112,4 +112,10 @@ public class MemberService {
 		for(int i=0; i<fList.size(); i++)
 			mapper.updateBusinessFile(fList.get(i));
 	}
+
+	// 기존에 등록해놓은 취향정보가 있는지 확인 -희원,20210302
+	public FavoriteDTO checkFavorite(String id) {
+		return mapper.checkFavorite(id);
+	}
+
 }

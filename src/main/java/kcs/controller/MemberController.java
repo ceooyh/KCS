@@ -140,26 +140,80 @@ public class MemberController {
 	
 	// 일반 사용자 취향정보 등록 - 희원,20210219
 	@RequestMapping("/guestJoinFavoriteAction.do")
-	public String guestJoin(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		// 취향 정보 - 희원,20210222
-		String stag = request.getParameter("stag");
-		
-		// 취향테이블에 추가
-		FavoriteDTO favoriteDTO = new FavoriteDTO(id, stag);
-		
+	public String guestJoin(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {
-			int count = service.guestFavoriteJoin(favoriteDTO);
-			if(count == 0) {
+			if(session.getAttribute("id") == null) {
 				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+			}else {
+				String id = (String) session.getAttribute("id");
+				// 취향 정보 - 희원,20210301
+				// 캠핑유형
+				String gnrlSiteCo = request.getParameter("gnrlSiteCo") != null ? request.getParameter("gnrlSiteCo") : "-";
+				String autoSiteCo = request.getParameter("autoSiteCo") != null ? request.getParameter("autoSiteCo") : "-";
+				String glampSiteCo = request.getParameter("glampSiteCo") != null ? request.getParameter("glampSiteCo") : "-";
+				String caravSiteCo = request.getParameter("caravSiteCo") != null ? request.getParameter("caravSiteCo") : "-";
+				String indvdlCaravSiteCo = request.getParameter("indvdlCaravSiteCo") != null ? request.getParameter("indvdlCaravSiteCo") : "-";
+				
+				// 입지구분
+				String[] arr_lctCl = request.getParameterValues("lctCl");
+				String lctCl = "";
+				if(request.getParameterValues("lctCl") != null) {
+					arr_lctCl = request.getParameterValues("lctCl");
+					for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i] + ",";
+					if(arr_lctCl.length > 1) lctCl = lctCl.substring(0, lctCl.length()-1);
+					else lctCl = arr_lctCl[0];
+				}else {
+					lctCl = "-";
+				}
+				
+				// 부가시설
+				String[] arr_sbrsCl = request.getParameterValues("sbrsCl");
+				String sbrsCl = "";
+				if(request.getParameterValues("sbrsCl") != null) {
+					arr_sbrsCl = request.getParameterValues("sbrsCl");
+					for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i] + ",";
+					if(arr_sbrsCl.length > 1) sbrsCl = sbrsCl.substring(0, sbrsCl.length()-1);
+					else sbrsCl = arr_sbrsCl[0];
+				}else {
+					sbrsCl = "-";
+				}
+				
+				// 명소
+				String[] arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
+				String themaEnvrnCl = "";
+				if(request.getParameterValues("themaEnvrnCl") != null) {
+					arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
+					for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i] + ",";
+					if(arr_themaEnvrnCl.length > 1) themaEnvrnCl = themaEnvrnCl.substring(0, themaEnvrnCl.length()-1);
+					else themaEnvrnCl = arr_themaEnvrnCl[0];
+				}else {
+					themaEnvrnCl = "-";
+				}
+				
+				// 캠핑테마
+				String animalCmgCl = request.getParameter("animalCmgCl") != null && !request.getParameter("animalCmgCl").equals("불가능") ? request.getParameter("animalCmgCl") : "-";
+				String trlerAcmpnyAt = request.getParameter("trlerAcmpnyAt") != null && !request.getParameter("trlerAcmpnyAt").equals("N") ? request.getParameter("trlerAcmpnyAt") : "-";
+				String caravAcmpnyAt = request.getParameter("caravAcmpnyAt") != null && !request.getParameter("caravAcmpnyAt").equals("N") ? request.getParameter("caravAcmpnyAt") : "-";
+				
+				
+				// 취향테이블에 추가
+				FavoriteDTO favoriteDTO = new FavoriteDTO(id, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, themaEnvrnCl, animalCmgCl, trlerAcmpnyAt, caravAcmpnyAt, lctCl, sbrsCl);
+				
+				int count = service.guestFavoriteJoin(favoriteDTO);
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+				}
+				else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('취향등록 완료!');location.href='loginView.do';</script>");
+				}
+				
 			}
-			else {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('취향등록 완료!');location.href='loginView.do';</script>");
-			}
+		
 		} catch (IOException e) {
-			e.printStackTrace();
+			// TODO: handle exception
 		}
 		return null;
 	}
@@ -326,23 +380,83 @@ public class MemberController {
 	
 	// 취향정보 수정 진행 (일반 사용자) - 희원,20210223
 	@RequestMapping("/guestFavoriteUpdateAction.do")
-	public String guestFavoriteUpdateAction(HttpServletRequest request, HttpServletResponse response) {
-		String id = request.getParameter("id");
-		// 취향 정보
-		String stag = request.getParameter("stag");
-		
-		// 취향 정보 수정
-		FavoriteDTO favoriteDTO = new FavoriteDTO(id, stag);
-		
+	public String guestFavoriteUpdateAction(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {
-			int count = service.guestFavoriteUpdate(favoriteDTO);
-			if(count == 0) {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
-			}
-			else {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('취향정보 수정 완료!');location.href='indexView.do';</script>");
+			if(session.getAttribute("id") == null) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+			}else {
+				String id = (String) session.getAttribute("id");
+				// 취향 정보 - 희원,20210301
+				// 캠핑유형
+				String gnrlSiteCo = request.getParameter("gnrlSiteCo") != null ? request.getParameter("gnrlSiteCo") : "-";
+				String autoSiteCo = request.getParameter("autoSiteCo") != null ? request.getParameter("autoSiteCo") : "-";
+				String glampSiteCo = request.getParameter("glampSiteCo") != null ? request.getParameter("glampSiteCo") : "-";
+				String caravSiteCo = request.getParameter("caravSiteCo") != null ? request.getParameter("caravSiteCo") : "-";
+				String indvdlCaravSiteCo = request.getParameter("indvdlCaravSiteCo") != null ? request.getParameter("indvdlCaravSiteCo") : "-";
+				
+				// 입지구분
+				String[] arr_lctCl = request.getParameterValues("lctCl");
+				String lctCl = "";
+				if(request.getParameterValues("lctCl") != null) {
+					arr_lctCl = request.getParameterValues("lctCl");
+					for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i] + ",";
+					if(arr_lctCl.length > 1) lctCl = lctCl.substring(0, lctCl.length()-1);
+					else lctCl = arr_lctCl[0];
+				}else {
+					lctCl = "-";
+				}
+				
+				// 부가시설
+				String[] arr_sbrsCl = request.getParameterValues("sbrsCl");
+				String sbrsCl = "";
+				if(request.getParameterValues("sbrsCl") != null) {
+					arr_sbrsCl = request.getParameterValues("sbrsCl");
+					for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i] + ",";
+					if(arr_sbrsCl.length > 1) sbrsCl = sbrsCl.substring(0, sbrsCl.length()-1);
+					else sbrsCl = arr_sbrsCl[0];
+				}else {
+					sbrsCl = "-";
+				}
+				
+				// 명소
+				String[] arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
+				String themaEnvrnCl = "";
+				if(request.getParameterValues("themaEnvrnCl") != null) {
+					arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
+					for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i] + ",";
+					if(arr_themaEnvrnCl.length > 1) themaEnvrnCl = themaEnvrnCl.substring(0, themaEnvrnCl.length()-1);
+					else themaEnvrnCl = arr_themaEnvrnCl[0];
+				}else {
+					themaEnvrnCl = "-";
+				}
+				
+				// 캠핑테마
+				String animalCmgCl = request.getParameter("animalCmgCl") != null && !request.getParameter("animalCmgCl").equals("불가능") ? request.getParameter("animalCmgCl") : "-";
+				String trlerAcmpnyAt = request.getParameter("trlerAcmpnyAt") != null && !request.getParameter("trlerAcmpnyAt").equals("N") ? request.getParameter("trlerAcmpnyAt") : "-";
+				String caravAcmpnyAt = request.getParameter("caravAcmpnyAt") != null && !request.getParameter("caravAcmpnyAt").equals("N") ? request.getParameter("caravAcmpnyAt") : "-";
+				
+				
+				// 취향 수정
+				FavoriteDTO favoriteDTO = new FavoriteDTO(id, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, themaEnvrnCl, animalCmgCl, trlerAcmpnyAt, caravAcmpnyAt, lctCl, sbrsCl);
+				
+				// 기존에 등록해놓은 정보가 있는지 확인
+				FavoriteDTO check = service.checkFavorite(id);
+				int count = 0;
+				if(check == null) 
+					count = service.guestFavoriteJoin(favoriteDTO);
+				else 
+					count = service.guestFavoriteUpdate(favoriteDTO);
+				
+				// 결과 확인
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');location.href='guestFavoriteUpdateView.do';</script>");
+				}
+				else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('취향정보 수정 완료!');location.href='indexView.do';</script>");
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

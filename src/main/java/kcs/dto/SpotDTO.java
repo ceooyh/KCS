@@ -1,5 +1,7 @@
 package kcs.dto;
 
+import java.util.Arrays;
+
 public class SpotDTO {
 
 	private int contentId;
@@ -123,8 +125,30 @@ public class SpotDTO {
 		this.firstImageUrl = firstImageUrl;
 		this.star = star;
 		this.review_count = review_count;
+		this.firstImageUrl = firstImageUrl;
 	}
 
+	// 취향 비교위한 생성자
+	public SpotDTO(int contentId, String facltNm, String lctCl, String gnrlSiteCo, String autoSiteCo, String glampSiteCo,
+			String caravSiteCo, String indvdlCaravSiteCo, String trlerAcmpnyAt, String caravAcmpnyAt, String sbrsCl,
+			String themaEnvrnCl, String animalCmgCl, String firstImageUrl) {
+		super();
+		this.contentId = contentId;
+		this.facltNm = facltNm;
+		this.lctCl = lctCl;
+		this.gnrlSiteCo = gnrlSiteCo;
+		this.autoSiteCo = autoSiteCo;
+		this.glampSiteCo = glampSiteCo;
+		this.caravSiteCo = caravSiteCo;
+		this.indvdlCaravSiteCo = indvdlCaravSiteCo;
+		this.trlerAcmpnyAt = trlerAcmpnyAt;
+		this.caravAcmpnyAt = caravAcmpnyAt;
+		this.sbrsCl = sbrsCl;
+		this.themaEnvrnCl = themaEnvrnCl;
+		this.animalCmgCl = animalCmgCl;
+	}
+	
+	
 
 	public int getContentId() {
 		return contentId;
@@ -400,21 +424,61 @@ public class SpotDTO {
 		if (!(obj instanceof SpotDTO))
 			return false;
 		SpotDTO temp = (SpotDTO) obj;
-		
-		if(!temp.getDoNm().equals("-") && !temp.getDoNm().contains(doNm)) return false;
+		// temp == searchDTO
+		if(!temp.getDoNm().equals("-")) {
+			String[] arr_doNm = temp.getDoNm().split(",");
+			String[] this_doNm = doNm.split(",");
+			int count = arr_doNm.length;
+			for(int i=0; i<this_doNm.length; i++) {
+				for(int j=0; j<count; j++) {
+					if(this_doNm[i].equals(arr_doNm[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
 		if(!temp.getGnrlSiteCo().equals("-") && !temp.getGnrlSiteCo().equals(gnrlSiteCo)) return false;
 		if(!temp.getAutoSiteCo().equals("-") && !temp.getAutoSiteCo().equals(autoSiteCo)) return false;
 		if(!temp.getGlampSiteCo().equals("-") && !temp.getGlampSiteCo().equals(glampSiteCo)) return false;
 		if(!temp.getCaravSiteCo().equals("-") && !temp.getCaravSiteCo().equals(caravSiteCo)) return false;
 		if(!temp.getIndvdlCaravSiteCo().equals("-") && !temp.getIndvdlCaravSiteCo().equals(indvdlCaravSiteCo)) return false;
-		if(!temp.getLctCl().equals("-") && !temp.getLctCl().equals(lctCl)) return false;
+		if(!temp.getLctCl().equals("-")) {
+			String[] arr_lctCl = temp.getLctCl().split(",");
+			String[] this_lctCl = lctCl.split(",");
+			int count = arr_lctCl.length;
+			for(int i=0; i<this_lctCl.length; i++) {
+				for(int j=0; j<arr_lctCl.length; j++) {
+					if(this_lctCl[i].equals(arr_lctCl[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
 		if(!temp.getSiteBottomCl1().equals("-") && !temp.getSiteBottomCl1().equals(siteBottomCl1)) return false;
 		if(!temp.getSiteBottomCl2().equals("-") && !temp.getSiteBottomCl2().equals(siteBottomCl2)) return false;
 		if(!temp.getSiteBottomCl3().equals("-") && !temp.getSiteBottomCl3().equals(siteBottomCl3)) return false;
 		if(!temp.getSiteBottomCl4().equals("-") && !temp.getSiteBottomCl4().equals(siteBottomCl4)) return false;
 		if(!temp.getSiteBottomCl5().equals("-") && !temp.getSiteBottomCl5().equals(siteBottomCl5)) return false;
-		if(!temp.getSbrsCl().equals("-") && !temp.getSbrsCl().equals(sbrsCl)) return false;
-		if(!temp.getThemaEnvrnCl().equals("-") && !temp.getThemaEnvrnCl().equals(themaEnvrnCl)) return false;
+		if(!temp.getSbrsCl().equals("-")) {
+			String[] arr_sbrsCl = temp.getSbrsCl().split(",");
+			String[] this_sbrsCl = sbrsCl.split(",");
+			int count = arr_sbrsCl.length;
+			for(int i=0; i<this_sbrsCl.length; i++) {
+				for(int j=0; j<arr_sbrsCl.length; j++) {
+					if(this_sbrsCl[i].equals(arr_sbrsCl[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
+		if(!temp.getThemaEnvrnCl().equals("-")) {
+			String[] arr_themaEnvrnCl = temp.getThemaEnvrnCl().split(",");
+			String[] this_themaEnvrnCl = themaEnvrnCl.split(",");
+			int count = arr_themaEnvrnCl.length;
+			for(int i=0; i<this_themaEnvrnCl.length; i++) {
+				for(int j=0; j<arr_themaEnvrnCl.length; j++) {
+					if(this_themaEnvrnCl[i].equals(arr_themaEnvrnCl[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
 		if(!temp.getAnimalCmgCl().equals("-") && !temp.getAnimalCmgCl().equals(animalCmgCl)) return false;
 		if(!temp.getTrlerAcmpnyAt().equals("-") && !temp.getTrlerAcmpnyAt().equals(trlerAcmpnyAt)) return false;
 		if(!temp.getCaravAcmpnyAt().equals("-") && !temp.getCaravAcmpnyAt().equals(caravAcmpnyAt)) return false;
@@ -422,7 +486,58 @@ public class SpotDTO {
 		return true;
 	}
 	
-
+	public boolean favoriteEquals(Object obj) {
+		if (obj == null)
+			return false;
+		if (!(obj instanceof SpotDTO))
+			return false;
+		SpotDTO temp = (SpotDTO) obj;
+		// temp == favoriteSpotDTO
+		if(!temp.getGnrlSiteCo().equals("-") && !temp.getGnrlSiteCo().equals(gnrlSiteCo)) return false;
+		if(!temp.getAutoSiteCo().equals("-") && !temp.getAutoSiteCo().equals(autoSiteCo)) return false;
+		if(!temp.getGlampSiteCo().equals("-") && !temp.getGlampSiteCo().equals(glampSiteCo)) return false;
+		if(!temp.getCaravSiteCo().equals("-") && !temp.getCaravSiteCo().equals(caravSiteCo)) return false;
+		if(!temp.getIndvdlCaravSiteCo().equals("-") && !temp.getIndvdlCaravSiteCo().equals(indvdlCaravSiteCo)) return false;
+		if(!temp.getLctCl().equals("-")) {
+			String[] arr_lctCl = temp.getLctCl().split(",");
+			String[] this_lctCl = lctCl.split(",");
+			int count = arr_lctCl.length;
+			for(int i=0; i<this_lctCl.length; i++) {
+				for(int j=0; j<arr_lctCl.length; j++) {
+					if(this_lctCl[i].equals(arr_lctCl[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
+		if(!temp.getSbrsCl().equals("-")) {
+			String[] arr_sbrsCl = temp.getSbrsCl().split(",");
+			String[] this_sbrsCl = sbrsCl.split(",");
+			int count = arr_sbrsCl.length;
+			for(int i=0; i<this_sbrsCl.length; i++) {
+				for(int j=0; j<arr_sbrsCl.length; j++) {
+					if(this_sbrsCl[i].equals(arr_sbrsCl[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
+		if(!temp.getThemaEnvrnCl().equals("-")) {
+			String[] arr_themaEnvrnCl = temp.getThemaEnvrnCl().split(",");
+			String[] this_themaEnvrnCl = themaEnvrnCl.split(",");
+			int count = arr_themaEnvrnCl.length;
+			for(int i=0; i<this_themaEnvrnCl.length; i++) {
+				for(int j=0; j<arr_themaEnvrnCl.length; j++) {
+					if(this_themaEnvrnCl[i].equals(arr_themaEnvrnCl[j])) count--;
+				}
+			}
+			if(count != 0) return false;
+		}
+		if(!temp.getAnimalCmgCl().equals("-") && !temp.getAnimalCmgCl().equals(animalCmgCl)) return false;
+		if(!temp.getTrlerAcmpnyAt().equals("-") && !temp.getTrlerAcmpnyAt().equals(trlerAcmpnyAt)) return false;
+		if(!temp.getCaravAcmpnyAt().equals("-") && !temp.getCaravAcmpnyAt().equals(caravAcmpnyAt)) return false;
+		
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		return "SpotDTO [contentId=" + contentId + ", facltNm=" + facltNm + ", lineIntro=" + lineIntro + ", intro="

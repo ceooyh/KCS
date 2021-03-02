@@ -281,7 +281,9 @@ public class SpotController {
 		String doNm = "";
 		if(request.getParameterValues("doNm") != null) {
 			arr_doNm = request.getParameterValues("doNm");
-			for(int i=0; i<arr_doNm.length; i++) doNm += arr_doNm[i].trim();
+			for(int i=0; i<arr_doNm.length; i++) doNm += arr_doNm[i] + ",";
+			if(arr_doNm.length > 1) doNm = doNm.substring(0, doNm.length()-1);
+			else doNm = arr_doNm[0];
 		}else {
 			doNm = "-";
 		}
@@ -298,7 +300,9 @@ public class SpotController {
 		String lctCl = "";
 		if(request.getParameterValues("lctCl") != null) {
 			arr_lctCl = request.getParameterValues("lctCl");
-			for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i].trim();
+			for(int i=0; i<arr_lctCl.length; i++) lctCl += arr_lctCl[i] + ",";
+			if(arr_lctCl.length > 1) lctCl = lctCl.substring(0, lctCl.length()-1);
+			else lctCl = arr_lctCl[0];
 		}else {
 			lctCl = "-";
 		}
@@ -310,12 +314,15 @@ public class SpotController {
 		String siteBottomCl4 = request.getParameter("siteBottomCl4") != null ? request.getParameter("siteBottomCl4") : "-";
 		String siteBottomCl5 = request.getParameter("siteBottomCl5") != null ? request.getParameter("siteBottomCl5") : "-";
 		
+		
 		// 부가시설
 		String[] arr_sbrsCl = request.getParameterValues("sbrsCl");
 		String sbrsCl = "";
 		if(request.getParameterValues("sbrsCl") != null) {
 			arr_sbrsCl = request.getParameterValues("sbrsCl");
-			for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i].trim();
+			for(int i=0; i<arr_sbrsCl.length; i++) sbrsCl += arr_sbrsCl[i] + ",";
+			if(arr_sbrsCl.length > 1) sbrsCl = sbrsCl.substring(0, sbrsCl.length()-1);
+			else sbrsCl = arr_sbrsCl[0];
 		}else {
 			sbrsCl = "-";
 		}
@@ -325,7 +332,9 @@ public class SpotController {
 		String themaEnvrnCl = "";
 		if(request.getParameterValues("themaEnvrnCl") != null) {
 			arr_themaEnvrnCl = request.getParameterValues("themaEnvrnCl");
-			for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i].trim();
+			for(int i=0; i<arr_themaEnvrnCl.length; i++) themaEnvrnCl += arr_themaEnvrnCl[i] + ",";
+			if(arr_themaEnvrnCl.length > 1) themaEnvrnCl = themaEnvrnCl.substring(0, themaEnvrnCl.length()-1);
+			else themaEnvrnCl = arr_themaEnvrnCl[0];
 		}else {
 			themaEnvrnCl = "-";
 		}
@@ -442,6 +451,7 @@ public class SpotController {
 					}else {
 					}
 				}
+
 				
 				// 페이징 정보
 				PaggingVO page = new PaggingVO(count, Integer.parseInt(pageNo));

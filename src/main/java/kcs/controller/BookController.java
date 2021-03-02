@@ -172,7 +172,11 @@ public class BookController {
  		
  		request.setAttribute("contentId", contentId);
  		request.setAttribute("facltNm", facltNm);
- 		
+ 		// 날짜 정보
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		String today = sdf.format(cal.getTime());
+		request.setAttribute("today", today);
  		return "spot/spot_book_view";
  	}
  	
