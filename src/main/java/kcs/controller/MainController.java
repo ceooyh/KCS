@@ -44,6 +44,8 @@ public class MainController {
 		
 		if(session.getAttribute("id") != null && session.getAttribute("user_type") != null && (int)session.getAttribute("user_type") == 1) {
 			// (일반 사용자)로그인 : 별점, 취향순 추천
+			
+			/*S:취향 추천*/
 			ArrayList<SpotDTO> favoriteList = new ArrayList<SpotDTO>();
 			
 			// 모든 목록을 10개씩 가져오고
@@ -78,6 +80,11 @@ public class MainController {
 			}
 			// 취향 추천 목록 보내주기
 			request.setAttribute("favoritelist", favoriteList);
+			/*E:취향 추천*/
+			
+			/*S:별점 추천*/
+			/*E:별점 추천*/
+			
 			
 		}else {
 			// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천
