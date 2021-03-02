@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../../../css/fonts/font.css">
 <link rel="stylesheet" href="../../../css/board/board_write.css">
 <script src="../../../lib/jquery-3.5.1.min.js"></script>
-<script defer src="../../../script/board/board_write.js"></script>
+<script defer src="../../../js/board/board_write.js"></script>
 <title>게시판 글쓰기 페이지</title>
 </head>
 
