@@ -179,9 +179,30 @@
     }
 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function delete_member(obj) {
+			var data = "";
+			data = "qno=" + $(obj).parent().parent().find("input").first().val();
+			console.log(data);
+			$.ajax({
+				url : "qna/qnaAjaxDelete.do",
+				data : data,
+				method:"get",
+				success:function(d){
+					data = Boolean(d);
+					if(d){
+						console.log("삭제 성공");
+					}else{
+						console.log("삭제 실패");						
+					}
+				}
+			}); //ajax
+		} //메인
+</script>
 </head>
 <body>
-	<jsp:include page="../template/header.jsp"></jsp:include>
+	<jsp:include page="../template/header2.jsp"></jsp:include>
 	<div id="container">
         <p id="headline">QnA</p><!--헤드라인-->
 			<form action="qnaUpdate.do" method="get">
@@ -204,7 +225,7 @@
                 
                	 <div id="btn_update">
                 		<input type="hidden" value="${requestScope.dto.qno }">
-                	    	<button id="btn_delete">삭제</button>
+                	    	<button id="btn_delete" type="button">삭제</button>
                     	<c:if test="${sessionScope.status != 2 }">
                     	    <button id="btn_modify">수정</button>
                   	 	 </c:if>
