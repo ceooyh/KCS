@@ -734,9 +734,9 @@
 		                	<c:when test="${sessionScope.login == true}">
 				                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
 		                	</c:when>
-		                	<c:when test="${sessionScope.login == false}">
+		                	<c:otherwise>
 				                <span id="btn_move_site"><a href="selectJoinView.do">회원가입 / 취향정보수정</a></span>
-		                	</c:when>
+		                	</c:otherwise>
 		                </c:choose>
 		            </div>
 		        </div>
@@ -853,9 +853,9 @@
 				                	<c:when test="${sessionScope.login == true}">
 						                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
 				                	</c:when>
-				                	<c:when test="${sessionScope.login == false}">
+				                	<c:otherwise>
 						                <span id="btn_move_site"><a href="selectJoinView.do">회원가입 / 취향정보수정</a></span>
-				                	</c:when>
+				                	</c:otherwise>
 				                </c:choose>
 				            </div>
 				        </div>
@@ -971,9 +971,9 @@
 						                	<c:when test="${sessionScope.login == true}">
 								                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
 						                	</c:when>
-						                	<c:when test="${sessionScope.login == false}">
+						                	<c:otherwise>
 								                <span id="btn_move_site"><a href="selectJoinView.do">회원가입 / 취향정보수정</a></span>
-						                	</c:when>
+						                	</c:otherwise>
 						                </c:choose>
 						            </div>
 						   </div>
@@ -1091,9 +1091,9 @@
 				                	<c:when test="${sessionScope.login == true}">
 						                <span id="btn_move_site"><a href="guestFavoriteUpdateView.do">회원가입 / 취향정보수정</a></span>
 				                	</c:when>
-				                	<c:when test="${sessionScope.login == false}">
+				                	<c:otherwise>
 						                <span id="btn_move_site"><a href="selectJoinView.do">회원가입 / 취향정보수정</a></span>
-				                	</c:when>
+				                	</c:otherwise>
 				                </c:choose>
 				            </div>
 				        </div><!-- 중간 배너2 끝 -->

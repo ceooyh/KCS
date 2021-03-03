@@ -146,6 +146,7 @@ section {
 }
 
 #h1_down_row {
+	margin-top:15px;
 	margin-bottom: 10px;
 }
 

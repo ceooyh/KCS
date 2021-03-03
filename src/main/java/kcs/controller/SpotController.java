@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kcs.dto.ReviewDTO;
 import kcs.dto.SpotDTO;
 import kcs.service.SpotService;
 import kcs.vo.PaggingVO;
@@ -669,10 +670,18 @@ public class SpotController {
 					if(spotDTO.getSbrsCl() != "" && spotDTO.getSbrsCl() != "-") {
 						sbrsClList = spotDTO.getSbrsCl().split(",");
 					}
+					
+					// 후기 정보 설정
+					ArrayList<ReviewDTO> reviewList = new ArrayList<ReviewDTO>();
+					// 이 캠핑장 contentId를 가지고 있는 리뷰 테이블 로우 검색
+					reviewList = service.getSpotReview(spotDTO.getContentId());
+					
 					request.setAttribute("sbrsClList", sbrsClList);
 					request.setAttribute("spotDTO", spotDTO);
+					request.setAttribute("reviewlist", reviewList);
 					return "spot/spot_detail_view";
 				}
+				
 				
 			} else {
 				response.setContentType("text/html;charset=utf-8");
