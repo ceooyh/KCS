@@ -28,4 +28,10 @@
 	<update id="updateBookStatus" parameterType="String">
 		update book set status = 3 where bno like #{bno}
 	</update>
+	<select id="getBizrno" parameterType="String" resultType="String">
+		select b.business_no from business b, member m where b.id like #{id} and b.id like m.id
+	</select>
+	<select id="getManageBookList" parameterType="String" resultType="book">
+		select * from book where bizrno like #{bizrno}
+	</select>
 </mapper>

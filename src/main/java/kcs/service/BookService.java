@@ -62,5 +62,15 @@ public class BookService {
 		mapper.updateBookStatus(bno);
 	}
 
+	// 사업자의 사업자 번호 가져오기
+	public String getBizrno(String id) {
+		return mapper.getBizrno(id);
+	}
+
+	// 사업자 번호와 일치하는 예약 목록
+	public ArrayList<BookDTO> getManageBookList(String bizrno) {
+		return mapper.getManageBookList(bizrno);
+	}
+
 	
 }
