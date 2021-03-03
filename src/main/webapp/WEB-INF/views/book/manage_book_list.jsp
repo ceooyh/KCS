@@ -115,7 +115,7 @@
 		}
 		function accept_reservation(obj) {
 			var data = "";
-			data = "bno=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
+			data = "bno=" + $(obj).parent().parent().parent().parent().find("td").first().val();
 			console.log(data);
 			$.ajax({
 				url : "manageBookAccept.do",

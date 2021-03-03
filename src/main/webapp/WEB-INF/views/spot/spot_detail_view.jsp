@@ -441,7 +441,7 @@ section {
 /*캠핑장 위치정보 CSS*/
 #detail_information_image {
 	width: 1000px;
-	height: 600px;
+	height: 640px;
 	margin: 0 auto;
 	/*background-color: rgb(247, 186, 186);*/
 	border: 1px solid rgb(236, 236, 236);
@@ -520,6 +520,7 @@ section {
 #container_info {
 	width: 1200px;
 	position: relative;
+	margin-bottom: 40px;
 }
 
 .container_info_first {
@@ -713,6 +714,18 @@ section {
     #review_table tr{
         border-bottom: 1px solid rgb(209, 209, 209);
     }
+    #load{
+    	height: 30px;
+    	font-family: '에스코어5';
+    	text-decoration: none;
+    	color: white;
+    	background-color: rgb(196,196,196);
+    	padding: 3px;
+    	margin-top: 10px;
+    }
+     #load:hover {
+		background-color: rgb(44,42,41);
+	}
 </style>
 </head>
 <body>
@@ -809,8 +822,8 @@ section {
 
 
 			<!--캠핑장 지도 start -->
-			<p style="text-align: center;">
-			    <em>지도를 마우스로 클릭하면 선 그리기가 시작되고<br>오른쪽 마우스를 클릭하면 선 그리기가 종료됩니다</em>
+			<p style="text-align: center; color: orange;font-family: '에스코어6';font-size: 14px;margin-bottom: 10px;">
+			    지도를 마우스로 클릭하면 선 그리기가 시작되고<br>오른쪽 마우스를 클릭하면 선 그리기가 종료됩니다.
 			</p>
 			<div id="detail_information_image">
 				<div class="box_border" id="map" style="width:1000px; height:600px;"></div>
@@ -1469,17 +1482,17 @@ section {
 				<span class="camp_facility_info">[캠핑장후기]</span>
                 <div id="container_review"><!--캠핑장 후기 시작-->
                     <table id="review_table">
-                        	<thead>
+                        <thead>
                             <tr>
                                 <th class="review_th1">번호</th>
                                 <th class="review_th2">아이디</th>
-                                <th class="review_th2">날짜<th>
+                                <th class="review_th2">날짜</th>
                                 <th class="review_th3">별점</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="list" items="${requestScope.reviewlist}">
-                                <tr onclick="location.href('');">
+                                <tr>
                                     <td class="review_td1">${list.rno}</td>
                                     <td class="review_td2">${list.rdate}</td>
                                     <td class="review_td2">${list.id}</td>
