@@ -87,6 +87,10 @@
     #reservation_headline_img{
     	width: 100%;
     }
+    #Cancel_click_button{text-decoration: none; color: white; background-color: rgb(46,46,46); border: 1px solid rgb(46,46,46); border-radius: 5px;padding: 6px;}
+    #accept_click_button{text-decoration: none; color: white; background-color: rgb(46,46,46); border: 1px solid rgb(46,46,46); border-radius: 5px;padding: 6px;}
+    #Cancel_click_button:hover{color: rgb(46,46,46); background-color: rgb(233, 233, 233); border: none; }
+    #accept_click_button:hover{color: rgb(46,46,46); background-color: rgb(233, 233, 233); border: none;}
 </style>
 <script src="../../../lib/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
