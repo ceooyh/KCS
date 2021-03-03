@@ -104,11 +104,11 @@
 	                <div id="date_insert">
 	                    <span id="start_date_insert">
 	                        <span class="date_headline">예약 시작일</span>
-	                        <input id="start_date" name="start_date" type="date" min="${requestScope.dto.today}">
+	                        <input id="start_date" name="start_date" type="date" min="${requestScope.today}">
 	                    </span>
 	                    <span id="end_date_insert">
 	                        <span class="date_headline">예약 종료일</span>
-	                        <input id="end_date" name="end_date" type="date" max="${requestScope.dto.today}+365">
+	                        <input id="end_date" name="end_date" type="date" max="${requestScope.today}+365">
 	                    </span>
 	                </div>
 	                <div id="button_insert">
@@ -117,8 +117,9 @@
 	                    <button  class="book_btn"  type="button" onclick="location.href='indexView.do';">돌아가기</button>
 	                </div>
 	            </div>
-	            <input type="hidden" name="contentId" value="${requestScope.dto.contentId}">
-	            <input type="hidden" name="bizrno" value="${requestScope.dto.bizrno}">
+	            <input type="hidden" name="contentId" value="${requestScope.contentId}">
+	            <input type="hidden" name="facltNm" value="${requestScope.facltNm}">
+	            <input type="hidden" name="bizrno" value="${requestScope.bizrno}">
 	        </form>
 	    </section>
     <jsp:include page="../template/footer.jsp" flush="false"></jsp:include>
