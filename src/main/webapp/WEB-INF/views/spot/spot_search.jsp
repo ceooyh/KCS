@@ -203,6 +203,32 @@
         border-bottom: 2px solid rgb(165, 165, 165);
         margin-bottom: 40px;
     }
+    #spot_detail_address{
+        width: 100%;
+        height: 50px;
+        box-sizing: border-box;
+    }
+    #review_count{
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        padding: 8px;
+        font-size: 12px;
+        box-sizing: border-box;
+        background-color: rgb(255, 174, 69);
+        color: white;
+        margin-right: 10px;
+    }
+    #star_count{
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        padding: 8px;
+        font-size: 12px;
+        box-sizing: border-box;
+        background-color: rgb(104, 232, 255);
+        color: white;
+    }
     #detail_camping_info{
         width: 1200px;
         margin: 0 auto;
@@ -417,6 +443,11 @@
             <h1>캠핑장 상세 리스트</h1>
             <hr id="h1_down_row">
             <c:forEach var="dto" items="${ requestScope.list}">
+	            <div id="spot_detail_address">
+	                    <div>
+	                        <span id="review_count">리뷰수 ${dto.review_count}</span><span id="star_count">별점 ${dto.star}</span>
+	                    </div>
+				</div>
                 <div id="camping_info_list">
                     <div id="spot_main_img">
                     	<c:choose>
