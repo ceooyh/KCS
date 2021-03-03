@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kcs.mapper.BookMapper">
 	<select id="getGuestBookList" parameterType="String" resultType="book">
-		select bno, TO_CHAR(start_date, 'YYYY-MM-DD'), TO_CHAR(end_date, 'YYYY-MM-DD'), TO_CHAR(book_date, 'YYYY-MM-DD'), contentId, id, status, facltNm 
+		select bno, TO_CHAR(start_date, 'YYYY-MM-DD'), TO_CHAR(end_date, 'YYYY-MM-DD'), TO_CHAR(book_date, 'YYYY-MM-DD'), contentId, id, status, facltNm, bizrno 
 		from book where id like #{id}
 	</select>
 	<delete id="guestBookCancel" parameterType="String">
@@ -19,11 +19,11 @@
 	<select id="getRno" resultType="int">
 		select SEQ_REVIEW_RNO.NEXTVAL from dual
 	</select>
-	<select id="checkBno" parameterType="String">
+	<select id="checkBno" parameterType="String" resultType="String">
 		select bno from book where bno like #{bno}
 	</select>
 	<insert id="insertBook" parameterType="book">
-		insert into book values(#{bno}, TO_DATE(#{start_date},'yyyy-MM-dd'),  TO_DATE(#{end_date},'yyyy-MM-dd'), sysdate, #{contentId}, #{id}, 0, #{facltNm})
+		insert into book values(#{bno}, TO_DATE(#{start_date},'yyyy-MM-dd'),  TO_DATE(#{end_date},'yyyy-MM-dd'), sysdate, #{contentId}, #{id}, 0, #{facltNm}, #{bizrno})
 	</insert>
 	<update id="updateBookStatus" parameterType="String">
 		update book set status = 3 where bno like #{bno}

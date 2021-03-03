@@ -168,16 +168,18 @@ public class BookController {
  		int contentId = Integer.parseInt(request.getParameter("contentId"));
  		String facltNm = request.getParameter("facltNm");
  		String bizrno = request.getParameter("bizrno");
+ 		String firstImageUrl = request.getParameter("firstImageUrl");
  		
  		request.setAttribute("contentId", contentId);
  		request.setAttribute("facltNm", facltNm);
  		request.setAttribute("bizrno", bizrno);
+ 		request.setAttribute("firstImageUrl", firstImageUrl);
  		// 날짜 정보
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		String today = sdf.format(cal.getTime());
 		request.setAttribute("today", today);
- 		return "spot/spot_book_view";
+ 		return "book/book";
  	}
  	
  	// 랜덤 예약번호 생성 -희원,20210301

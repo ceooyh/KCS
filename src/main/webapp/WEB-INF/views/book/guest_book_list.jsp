@@ -138,7 +138,7 @@
                             </c:choose>
                             <td><p class="inside_content">${dto.facltNm}</p></td>
                             <c:choose>
-                            	<c:when test="${dto.status == 1}">
+                            	<c:when test="${dto.status <= 1}">
 		                            <td><p class="inside_content"><a id="status_click_button" href="guestBookCancel.do?bno=${dto.bno}">예약취소</a></p></td>
                             	</c:when>
                             	<c:when test="${requestScope.today >= dto.start_date && dto.status < 3}">
