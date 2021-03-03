@@ -102,8 +102,8 @@
         margin-top: 5px;
         margin-bottom: 10px;
     }
-    #content{
-        width: 700px;
+    .content{
+        width: 698px;
         height: 100px;
         resize: none;
         border: 2px solid rgb(231, 231, 231);
@@ -184,7 +184,6 @@
 	function delete_qna(obj) {
 		var data = "";
 		data = "qno=" + $(obj).prev().val();
-		alert(data);
 		$.ajax({
 			url : "qnaAjaxDelete.do",
 			data : data,
@@ -230,7 +229,7 @@
                  
                 	<div class="part_select">
                     	 <p id="qna_content_title"><label for="title">[문의내용]</label></p>
-                     	<textarea name="content" id="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
+                     	<textarea name="content" class="content" rows="90" cols="20"  <c:if test="${sessionScope.id ne requestScope.dto.writer }">readonly</c:if>>${requestScope.dto.content }</textarea>
                      	</div>
                  	</div><!--내용-->	
                 
@@ -256,7 +255,7 @@
 		                    <p id="qna_content_title"><label for="title">[답변]</label></p>
 						<table>
 		                    <tr>
-		                        <td><textarea name="response" placeholder="답변 내용을 입력해 주세요"></textarea>
+		                        <td><textarea class="content" name="response" placeholder="답변 내용을 입력해 주세요"></textarea>
 								</td>
 							</tr>
 						</table>

@@ -96,8 +96,7 @@
 <script type="text/javascript">
 		function delete_reservation(obj) {
 			var data = "";
-			data = "bno=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
-			console.log(data);
+			data = "bno=" + $(obj).prev().val();
 			$.ajax({
 				url : "manageBookCancel.do",
 				data : data,
@@ -115,8 +114,7 @@
 		}
 		function accept_reservation(obj) {
 			var data = "";
-			data = "bno=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
-			console.log(data);
+			data = "bno=" + $(obj).prev().val();
 			$.ajax({
 				url : "manageBookAccept.do",
 				data : data,
@@ -133,13 +131,12 @@
 			});
 		}
 		$(function() {
-			
-		});
-		$("#accept_click_button").click(function() {
-			accept_reservation($(this));
-		});
-		$("#Cancel_click_button").click(function() {
-			delete_reservation($(this));
+			$("#accept_click_button").click(function() {
+				accept_reservation($(this));
+			});
+			$("#Cancel_click_button").click(function() {
+				delete_reservation($(this));
+			});
 		});
 </script>
 </head>
@@ -178,10 +175,12 @@
 		                                <td><p class="inside_content">${dto.facltNm}</p></td><!--캠핑장 이름-->
 		                                <c:choose>
 		                                	<c:when test="${dto.status == 0}">
-				                                <td><p class="inside_content"><a id="accept_click_button" href="#">수락</a></p></td>
+				                                <td><p class="inside_content">
+				                                <input type="hidden" name="bno" value="${dto.bno }">
+				                                <a id="accept_click_button" href="#">수락</a></p></td>
 		                                	</c:when>
 		                                	<c:when test="${dto.status == 1}">
-				                                <td><p class="inside_content"><a id="accept_click_button" href="#">수락</a></p></td>
+				                                <td><p class="inside_content">수락완료</p></td>
 		                                	</c:when>
 		                                	<c:when test="${dto.status == 2}">
 				                                <td><p class="inside_content">결제완료</p></td>
@@ -195,18 +194,31 @@
 		                                </c:choose>
 		                                <c:choose>
 		                                	<c:when test="${dto.status == 0}">
-				                                <td><p class="inside_content"><a id="Cancel_click_button" href="#">예약거절</a></p></td>
+				                                <td><p class="inside_content">
+				                                <input type="hidden" name="bno" value="${dto.bno }">
+				                                <a id="Cancel_click_button" href="#">예약거절</a></p></td>
 		                                	</c:when>
 		                                	<c:when test="${dto.status == 1}">
-				                                <td><p class="inside_content"><a id="Cancel_click_button" href="#">예약거절</a></p></td>
-		                                	</c:when>
-		                                	<c:when test="${dto.status == 2}">
-		                                		<c:choose>
-		                                			<c:when test="${dto.start_date} <= ${dto.start_today}">
+				                                <c:choose>
+		                                			<c:when test="${dto.start_date <= requestScope.today}">
 						                                <td><p class="inside_content">기간만료</p></td>
 		                                			</c:when>
 		                                			<c:otherwise>
-						                                <td><p class="inside_content"><a id="Cancel_click_button" href="#">예약거절</a></p></td>
+						                                <td><p class="inside_content">
+						                                <input type="hidden" name="bno" value="${dto.bno }">
+						                                <a id="Cancel_click_button" href="#">예약거절</a></p></td>
+		                                			</c:otherwise>
+		                                		</c:choose>
+		                                	</c:when>
+		                                	<c:when test="${dto.status == 2}">
+		                                		<c:choose>
+		                                			<c:when test="${dto.start_date <= requestScope.today}">
+						                                <td><p class="inside_content">기간만료</p></td>
+		                                			</c:when>
+		                                			<c:otherwise>
+						                                <td><p class="inside_content">
+						                                <input type="hidden" name="bno" value="${dto.bno }">
+						                                <a id="Cancel_click_button" href="#">예약거절</a></p></td>
 		                                			</c:otherwise>
 		                                		</c:choose>
 		                                	</c:when>
