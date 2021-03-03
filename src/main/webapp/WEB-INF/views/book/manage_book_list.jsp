@@ -198,7 +198,14 @@
 				                                <td><p class="inside_content"><a id="Cancel_click_button" href="#">예약거절</a></p></td>
 		                                	</c:when>
 		                                	<c:when test="${dto.status == 2}">
-				                                <td><p class="inside_content"><a id="Cancel_click_button" href="#">예약거절</a></p></td>
+		                                		<c:choose>
+		                                			<c:when test="${dto.start_date} <= ${dto.start_today}">
+						                                <td><p class="inside_content">기간만료</p></td>
+		                                			</c:when>
+		                                			<c:otherwise>
+						                                <td><p class="inside_content"><a id="Cancel_click_button" href="#">예약거절</a></p></td>
+		                                			</c:otherwise>
+		                                		</c:choose>
 		                                	</c:when>
 		                                	<c:when test="${dto.status == 3}">
 				                                <td><p class="inside_content">이용완료</p></td>
