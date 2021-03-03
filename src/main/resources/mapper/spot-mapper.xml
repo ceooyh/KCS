@@ -19,4 +19,7 @@
 		(select contentId, count(*) as keep from keep group by contentId order by keep desc)
 		where rownum <![CDATA[ <= ]]> 3
 	</select>
+	<select id="getSpotReview" parameterType="int" resultType="review">
+		select * from review where contentId = #{contentId}
+	</select>
 </mapper>
