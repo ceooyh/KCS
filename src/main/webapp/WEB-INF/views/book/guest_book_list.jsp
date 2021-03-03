@@ -135,6 +135,9 @@
                             	<c:when test="${dto.status == 3}">
 		                            <td><p class="inside_content">후기작성완료</p></td>
                             	</c:when>
+                            	<c:when test="${dto.status == 4}">
+		                            <td><p class="inside_content">예약거절됨</p></td>
+                            	</c:when>
                             </c:choose>
                             <td><p class="inside_content">${dto.facltNm}</p></td>
                             <c:choose>

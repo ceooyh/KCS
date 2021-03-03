@@ -260,4 +260,41 @@ public class BookController {
  		return null;
  	}
  	
+ 	// 예약건 수락 (사업자) - 희원,20210303
+ 	@RequestMapping("/manageBookAccept.do")
+ 	public String manageBookAccept(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+ 		try {
+	 		String bno = request.getParameter("bno");
+	 		int count = service.manageBookAccept(bno);
+	 		if(count == 0) {
+	 			// 실패
+				response.getWriter().print("false");
+	     	}else {
+	     		// 성공
+	     		response.getWriter().print("true");
+	     	}
+ 		} catch (IOException e) {
+ 			e.printStackTrace();
+ 		}
+ 		return null;
+ 	}
+ 	
+ 	// 예약건 거절 (사업자) - 희원,20210303
+  	@RequestMapping("/manageBookCancel.do")
+  	public String manageBookCancel(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+  		try {
+ 	 		String bno = request.getParameter("bno");
+ 	 		int count = service.manageBookCancel(bno);
+ 	 		if(count == 0) {
+ 	 			// 실패
+ 				response.getWriter().print("false");
+ 	     	}else {
+ 	     		// 성공
+ 	     		response.getWriter().print("true");
+ 	     	}
+  		} catch (IOException e) {
+  			e.printStackTrace();
+  		}
+  		return null;
+  	}
 }

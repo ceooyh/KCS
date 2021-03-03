@@ -42,5 +42,11 @@ public interface BookMapper {
 	// 사업자 번호와 일치하는 예약 목록
 	ArrayList<BookDTO> getManageBookList(String bizrno);
 
+	// 예약 요청건 수락
+	int manageBookAccept(String bno);
+
+	// 예약 요청건 거절
+	int manageBookCancel(String bno);
+
 }
 

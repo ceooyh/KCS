@@ -72,5 +72,15 @@ public class BookService {
 		return mapper.getManageBookList(bizrno);
 	}
 
+	// 예약 요청건 수락
+	public int manageBookAccept(String bno) {
+		return mapper.manageBookAccept(bno);
+	}
+
+	// 예약 요청건 거절
+	public int manageBookCancel(String bno) {
+		return mapper.manageBookCancel(bno);
+	}
+
 	
 }
