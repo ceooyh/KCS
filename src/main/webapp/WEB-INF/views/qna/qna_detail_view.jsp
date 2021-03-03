@@ -181,24 +181,34 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	function delete_member(obj) {
-			var data = "";
-			data = "qno=" + $(obj).parent().parent().find("input").first().val();
-			console.log(data);
-			$.ajax({
-				url : "qna/qnaAjaxDelete.do",
-				data : data,
-				method:"get",
-				success:function(d){
-					data = Boolean(d);
-					if(d){
-						console.log("삭제 성공");
-					}else{
-						console.log("삭제 실패");						
-					}
+	function delete_qna(obj) {
+		var data = "";
+		data = "qno=" + $(obj).prev().val();
+		alert(data);
+		$.ajax({
+			url : "qnaAjaxDelete.do",
+			data : data,
+			method:"get",
+			success:function(d){
+				d = d === "true";
+				if(d){
+					alert("삭제 성공");
+				}else{
+					alert("삭제 실패");						
 				}
-			}); //ajax
-		} //메인
+				location.href='qnaView.do';
+			}
+		}); //ajax
+	}
+	
+	$(function(){
+		
+		// 삭제 버튼 클릭시
+		$("#btn_delete").click(function(){
+			delete_qna($(this));
+		});
+	});
+	
 </script>
 </head>
 <body>
@@ -206,6 +216,7 @@
 	<div id="container">
         <p id="headline">QnA</p><!--헤드라인-->
 			<form action="qnaUpdate.do" method="get">
+				<input type="hidden" name="qno" value="${requestScope.dto.qno }">
 				<div class="qna_title">
     	             <div class="part_select">
         	             <p id="qna_content_title"><label for="#">[아이디]</label></p>
