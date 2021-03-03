@@ -131,7 +131,7 @@ public class QnAController {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
 
-        QnADTO qnaDTO = new QnADTO(null, title, content);
+        QnADTO qnaDTO = new QnADTO(qno, title, content);
         int count = service.qnaUpdateAction(qnaDTO);
         try {
             if(count == 0) {
