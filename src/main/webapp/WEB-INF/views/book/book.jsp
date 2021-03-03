@@ -99,7 +99,7 @@
 	        <form action="bookAction.do">
 	            <div id="form_container">
 	                <div id="img_insert">
-	                    <span id="reservation_campimg" style="background-image: url(../../../img/searchpage/캠핑장사진.jpg">${requestScope.dto.facltNm}</span>
+	                    <span id="reservation_campimg" style="background-image: url(${requestScope.firstImageUrl})">${requestScope.facltNm}</span>
 	                </div>
 	                <div id="date_insert">
 	                    <span id="start_date_insert">
