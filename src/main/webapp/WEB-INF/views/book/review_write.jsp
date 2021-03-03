@@ -190,7 +190,6 @@
                             <div id="file_form">
 								<span id="textarea_head">[첨부파일 등록]</span>
 									<div id="file_list">
-										<p><button type="button" class="plusminus_btn" id="plus">+</button> <button type="button" class="plusminus_btn" id="minus">-</button></p>
 										<p><input class='file_list' type="file" name="file" id="file"></p>
 										<p><input class='file_list' type="file" name="file" id="file"></p>
 										<p><input class='file_list' type="file" name="file" id="file"></p>
