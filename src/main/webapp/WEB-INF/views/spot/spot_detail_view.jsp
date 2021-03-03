@@ -1494,8 +1494,8 @@ section {
                             <c:forEach var="list" items="${requestScope.reviewlist}">
                                 <tr>
                                     <td class="review_td1">${list.rno}</td>
-                                    <td class="review_td2">${list.rdate}</td>
                                     <td class="review_td2">${list.id}</td>
+                                    <td class="review_td2">${list.rdate}</td>
                                     <td class="review_td3">${list.star}점</td>
                                 </tr>
                             </c:forEach>
