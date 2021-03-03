@@ -32,6 +32,12 @@
 		select b.business_no from business b, member m where b.id like #{id} and b.id like m.id
 	</select>
 	<select id="getManageBookList" parameterType="String" resultType="book">
-		select * from book where bizrno like #{bizrno}
+		select bno, to_char(start_date, 'yyyy-MM-dd'), to_char(end_date, 'yyyy-MM-dd'), to_char(book_date, 'yyyy-MM-dd'), contentId, id, status, facltNm, bizrno from book where bizrno like #{bizrno}
 	</select>
+	<update id="manageBookAccept" parameterType="String">
+		update book set status = 1 where bno like #{bno}
+	</update>
+	<update id="manageBookCancel" parameterType="String">
+		update book set status = 4 where bno like #{bno}
+	</update>
 </mapper>

@@ -189,6 +189,9 @@
 		                                	<c:when test="${dto.status == 3}">
 				                                <td><p class="inside_content">이용완료</p></td>
 		                                	</c:when>
+		                                	<c:when test="${dto.status == 4}">
+				                                <td><p class="inside_content">예약거절됨</p></td>
+		                                	</c:when>
 		                                </c:choose>
 		                                <c:choose>
 		                                	<c:when test="${dto.status == 0}">
@@ -209,6 +212,9 @@
 		                                	</c:when>
 		                                	<c:when test="${dto.status == 3}">
 				                                <td><p class="inside_content">이용완료</p></td>
+		                                	</c:when>
+		                                	<c:when test="${dto.status == 4}">
+				                                <td><p class="inside_content">예약거절됨</p></td>
 		                                	</c:when>
 		                                </c:choose>
 		                            </tr>
