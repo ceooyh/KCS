@@ -67,22 +67,11 @@
         border-color: #e8e8e8;
         color: black;
         border-radius: 3px;
+        padding-left: 7px;
         border: 1px solid #c8c8c8;
-    }
-    .page_number_design{
-        width: 25px;
-        border-radius: 5px;
-        display: inline-block;
-        background-color: #e8e8e8;
-        color: rgb(2, 11, 48);
-        text-decoration: none;
-        text-align: center;
+        box-sizing: border-box;
     }
   
-    .page_number_design:hover{
-        background-color: rgb(250, 187, 71);
-        color: rgb(17, 5, 124);
-   }
     #btn_member_list_search{
         width: 60px;
         background-color: #646262;
@@ -100,7 +89,7 @@
     }
    
 	#search_things{
-		height: 32px;
+		height: 30px;
 	}
 	.page_bar{
 		text-align: center;
@@ -204,17 +193,7 @@
             <tr>
                 <td colspan="7">
                         <div class="page_bar">
-                            <c:if test="${pagging.previousPageGroup }">
-                                <a class="page_number_design" href="memberManageListView.do?pageNo=${pagging.startPageOfPageGroup - 1 }">◀</a>
-                            </c:if>
-                            <c:forEach var="i" begin="${pagging.startPageOfPageGroup}" 
-                            end="${pagging.endPageOfPageGroup}">
-                                <a class="page_number_design" href="memberManageListView.do?pageNo=${i }">${i}</a>
-                            </c:forEach>
-                        
-                            <c:if test="${pagging.nextPageGroup }">
-                                <a class="page_number_design" href="memberManageListView.do?pageNo=${pagging.endPageOfPageGroup + 1 }">▶</a>
-                            </c:if>
+                            <a href="memberManageListView.do" id="member_delete_btn">전체 목록 보기</a>
                         </div>
                 </td>
             </tr>    
