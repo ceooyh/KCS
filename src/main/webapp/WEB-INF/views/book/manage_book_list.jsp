@@ -92,7 +92,7 @@
 <script type="text/javascript">
 		function delete_reservation(obj) {
 			var data = "";
-			data = "id=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
+			data = "bno=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
 			console.log(data);
 			$.ajax({
 				url : "manageBookCancel.do",
@@ -111,7 +111,7 @@
 		}
 		function accept_reservation(obj) {
 			var data = "";
-			data = "id=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
+			data = "bno=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
 			console.log(data);
 			$.ajax({
 				url : "manageBookaccept.do",
