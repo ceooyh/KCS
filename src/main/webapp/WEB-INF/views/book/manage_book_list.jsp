@@ -131,10 +131,10 @@
 		$(function() {
 			
 		});
-		$(".accept_click_button").click(function() {
+		$("#accept_click_button").click(function() {
 			accept_reservation($(this));
 		});
-		$(".Cancel_click_button").click(function() {
+		$("#Cancel_click_button").click(function() {
 			delete_reservation($(this));
 		});
 </script>
