@@ -20,6 +20,6 @@
 		where rownum <![CDATA[ <= ]]> 3
 	</select>
 	<select id="getSpotReview" parameterType="int" resultType="review">
-		select * from review where contentId = #{contentId}
+		select rno, contentId, id,star,content, to_char(rdate,'yyyy-MM-dd'), facltNm, bno from review where contentId = #{contentId}
 	</select>
 </mapper>
