@@ -251,6 +251,12 @@ public class BookController {
  				// 사업자 번호와 일치하는 예약 목록
  				ArrayList<BookDTO> list = service.getManageBookList(bizrno); 
  				request.setAttribute("list", list);
+ 				
+ 				// 날짜 정보
+ 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+ 				Calendar cal = Calendar.getInstance();
+ 				String today = sdf.format(cal.getTime());
+ 				request.setAttribute("today", today);
  				return "book/manage_book_list";
  			}
 		} catch (IOException e) {
