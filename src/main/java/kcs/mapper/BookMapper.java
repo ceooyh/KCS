@@ -1,5 +1,6 @@
 package kcs.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -34,6 +35,12 @@ public interface BookMapper {
 
 	// 예약 내역 상태 변경 (후기작성완료-3)
 	void updateBookStatus(String bno);
+
+	// 사업자의 사업자 번호 가져오기
+	String getBizrno(String id);
+	
+	// 사업자 번호와 일치하는 예약 목록
+	ArrayList<BookDTO> getManageBookList(String bizrno);
 
 }
 

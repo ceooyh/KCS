@@ -236,10 +236,28 @@ public class BookController {
  		return null;
  	}
  	
- 	// 예약 관리 페이지로 이동 (사업자) - 희원,20210302
+ 	// 예약 관리 페이지로 이동 (사업자) - 희원,20210303
  	@RequestMapping("/manageBookListView.do")
-	public String manageBookListView() {
- 		return "manage/manage_book_list";
+	public String manageBookListView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+ 		try {
+ 			if(session.getAttribute("id") == null) {
+ 				response.setContentType("text/html;charset=utf-8");
+ 				response.getWriter().write("<script>alert('로그인 후 이용 가능합니다.');location.href='loginView.do';</script>");
+ 			}else {
+ 				String id = (String) session.getAttribute("id");
+ 				// 사업자의 사업자 번호와 일치하는 예약 목록을 읽어옴
+ 				// 사업자의 사업자 번호 가져오기
+ 				String bizrno = service.getBizrno(id);
+ 				// 사업자 번호와 일치하는 예약 목록
+ 				ArrayList<BookDTO> list = service.getManageBookList(bizrno); 
+ 				request.setAttribute("list", list);
+ 				return "book/manage_book_list";
+ 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+ 		return null;
  	}
  	
 }
