@@ -118,7 +118,7 @@
 			data = "bno=" + $(obj).parent().parent().parent().parent().find("#td_bno").val();
 			console.log(data);
 			$.ajax({
-				url : "manageBookaccept.do",
+				url : "manageBookAccept.do",
 				data : data,
 				method:"get",
 				success:function(d){
