@@ -648,6 +648,71 @@ section {
 .distanceInfo:after {
 	content: none;
 }
+
+    #container_review{
+        width: 1200px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        font-size: 0;
+        border-top: 2px solid rgb(44,42,41);
+        border-bottom: 2px solid rgb(44,42,41);
+    }
+    #review_table{
+        width: 100%;
+        border-collapse: collapse;
+        box-sizing: border-box;
+    }
+    .review_td1{
+        font-size: 13px;
+        font-family: '에스코어8';
+        width: 150px;
+        height: 40px;
+        text-align: center;
+        padding-left: 30px;
+        box-sizing: border-box;
+    }
+    .review_td2{
+        font-family: '에스코어8';
+        font-size: 13px;
+        width: 450px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .review_td3{
+        font-family: '에스코어8';
+        font-size: 13px;
+        width: 150px;
+        text-align: right;
+        padding-right: 30px;
+        box-sizing: border-box;
+    }
+    .review_th1{
+        font-size: 13px;
+        font-family: '에스코어8';
+        width: 150px;
+        height: 40px;
+        text-align: center;
+        padding-left: 30px;
+        box-sizing: border-box;
+    }
+    .review_th2{
+        font-family: '에스코어8';
+        font-size: 13px;
+        width: 450px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .review_th3{
+        font-family: '에스코어8';
+        font-size: 13px;
+        width: 150px;
+        text-align: right;
+        padding-right: 30px;
+        box-sizing: border-box;
+    }
+    #review_table tr{
+        border-bottom: 1px solid rgb(209, 209, 209);
+    }
 </style>
 </head>
 <body>
@@ -1399,7 +1464,33 @@ section {
 
 				</div>
 				<!-- 캠핑장 상세정보 표시부분 end -->
-
+				
+				
+				<span class="camp_facility_info">[캠핑장후기]</span>
+                <div id="container_review"><!--캠핑장 후기 시작-->
+                    <table id="review_table">
+                        	<thead>
+                            <tr>
+                                <th class="review_th1">번호</th>
+                                <th class="review_th2">아이디</th>
+                                <th class="review_th2">날짜<th>
+                                <th class="review_th3">별점</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="list" items="${requestScope.reviewlist}">
+                                <tr onclick="location.href('');">
+                                    <td class="review_td1">${list.rno}</td>
+                                    <td class="review_td2">${list.rdate}</td>
+                                    <td class="review_td2">${list.id}</td>
+                                    <td class="review_td3">${list.star}점</td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div><!--캠핑장 후기 마지막-->
+				
+				
 			</div>
 			<!-- 캠핑장 자세한 정보 모음 창 start -->
 		</div>
