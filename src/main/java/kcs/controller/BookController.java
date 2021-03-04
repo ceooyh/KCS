@@ -126,7 +126,7 @@ public class BookController {
     		}else {
     			// 파일 업로드
 				List<MultipartFile> fileList = request.getFiles("file");
-				String path = "c:\\fileupload\\review\\"+ id+"\\";
+				String path = "/usr/local/tomcat/webapps/fileupload/review/"+ id+"/";
 				ArrayList<ReviewFileDTO> fList = new ArrayList<ReviewFileDTO>();
 				
 				for(MultipartFile mf : fileList) {

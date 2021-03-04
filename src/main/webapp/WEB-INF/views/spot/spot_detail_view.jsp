@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>캠핑장 상세 페이지</title>
 <style>
 @font-face {
 	font-family: '보통노토';

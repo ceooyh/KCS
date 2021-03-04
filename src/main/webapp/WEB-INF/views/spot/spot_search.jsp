@@ -268,7 +268,7 @@
     #spot_main_content{
         position: absolute;
         left: 30%;
-        width: 50%;
+        width: 55%;
         height: 100%;
         box-sizing: border-box;
         margin: 0;
@@ -278,7 +278,7 @@
     #spot_main_otherinfo{
         position: absolute;
         right: 0;
-        width: 20%;
+        width: 15%;
         height: 100%;
         box-sizing: border-box;
         margin: 0;
@@ -300,15 +300,25 @@
         color: rgb(172, 245, 130);
         text-decoration: underline;
     }
+    
     #online_intro{
+    	height: 40px;
         display: inline-block;
         font-family: '에스코어5';
         font-size: 23px;
         color: rgb(44, 42, 41);
         margin-bottom: 10px;
-        overflow:hidden;
+        overflow:scroll;
         text-overflow: ellipsis;
     }
+    #online_intro {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+	}
+	#online_intro::-webkit-scrollbar {
+	    display: none; /* Chrome, Safari, Opera*/
+	}
+	    
     .spot_title{
         display: inline-block;
         font-size: 14px;
@@ -328,6 +338,7 @@
         background-image: url(../../../img/searchpage/telephone.png);
         background-size: 20px;
         background-repeat: no-repeat;
+    	height: 40px;
     }
     #spot_homepage_title{
         background-image: url(../../../img/searchpage/homepage.png);
