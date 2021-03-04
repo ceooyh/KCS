@@ -42,7 +42,7 @@ public class MainController {
 	// 비로그인, (사업자)로그인, (관리자)로그인 : 별점, 리뷰순 추천 / (일반 사용자)로그인 : 별점, 취향순 추천 -희원,20210302
 	@RequestMapping("indexView.do")
 	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		// 모든 목록을 10개씩 가져오고
+		// 모든 목록을 100개씩 가져오고
 		// 총 캠핑장 개수
 		int total = getTotal();
 		// 100개씩 총 돌아갈 횟수
@@ -163,7 +163,7 @@ public class MainController {
 	}
 	
 	// 캠핑장 리스트 -희원,20210302
-	private ArrayList<SpotDTO> getSpotList(int pageNo) {
+	public ArrayList<SpotDTO> getSpotList(int pageNo) {
 		ArrayList<SpotDTO> list = new ArrayList<SpotDTO>();
 		try {
 			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList"); /*URL*/
@@ -229,7 +229,7 @@ public class MainController {
 			conn.disconnect();
 			
 		}catch(Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return list;
 	}

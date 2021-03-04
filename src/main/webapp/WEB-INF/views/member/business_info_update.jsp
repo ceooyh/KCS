@@ -592,11 +592,11 @@ $(function(){
                     <span class="guest_insert"><label for="pass">이메일</label></span><br>
                     <span><input class="guest_input3" type="text" value="${requestScope.dto.email1 }" name="email" id="email" placeholder="이메일을 입력해주세요"></span>
                     <span><select name="host" id="host">
-                                <option value="naver.com" <c:if test="${requestScope.dto.email2 eq 'naver.com'}">checked</c:if>>@naver.com</option>
-                                <option value="gmail.com" <c:if test="${requestScope.dto.email2 eq 'gmail.com'}">checked</c:if>>@gmail.com</option>
-                                <option value="nate.com" <c:if test="${requestScope.dto.email2 eq 'nate.com'}">checked</c:if>>@nate.com</option>
-                                <option value="hanmail.com" <c:if test="${requestScope.dto.email2 eq 'hanmail.com'}">checked</c:if>>@hanmail.com</option>
-                                <option value="daum.net" <c:if test="${requestScope.dto.email2 eq 'daum.net'}">checked</c:if>>@daum.net</option>
+                                <option value="naver.com" <c:if test="${requestScope.dto.email2 eq 'naver.com'}">selected</c:if>>@naver.com</option>
+                                <option value="gmail.com" <c:if test="${requestScope.dto.email2 eq 'gmail.com'}">selected</c:if>>@gmail.com</option>
+                                <option value="nate.com" <c:if test="${requestScope.dto.email2 eq 'nate.com'}">selected</c:if>>@nate.com</option>
+                                <option value="hanmail.com" <c:if test="${requestScope.dto.email2 eq 'hanmail.com'}">selected</c:if>>@hanmail.com</option>
+                                <option value="daum.net" <c:if test="${requestScope.dto.email2 eq 'daum.net'}">selected</c:if>>@daum.net</option>
                             </select></span>
                 </div><!--이메일 부분 end-->
 
@@ -605,12 +605,12 @@ $(function(){
 
                 <div id="id_insert" class="part"><!--생일/성별 start-->
                     <span class="guest_insert"><label for="year">생일/성별</label></span><br>
-                    <span><input  class="guest_input4" type="text" id="year" name="year" placeholder="년"></span>
-                    <span><input class="guest_input4" type="text" id="month" name="month" placeholder="월"></span>
-                    <span><input  class="guest_input4" type="text" id="day" name="day" placeholder="일"></span><br>
+                    <span><input  class="guest_input4" type="text" id="year" name="year" value="${requestScope.birth_year }" placeholder="년"></span>
+                    <span><input class="guest_input4" type="text" id="month" name="month" value="${requestScope.birth_month }" placeholder="월"></span>
+                    <span><input  class="guest_input4" type="text" id="day" name="day" value="${requestScope.birth_day }" placeholder="일"></span><br>
                     <div id="checkbox_gender">
-                        <span class="gender_select"><input id="gender_woman" type="checkbox" value="1" class="checkbox" name="gender"><label for="gender_woman"><span>여성</span></label></span>
-                        <span class="gender_select"><input id="gender_man" type="checkbox" value="0" class="checkbox" name="gender"><label for="gender_man"><span>남성</span></label></span>
+                        <span class="gender_select"><input id="gender_woman" type="checkbox" value="1" class="checkbox" name="gender" <c:if test="${requestScope.dto.gender == 1}">checked</c:if> ><label for="gender_woman"><span>여성</span></label></span>
+                        <span class="gender_select"><input id="gender_man" type="checkbox" value="0" class="checkbox" name="gender" <c:if test="${requestScope.dto.gender == 0}">checked</c:if> ><label for="gender_man"><span>남성</span></label></span>
                     </div>
                 </div><!--생일 성별 end-->
 

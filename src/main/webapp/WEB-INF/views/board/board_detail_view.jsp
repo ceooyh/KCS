@@ -12,18 +12,6 @@
 <title>게시판 상세 페이지</title>
 </head>
 <body>
-	<!-- jstl 주석처리  -->
-    
-        <c:if test="${sessionScope.login == null || sessionScope.login == false  }">
-            <c:set var="page" target="${sessionScope }" value="${pageContext.request.requestURI}${pageContext.request.queryString }" property="resultPage" scope="session"/>
-            ${pageContext.request.requestURI}${pageContext.request.queryString }
-            <script>
-                alert("로그인을 하셔야 이용할수 있습니다.");
-                location.href="loginView.do";
-            </script>
-        </c:if>
-    
-   
 	<jsp:include page="../template/header.jsp" flush="false"></jsp:include>
 
 	<div id="board_detail_container">
@@ -61,11 +49,11 @@
 
 			<section id="board_like_hate">
 				<div class="part_like_hate">
-					<a class="btn_like_hate"> 
+					<a href="plusLikeHate.do?bno=${requestScope.board.bno }&mode=0" class="btn_like_hate"> 
 						<img src="../../../img/boardLike/like.png" style="width: 50px;">
 							<span class="board_detail_span">${requestScope.board.blike }</span>
 					</a> 
-					<a class="btn_like_hate"> 
+					<a href="plusLikeHate.do?bno=${requestScope.board.bno }&mode=1" class="btn_like_hate"> 
 						<img id="hate_img" src="../../../img/boardLike/like.png">
 							<span class="board_detail_span">${requestScope.board.bhate }</span>
 					</a>

@@ -25,7 +25,7 @@
 		select pass from member where id like #{id} and name like #{name} and email1 like #{email1} and email2 like #{email2}
 	</select>
 	<select id="selectMemberDTO" parameterType="String" resultType="member">
-		select * from member where id like #{id}
+		select id, pass, name, tel1, tel2, tel3, to_char(birth,'yy/MM/dd'), email1, email2, gender, user_type from member where id like #{id}
 	</select>
 	<update id="guestInfoUpdate" parameterType="member">
 		update member set pass = #{pass}, name = #{name}, tel1 = #{tel1}, tel2 = #{tel2},  tel3 = #{tel3},  birth = #{birth},  email1 = #{email1},  email2 = #{email2},  gender = #{gender} where id like #{id}

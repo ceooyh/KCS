@@ -87,6 +87,17 @@
     #reservation_headline_img{
     	width: 100%;
     }
+    #facltNm_href{
+    	text-decoration: none;
+        color: orange;
+        border-radius: 5px;
+        padding:4px ;
+    }
+    #facltNm_href:hover {
+		text-decoration:underline;
+		font-size: 15px;
+		color : black;
+	}
 </style>
 <script src="../../../lib/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
@@ -139,7 +150,7 @@
 		                            <td><p class="inside_content">예약거절됨</p></td>
                             	</c:when>
                             </c:choose>
-                            <td><p class="inside_content">${dto.facltNm}</p></td>
+                            <td><p class="inside_content"><a id="facltNm_href" href="spotDetailView.do?contentId=${dto.contentId}&facltNm=${dto.facltNm}">${dto.facltNm}</a></p></td>
                             <c:choose>
                             	<c:when test="${dto.status <= 1}">
 		                            <td><p class="inside_content"><a id="status_click_button" href="guestBookCancel.do?bno=${dto.bno}">예약취소</a></p></td>
