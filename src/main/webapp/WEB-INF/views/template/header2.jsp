@@ -120,7 +120,7 @@
                     <ul>
                         <li class="dropbtn"><a href="memberManageListView.do">회원 관리</a></li>
                         <li class="dropbtn"><a href="qnaView.do">문의 관리</a></li>
-                        <li class="dropbtn"><a href="boardView.do">게시판</a></li>
+                        <li class="dropbtn"><a href="boardList.do">게시판</a></li>
                         <li class="dropbtn"><a href="logoutAction.do">로그아웃</a></li>
                     </ul>
                 </div>
