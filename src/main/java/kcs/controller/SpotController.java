@@ -273,6 +273,11 @@ public class SpotController {
 	// 캠핑장 상세 검색 - 희원,20210226
 	@RequestMapping("/spotCategorySearch.do")
 	public String spotCategorySearch(HttpServletRequest request, HttpServletResponse response) {
+		// 총 캠핑장 개수
+		int total = getTotal();
+		// 100개씩 총 돌아갈 횟수
+		int totalPage = total / 100 + 1;
+		
 		// 결과값을 담을 list
 		ArrayList<SpotDTO> list = new ArrayList<SpotDTO>();
 		
@@ -345,7 +350,7 @@ public class SpotController {
 		String trlerAcmpnyAt = request.getParameter("trlerAcmpnyAt") != null && !request.getParameter("trlerAcmpnyAt").equals("N") ? request.getParameter("trlerAcmpnyAt") : "-";
 		String caravAcmpnyAt = request.getParameter("caravAcmpnyAt") != null && !request.getParameter("caravAcmpnyAt").equals("N") ? request.getParameter("caravAcmpnyAt") : "-";
 		
-		// 페이징
+		// 페이지 정보
 		String pageNo = "1";
 		if(request.getParameter("pageNo") != null)
 			pageNo = request.getParameter("pageNo");
@@ -353,133 +358,38 @@ public class SpotController {
 		// 상세 조건으로 만든 spotDTO
 		SpotDTO searchDTO = new SpotDTO(0, "-", "-", "-", "-", "-", "-", "-", lctCl, doNm, "-", "-", "-", "-", "-", "-", gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, "-", "-", "-", "-", siteBottomCl1, siteBottomCl2, siteBottomCl3, siteBottomCl4, siteBottomCl5, "-", "-", trlerAcmpnyAt, caravAcmpnyAt, "-", "-", "-", sbrsCl, themaEnvrnCl, "-", animalCmgCl, "-", 0, 0);
 		
-		//페이징 정보
-		int count = 0;
+		// 조건 검색과 일치하는 리스트
+		ArrayList<SpotDTO> searchList = new ArrayList<SpotDTO>();
 		
-		try {
-			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList"); /*URL*/
-			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
-			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
-			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /*현재 페이지번호*/
-			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
-			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
-			urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
-			urlBuilder.append("&_type=json"); /*서비스명=어플명*/
-			
-			URL url = new URL(urlBuilder.toString());
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Content-type", "application/json");
-			BufferedReader rd;
-			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			} else {
-				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		// 100개씩 totalPage까지 돌면서 originList에서 spotDTO와 일치하는 항목을 list에 추가
+		ArrayList<SpotDTO> originList = new ArrayList<SpotDTO>();
+		for(int i=0; i<totalPage; i++) {
+			originList = getSpotList(i);
+			for(int j=0; j<originList.size(); j++) {
+				if(originList.get(j).equals(searchDTO))
+					searchList.add(originList.get(j));
 			}
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = rd.readLine()) != null) {
-				sb.append(line);
-			}
-			
- 			JSONObject json = new JSONObject(sb.toString());
-			
-			if(conn.getResponseCode() == 200) {
-				ArrayList<SpotDTO> allList = new ArrayList<SpotDTO>();
-				
-				// 페이징 처리 위한 총 개수
-				count = json.getJSONObject("response").getJSONObject("body").getInt("totalCount");
-				
-				// 목록 받아오기
-				JSONArray arr = json.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
-				for(int i=0; i<arr.length(); i++) {
-					JSONObject j = arr.getJSONObject(i);
-					int contentId = j.has("contentId") ? j.getInt("contentId") : 1;
-					String facltNm = j.has("facltNm") ? j.get("facltNm").toString() : "-";
-					String lineIntro = j.has("lineIntro") ? j.get("lineIntro").toString() : "-";
-					String intro = j.has("intro") ? j.get("intro").toString() : "-";
-					String bizrno = j.has("bizrno") ? j.get("bizrno").toString() : "-";
-					String manageSttus = j.has("manageSttus") ? j.get("manageSttus").toString() : "-";
-					String featureNm = j.has("featureNm") ? j.get("featureNm").toString() : "-";
-					String induty = j.has("induty") ? j.get("induty").toString() : "-";
-					String lctCl1 = j.has("lctCl") ? j.get("lctCl").toString() : "-";
-					String doNm1 = j.has("doNm") ? j.get("doNm").toString() : "-";
-					String addr1 = j.has("addr1") ? j.get("addr1").toString() : "-";
-					String addr2 = j.has("addr2") ? j.get("addr2").toString() : "-";
-					String tel = j.has("tel") ? j.get("tel").toString() : "-";
-					String homepage = j.has("homepage") ? j.get("homepage").toString() : "-";
-					String gnrlSiteCo1 = j.has("gnrlSiteCo") ? j.get("gnrlSiteCo").toString() : "-";
-					String autoSiteCo1 = j.has("autoSiteCo") ? j.get("autoSiteCo").toString() : "-";
-					String glampSiteCo1 = j.has("glampSiteCo") ? j.get("glampSiteCo").toString() : "-";
-					String caravSiteCo1 = j.has("caravSiteCo") ? j.get("caravSiteCo").toString() : "-";
-					String indvdlCaravSiteCo1 = j.has("indvdlCaravSiteCo") ? j.get("indvdlCaravSiteCo").toString() : "-";
-					String sitedStnc = j.has("sitedStnc") ? j.get("sitedStnc").toString() : "-";
-					String siteMg1Width = j.has("siteMg1Width") ? j.get("siteMg1Width").toString() : "-";
-					String siteMg1Vrticl = j.has("siteMg1Vrticl") ? j.get("siteMg1Vrticl").toString() : "-";
-					String siteMg1Co = j.has("siteMg1Co") ? j.get("siteMg1Co").toString() : "-";
-					String siteBottomCl11 = j.has("siteBottomCl1") ? j.get("siteBottomCl1").toString() : "-";
-					String siteBottomCl21 = j.has("siteBottomCl2") ? j.get("siteBottomCl2").toString() : "-";
-					String siteBottomCl31 = j.has("siteBottomCl3") ? j.get("siteBottomCl3").toString() : "-";
-					String siteBottomCl41 = j.has("siteBottomCl4") ? j.get("siteBottomCl4").toString() : "-";
-					String siteBottomCl51 = j.has("siteBottomCl5") ? j.get("siteBottomCl5").toString() : "-";
-					String operPdCl = j.has("operPdCl") ? j.get("operPdCl").toString() : "-";
-					String operDeCl = j.has("operDeCl") ? j.get("operDeCl").toString() : "-";
-					String trlerAcmpnyAt1 = j.has("trlerAcmpnyAt") ? j.get("trlerAcmpnyAt").toString() : "-";
-					String caravAcmpnyAt1 = j.has("caravAcmpnyAt") ? j.get("caravAcmpnyAt").toString() : "-";
-					String sbrsCl1 = j.has("sbrsCl") ? j.get("sbrsCl").toString() : "-";
-					String themaEnvrnCl1 = j.has("themaEnvrnCl") ? j.get("themaEnvrnCl").toString() : "-";
-					String eqpmnLendCl = j.has("eqpmnLendCl") ? j.get("eqpmnLendCl").toString() : "-";
-					String animalCmgCl1 = j.has("animalCmgCl") ? j.get("animalCmgCl").toString() : "-";
-					String firstImageUrl = j.has("firstImageUrl") ? j.get("firstImageUrl").toString() : "-";
-					
-					// 별점 평균
-					double star = service.getStarAvg(contentId);
-					//리뷰수
-					int review_count = service.getReviewCount(contentId);
-					
-					// 리스트에 추가
-					allList.add(
-							new SpotDTO(contentId, facltNm, lineIntro, intro, bizrno, manageSttus, featureNm, induty, lctCl1, doNm1, addr1, addr2, tel, homepage, tel, homepage, gnrlSiteCo1, autoSiteCo1, glampSiteCo1, caravSiteCo1, indvdlCaravSiteCo1, sitedStnc, siteMg1Width, siteMg1Vrticl, siteMg1Co, siteBottomCl11, siteBottomCl21, siteBottomCl31, siteBottomCl41, siteBottomCl51, operPdCl, operDeCl, trlerAcmpnyAt1, caravAcmpnyAt1, operDeCl, trlerAcmpnyAt1, caravAcmpnyAt1, sbrsCl1, themaEnvrnCl1, eqpmnLendCl, animalCmgCl1, firstImageUrl, star, review_count)
-							);
-					allList.get(i).toString();
-					
-				}
-
-				// allList 상세 조건에 맞는 dto를 list에 추가
-				for(int i=0; i<allList.size(); i++) {
-					if(allList.get(i).equals(searchDTO)) {
-						list.add(allList.get(i));
-					}else {
-					}
-				}
-
-				
-				// 페이징 정보
-				PaggingVO page = new PaggingVO(count, Integer.parseInt(pageNo));
-				
-				request.setAttribute("searchDTO", searchDTO);
-				request.setAttribute("list", list);
-				request.setAttribute("pageNo", pageNo);
-				request.setAttribute("page", page);
-				
-				return "spot/spot_search_category";
-				
-			} else {
-				response.setContentType("text/html;charset=utf-8");
-				response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
-			}
-			
-			rd.close();
-			conn.disconnect();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
 		}
-				
 		
-		return null;
+		//페이징 정보
+		int count = searchList.size();
+		
+		// 선택한 페이징만큼 리스트 보여줌
+		for(int i=Integer.parseInt(pageNo)-1; i<Integer.parseInt(pageNo)*10; i++)
+			list.add(searchList.get(i));
+		
+		// 페이징 정보
+		PaggingVO page = new PaggingVO(count, Integer.parseInt(pageNo));
+		
+		request.setAttribute("searchDTO", searchDTO);
+		request.setAttribute("list", list);
+		request.setAttribute("pageNo", pageNo);
+		request.setAttribute("page", page);
+		
+		return "spot/spot_search_category";
 	}
 	
+	// 캠핑장 상세 페이지로 이동 - 희원,20210226
 	// 캠핑장 상세 보기 페이지 - 희원,20210228
 	@RequestMapping("/spotDetailView.do")
 	public String spotDetailView(HttpServletRequest request, HttpServletResponse response) {
@@ -698,5 +608,142 @@ public class SpotController {
 		return null;
 	}
 	
+	// 캠핑장 총 개수 -희원,20210302
+	public int getTotal() {
+		int count = 0;
+		try {
+			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList"); /*URL*/
+			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
+			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
+			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지번호*/
+			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
+			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
+			urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
+			urlBuilder.append("&_type=json"); /*서비스명=어플명*/
+			
+			URL url = new URL(urlBuilder.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+			BufferedReader rd;
+			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			} else {
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb.append(line);
+			}
+			
+ 			JSONObject json = new JSONObject(sb.toString());
+			
+			if(conn.getResponseCode() == 200) {
+				// 페이징 처리 위한 총 개수
+				count = json.getJSONObject("response").getJSONObject("body").getInt("totalCount");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return count;
+	}
+	
+	// 캠핑장 리스트 -희원,20210302
+	public ArrayList<SpotDTO> getSpotList(int pageNo) {
+		ArrayList<SpotDTO> list = new ArrayList<SpotDTO>();
+		try {
+			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList"); /*URL*/
+			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
+			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
+			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(Integer.toString(pageNo), "UTF-8")); /*현재 페이지번호*/
+			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
+			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
+			urlBuilder.append("&" + URLEncoder.encode("MobileApp","UTF-8") + "=" + URLEncoder.encode("AppTest", "UTF-8")); /*서비스명=어플명*/
+			urlBuilder.append("&_type=json"); /*서비스명=어플명*/
+			
+			URL url = new URL(urlBuilder.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+			BufferedReader rd;
+			if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			} else {
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb.append(line);
+			}
+			
+ 			JSONObject json = new JSONObject(sb.toString());
+			if(conn.getResponseCode() == 200) {
+				
+				// 목록 받아오기
+				JSONArray arr = json.getJSONObject("response").getJSONObject("body").getJSONObject("items").getJSONArray("item");
+				for(int i=0; i<arr.length(); i++) {
+					JSONObject j = arr.getJSONObject(i);
+					
+					int contentId = j.has("contentId") ? j.getInt("contentId") : 1;
+					String facltNm = j.has("facltNm") ? j.get("facltNm").toString() : "-";
+					String lineIntro = j.has("lineIntro") ? j.get("lineIntro").toString() : "-";
+					String intro = j.has("intro") ? j.get("intro").toString() : "-";
+					String bizrno = j.has("bizrno") ? j.get("bizrno").toString() : "-";
+					String manageSttus = j.has("manageSttus") ? j.get("manageSttus").toString() : "-";
+					String featureNm = j.has("featureNm") ? j.get("featureNm").toString() : "-";
+					String induty = j.has("induty") ? j.get("induty").toString() : "-";
+					String lctCl = j.has("lctCl") ? j.get("lctCl").toString() : "-";
+					String doNm = j.has("doNm") ? j.get("doNm").toString() : "-";
+					String addr1 = j.has("addr1") ? j.get("addr1").toString() : "-";
+					String addr2 = j.has("addr2") ? j.get("addr2").toString() : "-";
+					String tel = j.has("tel") ? j.get("tel").toString() : "-";
+					String homepage = j.has("homepage") ? j.get("homepage").toString() : "-";
+					String gnrlSiteCo = j.has("gnrlSiteCo") ? j.get("gnrlSiteCo").toString() : "-";
+					String autoSiteCo = j.has("autoSiteCo") ? j.get("autoSiteCo").toString() : "-";
+					String glampSiteCo = j.has("glampSiteCo") ? j.get("glampSiteCo").toString() : "-";
+					String caravSiteCo = j.has("caravSiteCo") ? j.get("caravSiteCo").toString() : "-";
+					String indvdlCaravSiteCo = j.has("indvdlCaravSiteCo") ? j.get("indvdlCaravSiteCo").toString() : "-";
+					String sitedStnc = j.has("sitedStnc") ? j.get("sitedStnc").toString() : "-";
+					String siteMg1Width = j.has("siteMg1Width") ? j.get("siteMg1Width").toString() : "-";
+					String siteMg1Vrticl = j.has("siteMg1Vrticl") ? j.get("siteMg1Vrticl").toString() : "-";
+					String siteMg1Co = j.has("siteMg1Co") ? j.get("siteMg1Co").toString() : "-";
+					String siteBottomCl1 = j.has("siteBottomCl1") ? j.get("siteBottomCl1").toString() : "-";
+					String siteBottomCl2 = j.has("siteBottomCl2") ? j.get("siteBottomCl2").toString() : "-";
+					String siteBottomCl3 = j.has("siteBottomCl3") ? j.get("siteBottomCl3").toString() : "-";
+					String siteBottomCl4 = j.has("siteBottomCl4") ? j.get("siteBottomCl4").toString() : "-";
+					String siteBottomCl5 = j.has("siteBottomCl5") ? j.get("siteBottomCl5").toString() : "-";
+					String operPdCl = j.has("operPdCl") ? j.get("operPdCl").toString() : "-";
+					String operDeCl = j.has("operDeCl") ? j.get("operDeCl").toString() : "-";
+					String trlerAcmpnyAt = j.has("trlerAcmpnyAt") ? j.get("trlerAcmpnyAt").toString() : "-";
+					String caravAcmpnyAt = j.has("caravAcmpnyAt") ? j.get("caravAcmpnyAt").toString() : "-";
+					String sbrsCl = j.has("sbrsCl") ? j.get("sbrsCl").toString() : "-";
+					String themaEnvrnCl = j.has("themaEnvrnCl") ? j.get("themaEnvrnCl").toString() : "-";
+					String eqpmnLendCl = j.has("eqpmnLendCl") ? j.get("eqpmnLendCl").toString() : "-";
+					String animalCmgCl = j.has("animalCmgCl") ? j.get("animalCmgCl").toString() : "-";
+					String firstImageUrl = j.has("firstImageUrl") ? j.get("firstImageUrl").toString() : "-";
+					// 별점 평균
+					double star = service.getStarAvg(contentId);
+					//리뷰수
+					int review_count = service.getReviewCount(contentId);
+					
+					list.add(
+							new SpotDTO(contentId, facltNm, lineIntro, intro, bizrno, manageSttus, featureNm, induty, lctCl, doNm, addr1, addr2, tel, homepage, tel, homepage, gnrlSiteCo, autoSiteCo, glampSiteCo, caravSiteCo, indvdlCaravSiteCo, sitedStnc, siteMg1Width, siteMg1Vrticl, siteMg1Co, siteBottomCl1, siteBottomCl2, siteBottomCl3, siteBottomCl4, siteBottomCl5, operPdCl, operDeCl, trlerAcmpnyAt, caravAcmpnyAt, operDeCl, trlerAcmpnyAt, caravAcmpnyAt, sbrsCl, themaEnvrnCl, eqpmnLendCl, animalCmgCl, firstImageUrl, star, review_count)
+							);
+					
+				}
+				
+			} else {
+			}
+			
+			rd.close();
+			conn.disconnect();
+			
+		}catch(Exception e) {
+//				e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

@@ -84,16 +84,22 @@ public class BoardController {
 			int bno = Integer.parseInt((String)request.getParameter("bno"));
 			int mode =Integer.parseInt((String)request.getParameter("mode"));
 			
-			int count = 0;
+			int count = service.addBoardLikeHate(mode, bno);
 			
-			count = service.addBoardLikeHate(mode, bno);
 			try {
-				response.getWriter().write(String.valueOf(count));
+				if(count == 0) {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+				}else {
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>location.href='boardView.do?bno="+bno+"';</script>");
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			return null;
 		}
+		
 		//게시판 글쓰기 페이지 이동처리 - 성진
 		@RequestMapping("/boardWriteView.do")
 		public String boardWriterView() {
@@ -218,14 +224,14 @@ public class BoardController {
 			try {
 				if(count == 0) {
 					response.setContentType("text/html;charset=utf-8");
-						response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
+					response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
 				}else {
-							response.setContentType("text/html;charset=utf-8");
-							response.getWriter().write("<script>alert('게시글 삭제 성공');location.href='boardList.do';</script>");
-						}
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					response.setContentType("text/html;charset=utf-8");
+					response.getWriter().write("<script>alert('게시글 삭제 성공');location.href='boardList.do';</script>");
+				}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			return null;
 		}
 		

@@ -309,6 +309,21 @@ public class MemberController {
 					response.getWriter().write("<script>alert('페이지 오류');history.back();</script>");
 				}else {
 					request.setAttribute("dto", dto);
+					
+					// 사용자 생년월일
+					String[] birth = dto.getBirth().split("/");
+					String birth_year = "";
+					if(Integer.parseInt(birth[0]) > 21 ) 
+						birth_year = "19" + birth[0];
+					else
+						birth_year = "20" + birth[0];
+					String birth_month = birth[1];
+					String birth_day = birth[2];
+					
+					request.setAttribute("birth_year", birth_year);
+					request.setAttribute("birth_month", birth_month);
+					request.setAttribute("birth_day", birth_day);
+					
 					return "member/guest_info_update";
 				}
 			}
@@ -460,6 +475,20 @@ public class MemberController {
 					// 사업자 개인정보
 					request.setAttribute("dto", dto);
 					
+					// 사업자 생년월일
+					String[] birth = dto.getBirth().split("/");
+					String birth_year = "";
+					if(Integer.parseInt(birth[0]) > 21 ) 
+						birth_year = "19" + birth[0];
+					else
+						birth_year = "20" + birth[0];
+					String birth_month = birth[1];
+					String birth_day = birth[2];
+					
+					request.setAttribute("birth_year", birth_year);
+					request.setAttribute("birth_month", birth_month);
+					request.setAttribute("birth_day", birth_day);
+					
 					// 사업자 등록정보
 					BusinessDTO businessDTO = service.selectBusinessDTO(id);
 					String[] business = businessDTO.getBusiness_no().split("-");
@@ -469,6 +498,7 @@ public class MemberController {
 					request.setAttribute("business_no1", business_no1);
 					request.setAttribute("business_no2", business_no2);
 					request.setAttribute("business_no3", business_no3);
+					
 					
 					return "member/business_info_update";
 				}
