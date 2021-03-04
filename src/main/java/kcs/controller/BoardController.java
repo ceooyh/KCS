@@ -120,7 +120,7 @@ public class BoardController {
 			// 첨부파일 등록 - 성진
 			int fbno = service.newFbno();
 			List<MultipartFile> fileList = request.getFiles("file");
-			String path = "c:\\fileupload\\board\\"+writer+"\\";
+			String path = "/usr/local/tomcat/webapps/fileupload/board/"+writer+"/";
 			ArrayList<BoardFileDTO> fList = new ArrayList<BoardFileDTO>();
 			for(MultipartFile mf : fileList) {
 				String originalFileName = mf.getOriginalFilename();
@@ -184,7 +184,7 @@ public class BoardController {
 		public String fileDownload(HttpServletRequest request, HttpServletResponse response) {
 			String fileName = request.getParameter("fileName");
 			String writer = request.getParameter("writer");
-			String path = "c:\\fileupload\\board\\"+writer+File.separator+fileName;
+			String path = "/usr/local/tomcat/webapps/fileupload/board/"+writer+File.separator+fileName;
 
 			System.out.println(path);
 			File file = new File(path);
@@ -284,7 +284,7 @@ public class BoardController {
 				}
 					
 			List<MultipartFile> fileList = request.getFiles("file"); 
-			String path = "c:\\fileupload\\board"+writer+"\\";
+			String path = "/usr/local/tomcat/webapps/fileupload/board/"+writer+"\\";
 			ArrayList<BoardFileDTO> fList = new ArrayList<BoardFileDTO>();
 			for(MultipartFile mf : fileList) {
 				String originalFileName = mf.getOriginalFilename();
