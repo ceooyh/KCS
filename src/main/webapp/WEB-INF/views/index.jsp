@@ -645,6 +645,11 @@
 	        <img src="../../img/indexpage/3.png" alt="">
         </div>
     </div>
+     <div style="text-align:center">
+			 <span class="dot"></span> 
+			 <span class="dot"></span> 
+			 <span class="dot"></span> 
+	</div>
 	<button class="prev" onclick="plusSlides(-1)">&#10094;</button>
 	<button class="next" onclick="plusSlides(1)">&#10095;</button>
     
