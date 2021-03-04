@@ -126,8 +126,8 @@ public class MainController {
 		int count = 0;
 		try {
 			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList"); /*URL*/
-			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
-			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
+			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=S2V0C9cclDogOKMDuuZNy2WTNHN4m00csLxViyUB2E5DbGITXMTKsQFUAsY22H5QPqiPGBmTtsgDX4cPUM39zQ%3D%3D"); /*Service Key*/
+			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("S2V0C9cclDogOKMDuuZNy2WTNHN4m00csLxViyUB2E5DbGITXMTKsQFUAsY22H5QPqiPGBmTtsgDX4cPUM39zQ%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
 			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지번호*/
 			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
 			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
@@ -167,8 +167,8 @@ public class MainController {
 		ArrayList<SpotDTO> list = new ArrayList<SpotDTO>();
 		try {
 			StringBuilder urlBuilder = new StringBuilder("http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/basedList"); /*URL*/
-			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D"); /*Service Key*/
-			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("de4n60BId3f9KozHqu47z%2FtxC6YjJEtG0KeMQojtPltNyV702A9d5lltXnQdN7W25Q9R71S0krGaTtdfEIEoQw%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
+			urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=S2V0C9cclDogOKMDuuZNy2WTNHN4m00csLxViyUB2E5DbGITXMTKsQFUAsY22H5QPqiPGBmTtsgDX4cPUM39zQ%3D%3D"); /*Service Key*/
+			urlBuilder.append("&" + URLEncoder.encode("ServiceKey","UTF-8") + "=" + URLEncoder.encode("S2V0C9cclDogOKMDuuZNy2WTNHN4m00csLxViyUB2E5DbGITXMTKsQFUAsY22H5QPqiPGBmTtsgDX4cPUM39zQ%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
 			urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(Integer.toString(pageNo), "UTF-8")); /*현재 페이지번호*/
 			urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
 			urlBuilder.append("&" + URLEncoder.encode("MobileOS","UTF-8") + "=" + URLEncoder.encode("ETC", "UTF-8")); /*IOS(아이폰),AND(안드로이드),WIN(윈도우폰),ETC*/
