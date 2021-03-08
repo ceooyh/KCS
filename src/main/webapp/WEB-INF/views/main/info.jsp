@@ -4,22 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../../../css/main/info.css">
 <title>회사 소개 페이지</title>
-<style>
-    *{
-        padding: 0;
-        margin: 0;
-    }
-    section{
-        width: 1200px;
-        margin: 0 auto;
-    }
-    #writer_section{
-    	text-align: center;
-        width: 100%;
-        margin: 150px auto;
-    }
-</style>
 </head>
 <body>
 	<jsp:include page="../template/header2.jsp" flush="false"></jsp:include>
