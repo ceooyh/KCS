@@ -1,0 +1,220 @@
+#container{
+       width: 800px;
+       margin: 0 auto;
+       padding: 0 20px 30px 20px;
+   }
+   #headline{
+       font-size: 30px;
+       margin: 20px 0;
+       text-align: center;
+       color: rgb(46, 46, 46);
+       font-family: '굵은노토';
+   }
+   .category{
+       /*border: 1px solid rgb(223, 223, 223);*/
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+#category_1{
+    font-size: 25px;
+    font-family: '굵은노토';
+    color: rgb(241, 186, 179);
+}
+#category_2{
+    font-size: 25px;
+    font-family: '굵은노토';
+    color: rgb(179, 190, 241);
+}
+#category_3{
+    font-size: 25px;
+    font-family: '굵은노토';
+    color: rgb(228, 241, 179);
+}
+#category_4{
+    font-size: 25px;
+    font-family: '굵은노토';
+    color: rgb(181, 241, 179);
+}
+#category_5{
+    font-size: 25px;
+    font-family: '굵은노토';
+    color: rgb(241, 179, 231);
+}
+
+
+
+
+input[type="checkbox"]{
+    display: none;
+}
+#camp_type input[type="checkbox"] +label span{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: '굵은노토';
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    color: rgb(46, 46, 46);
+    cursor: pointer;
+}
+#camp_type input[type="checkbox"] +label span:hover{
+    border:none;
+    color: rgb(219, 219, 219);
+    background-color: rgb(46, 46, 46);
+}
+#camp_type input[type="checkbox"]:checked +label span{
+    color: rgb(46, 46, 46);
+    background-color: rgb(241, 186, 179);
+}
+
+
+
+
+#mood input[type="checkbox"] +label span{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: '굵은노토';
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    color: rgb(46, 46, 46);
+    cursor: pointer;
+}
+#mood input[type="checkbox"] +label span:hover{
+    border:none;
+    color: rgb(219, 219, 219);
+    background-color: rgb(46, 46, 46);
+}
+#mood input[type="checkbox"]:checked +label span{
+    color: rgb(46, 46, 46);
+    background-color: rgb(179, 190, 241);
+}
+
+
+
+
+#theme input[type="checkbox"] +label span{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: '굵은노토';
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    color: rgb(46, 46, 46);
+    cursor: pointer;
+}
+#theme input[type="checkbox"] +label span:hover{
+    border:none;
+    color: rgb(219, 219, 219);
+    background-color: rgb(46, 46, 46);
+}
+#theme input[type="checkbox"]:checked +label span{
+    color: rgb(46, 46, 46);
+    background-color: rgb(228, 241, 179);
+}
+
+
+
+
+#location_type input[type="checkbox"] +label span{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: '굵은노토';
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    color: rgb(46, 46, 46);
+    cursor: pointer;
+} 
+#location_type input[type="checkbox"] +label span:hover{
+    border:none;
+    color: rgb(219, 219, 219);
+    background-color: rgb(46, 46, 46);
+}
+#location_type input[type="checkbox"]:checked +label span{
+    color: rgb(46, 46, 46);
+    background-color: rgb(181, 241, 179);
+}
+
+
+
+
+#facilities input[type="checkbox"] +label span{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 20px;
+    font-family: '굵은노토';
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+    color: rgb(46, 46, 46);
+    cursor: pointer;
+}
+#facilities input[type="checkbox"] +label span:hover{
+    border:none;
+    color: rgb(219, 219, 219);
+    background-color: rgb(46, 46, 46);
+}
+#facilities input[type="checkbox"]:checked +label span{
+    color: rgb(46, 46, 46);
+    background-color: rgb(241, 179, 231);
+}
+
+
+
+
+#btn_submit{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+#btn_submit button{
+    margin: 0;
+    width: 49%;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: '보통노토';
+    font-size: 20px;
+    background-color: rgb(243, 243, 243);
+    color: rgb(46, 46, 46);
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+#btn_submit a{
+    display: inline-block;
+    margin: 0;
+    width: 49%;
+    padding: 5px;
+    box-sizing: border-box;
+    font-family: '보통노토';
+    font-size: 20px;
+    background-color: rgb(243, 243, 243);
+    color: rgb(46, 46, 46);
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#btn_submit button:hover{
+    background-color: rgb(46, 46, 46);
+    color: rgb(243, 243, 243);
+}
+#btn_submit a:hover{
+    background-color: rgb(46, 46, 46);
+    color: rgb(243, 243, 243);
+}
+ #hidden_id_value{
+    display: none;
+}
