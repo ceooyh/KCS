@@ -726,6 +726,21 @@ section {
      #load:hover {
 		background-color: rgb(44,42,41);
 	}
+	
+	#container {overflow:hidden;height:600px;position:relative;}
+	#btnRoadview,  #btnMap {position:absolute;top:5px;left:5px;padding:7px 12px;font-size:14px;border: 1px solid #dbdbdb;background-color: #fff;border-radius: 2px;box-shadow: 0 1px 1px rgba(0,0,0,.04);z-index:1;cursor:pointer;}
+	#btnRoadview:hover,  #btnMap:hover{background-color: #fcfcfc;border: 1px solid #c1c1c1;}
+	#container.view_map #mapWrapper {z-index: 10;}
+	#container.view_map #btnMap {display: none;}
+	#container.view_roadview #mapWrapper {z-index: 0;}
+	#container.view_roadview #btnRoadview {display: none;}
+	
+	.customoverlay {position:relative;bottom:85px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
+	.customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
+	.customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #d95050;background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+	.customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:10px 15px;font-size:14px;font-weight:bold;}
+	.customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+	
 </style>
 </head>
 <body>
@@ -826,9 +841,25 @@ section {
 			    지도를 마우스로 클릭하면 선 그리기가 시작되고<br>오른쪽 마우스를 클릭하면 선 그리기가 종료됩니다.
 			</p>
 			<div id="detail_information_image">
-				<div class="box_border" id="map" style="width:1000px; height:600px;"></div>
+				<div id="container" class="view_map">
+				    <div class="box_border" id="mapWrapper" style="width:1000px; height:600px;position:relative;">
+				        <div id="map" style="width:100%;height:100%"></div> <!-- 지도를 표시할 div 입니다 -->
+				        <input type="button" id="btnRoadview" onclick="toggleMap(false)" title="로드뷰 보기" value="로드뷰">
+				    </div>
+				    <div class="box_border" id="rvWrapper" style="width:1000px;height:600px;position:absolute;top:0;left:0;">
+				        <div id="roadview" style="height:100%"></div> <!-- 로드뷰를 표시할 div 입니다 -->
+				        <input type="button" id="btnMap" onclick="toggleMap(true)" title="지도 보기" value="지도">
+				    </div>
+				</div>
+			
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=33ee79f7b74007146a4bbdb7860bb035&libraries=services"></script>
 				<script>
+				var container = document.getElementById('container'), // 지도와 로드뷰를 감싸고 있는 div 입니다
+			    mapWrapper = document.getElementById('mapWrapper'), // 지도를 감싸고 있는 div 입니다
+			    btnRoadview = document.getElementById('btnRoadview'), // 지도 위의 로드뷰 버튼, 클릭하면 지도는 감춰지고 로드뷰가 보입니다 
+			    btnMap = document.getElementById('btnMap'), // 로드뷰 위의 지도 버튼, 클릭하면 로드뷰는 감춰지고 지도가 보입니다 
+			    rvContainer = document.getElementById('roadview'), // 로드뷰를 표시할 div 입니다
+			    roadviewClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객체
 				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
 				        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -846,25 +877,90 @@ section {
 				    // 정상적으로 검색이 완료됐으면 
 				     if (status === daum.maps.services.Status.OK) {
 				
+				    	var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+				    	    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+				    	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+				    	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+				    	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+				    	
+				    	// 지도와 로드뷰 위에 마커로 표시할 특정 장소의 좌표입니다 
 				        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 				
+				     	// 지도 옵션입니다 
+				        var mapOption = {
+				            center: coords, // 지도의 중심좌표 
+				            level: 3 // 지도의 확대 레벨
+				        };
+				     	
+				     	// 로드뷰 객체를 생성합니다 
+				        var roadview = new kakao.maps.Roadview(rvContainer);
+
+				     	// 특정 위치의 좌표와 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄운다.
+				        roadviewClient.getNearestPanoId(coords, 50, function(panoId) {
+				            roadview.setPanoId(panoId, coords); //panoId와 중심좌표를 통해 로드뷰 실행
+				        });
+
+				        // 특정 장소가 잘보이도록 로드뷰의 적절한 시점(ViewPoint)을 설정합니다 
+				        // Wizard를 사용하면 적절한 로드뷰 시점(ViewPoint)값을 쉽게 확인할 수 있습니다
+				        roadview.setViewpoint({
+				            pan: 321,
+				            tilt: 0,
+				            zoom: 0
+				        });
+				     	
+				     	// 로드뷰 초기화가 완료되면 
+				        kakao.maps.event.addListener(roadview, 'init', function() {
+
+				            // 로드뷰에 특정 장소를 표시할 마커를 생성하고 로드뷰 위에 표시합니다 
+				            var rvMarker = new kakao.maps.Marker({
+				                position: coords,
+				                map: roadview
+				            });
+				        });
+
+				       
+				        
+				        
 				        // 결과값으로 받은 위치를 마커로 표시합니다
 				        var marker = new daum.maps.Marker({
 				            map: map,
-				            position: coords
+				            position: coords,
+				            image: markerImage	// 마커이미지 설정
 				        });
 				
-				        // 인포윈도우로 장소에 대한 설명을 표시합니다
-				        var infowindow = new daum.maps.InfoWindow({
-				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${requestScope.spotDTO.facltNm}</div>'
+				     	// 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+				        var content = '<div class="customoverlay">' +
+				            '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">' +
+				            '    <span class="title">${requestScope.spotDTO.facltNm}</span>' +
+				            '  </a>' +
+				            '</div>';
+				            
+				        // 커스텀 오버레이를 생성합니다
+				        var customOverlay = new kakao.maps.CustomOverlay({
+				            map: map,
+				            position: coords,
+				            content: content,
+				            yAnchor: 1 
 				        });
-				        infowindow.open(map, marker);
-				
+				        
 				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 				        map.setCenter(coords);
 				    } 
 				});    
 				
+				// 지도와 로드뷰를 감싸고 있는 div의 class를 변경하여 지도를 숨기거나 보이게 하는 함수입니다 
+		        function toggleMap(active) {
+		            if (active) {
+
+		                // 지도가 보이도록 지도와 로드뷰를 감싸고 있는 div의 class를 변경합니다
+		                container.className = "view_map"
+		            } else {
+
+		                // 지도가 숨겨지도록 지도와 로드뷰를 감싸고 있는 div의 class를 변경합니다
+		                container.className = "view_roadview"   
+		            }
+		        }
 				
 				// 선의 거리 계산하기
 				var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
