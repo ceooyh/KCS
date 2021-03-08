@@ -5,104 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일반 사용자 예약내역페이지</title>
-<style type="text/css">
-    @font-face {
-        font-family: '보통노토';
-        src: url(../../../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Medium.otf);
-    }
-    @font-face {
-        font-family: '굵은노토';
-        src: url(../../../Font/NotoSansCJKkr-hinted/NotoSansCJKkr-Black.otf);
-    }
-    @font-face {
-        font-family: '검은고딕';
-        src: url(../../../Font/검은고딕/OFL.txt);
-    }
-    @font-face {
-        font-family: '보통로보';
-        src: url(../../../Font/Roboto/Roboto-Medium.ttf);
-    }
-    @font-face {
-        font-family: '두꺼운로보';
-        src: url(../../../Font/Roboto/Roboto-Bold.ttf);
-    }
-    *{
-        padding: 0;
-        margin: 0;
-    }
-    section{
-    	margin-bottom: 100px;
-    }
-    #headline_comment{
-         text-align: center;
-        font-family: '굵은노토';
-        color: rgb(46,46,46);
-        margin-bottom: 40px;
-        margin-top: 40px;
-        font-size: 32px;
-    }
-     #reservation_table{
-        width: 1500px;
-        margin: 0 auto;
-        margin-top: 40px;
-    }
-    #reservation_table table{
-        border-collapse: collapse;
-    }
-    .head_name{
-        width: 150px;
-        height: 30px;
-        font-size: 14px;
-        padding-top: 10px;
-        text-align: center;
-        color: rgb(46,46,46);
-        border-top: 2px solid rgb(215, 215,215);
-        border-bottom: 2px solid rgb(215, 215,215);
-        font-family: '굵은노토';
-    }
-    .inside_content{
-        width: 150px;
-        height: 60px;
-        padding-top: 30px;
-        font-size: 14px;
-        text-align: center;
-        color: rgb(46,46,46);
-        border-bottom: 1px solid rgb(215, 215,215);
-        font-family: '굵은노토';
-    }
-    #status_click_button{
-        text-decoration: none;
-        color: rgb(46,46,46);
-        background-color: rgb(233, 233, 233);
-        border: 1px solid rgb(46,46,46);
-        border-radius: 5px;
-        padding:4px ;
-    }
-    #status_click_button:hover{
-        color: rgb(233, 233, 233);
-        background-color: rgb(46,46,46);
-        border:none;
-    }
-    #reservation_headline_img{
-    	width: 100%;
-    }
-    #facltNm_href{
-    	text-decoration: none;
-        color: orange;
-        border-radius: 5px;
-        padding:4px ;
-    }
-    #facltNm_href:hover {
-		text-decoration:underline;
-		font-size: 15px;
-		color : black;
-	}
-</style>
+<link rel="stylesheet" href="../../../css/fonts/font.css">
+<link rel="stylesheet" href="../../../css/book/guest_book_list.css">
 <script src="../../../lib/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-
-</script>
+<title>일반 사용자 예약내역페이지</title>
 </head>
 <body>
 <jsp:include page="../template/header2.jsp" flush="false"></jsp:include>

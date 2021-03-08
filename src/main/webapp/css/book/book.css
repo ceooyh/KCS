@@ -1,0 +1,83 @@
+ section{
+        width: 100%;
+    }
+    #form_container{
+        width: 800px;
+        height: 500px;
+        margin: 180px auto;
+        border: 1px solid black;
+        box-sizing: border-box;
+        font-size: 0;
+    }
+    #img_insert{
+        box-sizing: border-box;
+        width: 100%;
+        height: 400px;
+        font-size: 0;
+        color: white;
+        text-align: center;
+    }
+    #reservation_campimg{
+        display: inline-block;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        font-size: 46px;
+        box-sizing: border-box;
+        padding-top: 150px;
+        font-family: '에스코어7';
+    }
+    #date_insert{
+        box-sizing: border-box;
+        width: 100%;
+        height: 50px;
+        font-size: 0;
+        border-bottom: 1px solid black;        
+        padding-top: 10px;
+    }
+    #button_insert{
+        box-sizing: border-box;
+        width: 100%;
+        height: 50px;
+        font-size: 0px;
+        padding-left: 35px;
+    }
+    .date_headline{
+        font-family: '에스코어8';
+        color: rgb(44,42,41);
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    #start_date_insert{
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        font-size: 16px;
+        text-align: center;
+    }
+    #end_date_insert{
+        display: inline-block;
+        width: 50%;
+        height: 100%;
+        font-size: 16px;
+        text-align: center;
+    }
+    .book_btn{
+        width: 30%;
+        text-align: center;
+        font-size: 16px;
+        height: 70%;
+        margin-top: 7px;
+        border: none;
+        background-color: rgb(215, 215, 215);
+        color: rgb(44,42,41);
+        cursor: pointer;
+        box-sizing: border-box;
+        margin-right: 20px;
+        border-radius: 3px;
+        font-family: '에스코어6';
+    }
+    .book_btn:hover{
+        background-color: rgb(44,42,41);
+        color: white;
+    }
