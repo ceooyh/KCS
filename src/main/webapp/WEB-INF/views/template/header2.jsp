@@ -56,7 +56,7 @@
 		                    </li>
                             <li class="dropbtn"><a href="keepSpotView.do">찜한 스팟</a></li>
                             <li class="dropbtn"><a href="qnaView.do">문의하기</a></li>
-                            <li class="dropbtn_hcon"><a href="questMyPageView.do">마이 페이지</a>
+                            <li class="dropbtn_hcon"><a href="guestInfoUpdateView.do">마이 페이지</a>
                                 <ul class="dropdown-content">
                                     <li class="dropdown-content-li"><a href="guestInfoUpdateView.do">개인정보수정</a></li>
                                     <li class="dropdown-content-li"><a href="guestFavoriteUpdateView.do">취향정보수정</a></li>
@@ -90,7 +90,7 @@
                         <li class="dropbtn"><a href="infoView.do">소개</a></li>
                         <li class="dropbtn"><a href="manageBookListView.do">예약 관리</a></li>
                         <li class="dropbtn"><a href="qnaView.do">문의하기</a></li>
-                        <li class="dropbtn_hcon"><a href="#">마이 페이지</a>
+                        <li class="dropbtn_hcon"><a href="businessInfoUpdateView.do">마이 페이지</a>
                             <ul class="dropdown-content1">
                                 <li class="dropdown-content-li"><a href="businessInfoUpdateView.do">사업자정보수정</a></li>
                             </ul>
